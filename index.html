@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fidel × Alejo — Road to $1M/month</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07070d;--surface:#0f0f1a;--surface2:#161625;--surface3:#1d1d30;
+  --gold:#f59e0b;--gold-light:#fcd34d;--gold-dim:rgba(245,158,11,0.10);--gold-border:rgba(245,158,11,0.25);
+  --green:#10b981;--green-dim:rgba(16,185,129,0.09);--green-border:rgba(16,185,129,0.2);
+  --blue:#60a5fa;--blue-dim:rgba(96,165,250,0.09);
+  --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.09);
+  --red:#f87171;--red-dim:rgba(248,113,113,0.09);
+  --text:#f0f0f4;--text2:#8b8ba8;--text3:#44445a;
+  --border:rgba(255,255,255,0.055);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+.orb{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;animation:orb 22s ease-in-out infinite alternate}
+.orb1{width:700px;height:700px;background:rgba(245,158,11,0.055);top:-150px;right:-150px}
+.orb2{width:500px;height:500px;background:rgba(167,139,250,0.045);bottom:-100px;left:-100px;animation-delay:-11s}
+@keyframes orb{from{transform:translate(0,0)}to{transform:translate(50px,40px)}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background:rgba(7,7,13,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-size:13px;font-weight:800;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;white-space:nowrap}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:12px;color:var(--text2);text-decoration:none;transition:color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--text)}
+.nav-pill{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text2);background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:5px 12px;white-space:nowrap}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}50%{box-shadow:0 0 0 5px rgba(16,185,129,0)}}
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding:6px 16px;border-radius:100px;background:var(--gold-dim);border:1px solid var(--gold-border);margin-bottom:28px;animation:fadeup .6s ease both}
+.hero h1{font-size:clamp(44px,9vw,100px);font-weight:900;line-height:.95;letter-spacing:-.03em;margin-bottom:20px;animation:fadeup .6s .1s ease both}
+.hero h1 .dim{color:var(--text3)}
+.hero h1 .gold{color:var(--gold)}
+.hero-sub{font-size:17px;color:var(--text2);max-width:520px;margin-bottom:48px;animation:fadeup .6s .2s ease both}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap;justify-content:center;margin-bottom:56px;animation:fadeup .6s .3s ease both}
+.stat-val{font-size:34px;font-weight:900;color:var(--gold);line-height:1}
+.stat-lbl{font-size:11px;color:var(--text3);margin-top:5px;letter-spacing:.08em;text-transform:uppercase}
+
+/* PROGRESS TRACKER */
+.progress-tracker{width:100%;max-width:680px;animation:fadeup .6s .4s ease both}
+.pt-header{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:12px}
+.pt-header strong{color:var(--text)}
+.pt-bar{position:relative;height:8px;background:var(--surface2);border-radius:100px;overflow:visible;border:1px solid var(--border)}
+.pt-fill{height:100%;width:6%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:100px;position:relative;transition:width 1.5s cubic-bezier(.34,1.56,.64,1)}
+.pt-dot{position:absolute;right:-6px;top:50%;transform:translateY(-50%);width:16px;height:16px;border-radius:50%;background:var(--gold);border:3px solid var(--bg);box-shadow:0 0 12px rgba(245,158,11,.6)}
+.pt-milestones{display:flex;justify-content:space-between;margin-top:10px;font-size:10px;color:var(--text3)}
+.pt-milestone{text-align:center}
+.pt-milestone.active{color:var(--gold)}
+
+.pt-next{margin-top:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 20px;text-align:left}
+.pt-next-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.pt-actions{display:flex;flex-direction:column;gap:6px}
+.pt-action{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)}
+.pt-action-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.pt-action strong{color:var(--text)}
+
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;color:var(--text3);letter-spacing:.1em;animation:fadeup .6s .7s ease both}
+.scroll-hint svg{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION */
+.section{position:relative;z-index:1;padding:80px 48px;max-width:1200px;margin:0 auto}
+.slabel{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.stitle{font-size:clamp(26px,3.5vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.ssub{font-size:15px;color:var(--text2);margin-bottom:56px}
+
+/* TIMELINE */
+.tl-wrap{position:relative}
+.tl-line{position:absolute;left:20px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--gold-border) 8%,var(--gold-border) 92%,transparent)}
+.tl-items{display:flex;flex-direction:column;padding-left:60px}
+.tl-item{position:relative;padding-bottom:44px;opacity:0;transform:translateX(-16px);transition:opacity .5s ease,transform .5s ease}
+.tl-item.vis{opacity:1;transform:translateX(0)}
+.tl-dot{position:absolute;left:-51px;top:3px;width:18px;height:18px;border-radius:50%;border:2px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.tl-dot i{width:6px;height:6px;border-radius:50%;background:var(--text3)}
+.tl-item.done .tl-dot{border-color:var(--green);background:var(--green-dim)}
+.tl-item.done .tl-dot i{background:var(--green)}
+.tl-item.now .tl-dot{border-color:var(--gold);background:var(--gold-dim);animation:pgold 2s ease-in-out infinite}
+.tl-item.now .tl-dot i{background:var(--gold)}
+@keyframes pgold{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.4)}50%{box-shadow:0 0 0 8px rgba(245,158,11,0)}}
+.tl-date{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.tl-title{font-size:17px;font-weight:700;margin-bottom:6px}
+.tl-desc{font-size:13px;color:var(--text2);line-height:1.75;max-width:600px}
+.tl-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tag{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px}
+.tg{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
+.ty{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.tb{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+.tp{background:var(--purple-dim);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
+
+/* SYSTEMS */
+.sys-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.sys-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .3s;opacity:0;transform:translateY(18px)}
+.sys-card.vis{opacity:1;transform:translateY(0)}
+.sys-card:hover{border-color:var(--gold-border);box-shadow:0 20px 40px rgba(0,0,0,.4),0 0 0 1px rgba(245,158,11,.08)}
+.sys-header{padding:20px 22px 16px;border-bottom:1px solid var(--border)}
+.sys-icon{font-size:22px;margin-bottom:10px}
+.sys-title{font-size:15px;font-weight:700;margin-bottom:4px}
+.sys-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.sys-preview{padding:16px;background:var(--surface2)}
+.sys-caps{padding:16px 22px}
+.sys-caps-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.sys-cap-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text2);margin-bottom:6px}
+.sys-cap-item::before{content:'✓';color:var(--green);flex-shrink:0;font-size:11px;margin-top:1px}
+
+/* CHAT MOCKUP */
+.chat-mock{display:flex;flex-direction:column;gap:8px}
+.chat-msg{max-width:85%;padding:8px 11px;border-radius:12px;font-size:11px;line-height:1.5}
+.chat-in{background:var(--surface3);border-radius:12px 12px 12px 3px;align-self:flex-start;color:var(--text2)}
+.chat-out{background:linear-gradient(135deg,#1a472a,#1e5c31);border-radius:12px 12px 3px 12px;align-self:flex-end;color:#86efac}
+.chat-system{background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:8px;padding:6px 10px;font-size:10px;color:var(--gold);align-self:stretch;display:flex;gap:6px;align-items:center}
+.chat-time{font-size:9px;color:var(--text3);margin-top:2px}
+
+/* KANBAN MOCKUP */
+.kanban{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.kanban::-webkit-scrollbar{height:3px}
+.kanban::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.kb-col{flex-shrink:0;width:100px}
+.kb-col-title{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;padding-left:2px}
+.kb-card{background:var(--surface3);border-radius:7px;padding:7px 8px;margin-bottom:5px;font-size:10px;color:var(--text2);border-left:2px solid transparent}
+.kb-card.k1{border-color:var(--blue)}
+.kb-card.k2{border-color:var(--gold)}
+.kb-card.k3{border-color:var(--green)}
+.kb-card.k4{border-color:var(--purple)}
+.kb-dot{width:5px;height:5px;border-radius:50%;display:inline-block;margin-right:4px}
+
+/* FLOW MOCKUP */
+.flow{display:flex;flex-direction:column;gap:4px}
+.flow-step{display:flex;align-items:center;gap:8px;font-size:10px;color:var(--text2);background:var(--surface3);border-radius:8px;padding:7px 10px}
+.flow-num{width:18px;height:18px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold);font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.flow-arrow{color:var(--text3);font-size:9px;text-align:center;padding:1px 0}
+
+/* COPY MOCKUP */
+.copy-mock{display:flex;flex-direction:column;gap:6px}
+.copy-row{background:var(--surface3);border-radius:8px;padding:8px 10px;font-size:10px}
+.copy-row-lbl{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:3px}
+.copy-row-val{color:var(--text2);line-height:1.5}
+.copy-row-val span{color:var(--gold)}
+
+/* PHASES */
+.phases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.phase-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease,border-color .3s,box-shadow .3s}
+.phase-card.vis{opacity:1;transform:translateY(0)}
+.phase-card:hover{border-color:var(--gold-border);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.phase-header{padding:24px 24px 0;cursor:pointer;user-select:none}
+.phase-num{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.phase-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.phase-title{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.phase-when{font-size:11px;color:var(--text3)}
+.phase-money{font-size:28px;font-weight:900;color:var(--gold);letter-spacing:-.02em;padding:16px 24px;border-bottom:1px solid var(--border)}
+.toggle-btn{width:28px;height:28px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:transform .3s}
+.toggle-btn svg{transition:transform .3s}
+.phase-card.open .toggle-btn svg{transform:rotate(180deg)}
+.phase-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+.phase-card.open .phase-body{max-height:600px}
+.phase-inner{padding:20px 24px 24px}
+.phase-items{list-style:none;display:flex;flex-direction:column;gap:8px}
+.phase-items li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--text2);line-height:1.6}
+.phase-items li::before{content:'→';color:var(--gold);flex-shrink:0;margin-top:1px;font-weight:700}
+.phase-unlock{margin-top:16px;background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:10px;padding:11px 14px;font-size:12px;color:var(--text2)}
+.phase-unlock strong{color:var(--gold)}
+.phase-card.featured{border-color:var(--gold-border);background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(167,139,250,.04))}
+
+/* AREA CHART */
+.chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:36px;overflow:hidden}
+.chart-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;flex-wrap:wrap;gap:16px}
+.chart-info .slabel{margin-bottom:6px}
+.chart-info .stitle{font-size:20px;margin-bottom:0}
+.chart-legend{display:flex;gap:20px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text2)}
+.legend-swatch{width:24px;height:3px;border-radius:2px}
+.chart-svg-wrap{position:relative}
+.chart-svg-wrap svg{width:100%;overflow:visible}
+.chart-y-labels{position:absolute;left:0;top:0;bottom:0;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}
+.chart-y-labels span{font-size:10px;color:var(--text3);line-height:1}
+.chart-inner{margin-left:44px}
+.chart-x-labels{display:flex;justify-content:space-between;margin-left:44px;margin-top:8px}
+.chart-x-labels span{font-size:9px;color:var(--text3);text-align:center;flex:1}
+.tooltip{position:absolute;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:12px;pointer-events:none;opacity:0;transition:opacity .15s;white-space:nowrap;z-index:10}
+.tooltip-title{font-size:10px;color:var(--text3);margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase}
+.tooltip-row{display:flex;justify-content:space-between;gap:20px}
+.tooltip-val{font-weight:700}
+
+/* BREAKDOWN */
+.bd-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.bd-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;opacity:0;transform:translateY(18px);transition:all .5s ease}
+.bd-card.vis{opacity:1;transform:translateY(0)}
+.bd-card:hover{border-color:var(--gold-border)}
+.bd-icon{font-size:28px;margin-bottom:14px}
+.bd-title{font-size:15px;font-weight:700;margin-bottom:6px}
+.bd-desc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:18px}
+.bd-math{background:var(--surface2);border-radius:12px;padding:14px 16px}
+.bd-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:var(--text2)}
+.bd-row.total{border-top:1px solid var(--border);margin-top:8px;padding-top:10px;font-weight:700;font-size:14px;color:var(--gold)}
+.bd-banner{grid-column:1/-1;background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(167,139,250,.07));border:1px solid var(--gold-border);border-radius:20px;padding:40px;text-align:center}
+.bd-banner-lbl{font-size:11px;color:var(--text2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.bd-banner-num{font-size:clamp(52px,8vw,84px);font-weight:900;color:var(--gold);letter-spacing:-.03em;line-height:1}
+.bd-banner-sub{font-size:14px;color:var(--text2);margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto}
+
+/* ROLE */
+.role-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.role-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;transition:all .3s}
+.role-card:hover{border-color:var(--gold-border);transform:translateY(-2px)}
+.role-card.featured{border-color:var(--gold-border);background:var(--gold-dim)}
+.role-icon{font-size:22px;margin-bottom:10px}
+.role-title{font-size:14px;font-weight:700;margin-bottom:5px}
+.role-desc{font-size:12px;color:var(--text2);line-height:1.65}
+
+/* FOOTER */
+footer{position:relative;z-index:1;text-align:center;padding:60px 40px;border-top:1px solid var(--border);font-size:12px;color:var(--text3)}
+footer strong{color:var(--text2)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:12px 20px}
+  .nav-links{display:none}
+  .section{padding:60px 20px}
+  .hero{padding:100px 20px 70px}
+  .hero-stats{gap:24px}
+  .bd-grid{grid-template-columns:1fr}
+  .phases-grid{grid-template-columns:1fr}
+  .sys-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero h1{font-size:40px}
+  .hero-stats{gap:20px}
+  .stat-val{font-size:28px}
+}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:4px}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Fidel × Alejo</div>
+  <div class="nav-links">
+    <a href="#timeline">Historia</a>
+    <a href="#systems">Sistemas</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#breakdown">7 Cifras</a>
+  </div>
+  <div class="nav-pill"><div class="pulse"></div>Piloto v2 — Activo</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">🚀 Estrategia 2026–2027</div>
+  <h1>Road to <span class="gold">$1M</span><br><span class="dim">per month.</span></h1>
+  <p class="hero-sub">El sistema de contenido que posiciona a Fidel como la autoridad número uno del mercado hispano — contratistas y wholesaling — en USA.</p>
+  <div class="hero-stats">
+    <div><div class="stat-val">$60K</div><div class="stat-lbl">Ingreso actual / mes</div></div>
+    <div><div class="stat-val">2</div><div class="stat-lbl">Mercados activos</div></div>
+    <div><div class="stat-val">7K</div><div class="stat-lbl">Seguidores EN</div></div>
+    <div><div class="stat-val">21d</div><div class="stat-lbl">Al launch ES</div></div>
+  </div>
+
+  <div class="progress-tracker">
+    <div class="pt-header">
+      <span>Ingreso mensual actual: <strong>$60K</strong></span>
+      <span>Objetivo: <strong>$1,000,000/mes</strong></span>
+    </div>
+    <div class="pt-bar">
+      <div class="pt-fill" id="ptfill"><div class="pt-dot"></div></div>
+    </div>
+    <div class="pt-milestones">
+      <div class="pt-milestone active">$60K<br>HOY</div>
+      <div class="pt-milestone">$120K<br>Ago</div>
+      <div class="pt-milestone">$300K<br>Dic</div>
+      <div class="pt-milestone">$600K<br>Q2 '27</div>
+      <div class="pt-milestone">$1M<br>Q3 '27</div>
+    </div>
+    <div class="pt-next">
+      <div class="pt-next-label">Próximas acciones</div>
+      <div class="pt-actions">
+        <div class="pt-action"><div class="pt-action-dot"></div><span>Llamada con Fidel — presentar propuesta v2 y confirmar <strong>$1,000 setup</strong></span></div>
+        <div class="pt-action"><div class="pt-action-dot"></div><span>Kickoff cuenta española — estrategia de contratistas + onboarding Paulo</span></div>
+        <div class="pt-action"><div class="pt-action-dot"></div><span>Primer batch de contenido ES + ManyChat en español activo</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2.5 8l4.5 4.5 4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<section class="section" id="timeline">
+  <div class="slabel">Historial</div>
+  <h2 class="stitle">El camino hasta acá</h2>
+  <p class="ssub">Cada decisión estratégica nos trajo al punto de mayor claridad del proyecto.</p>
+  <div class="tl-wrap">
+    <div class="tl-line"></div>
+    <div class="tl-items">
+
+      <div class="tl-item done">
+        <div class="tl-dot"><i></i></div>
+        <div class="tl-date">Pre-Mayo 2026</div>
+        <div class="tl-title">Inmersión estratégica en el negocio</div>
+        <div class="tl-desc">Alejo se integra al ecosistema de Fidel desde adentro — mapea el proceso de ventas, identifica los cuellos de botella del embudo y entiende qué audiencias tienen mayor potencial de escala.</div>
+        <div class="tl-tags"><span class="tag tb">Análisis de mercado</span><span class="tag tp">Diagnóstico de embudo</span></div>
+      </div>
+
+      <div class="tl-item done">
+        <div class="tl-dot"><i></i></div>
+        <div class="tl-date">Mayo 2026</div>
+        <div class="tl-title">Propuesta v1 — Sistema de Contenido</div>
+        <div class="tl-desc">Primera propuesta formal: piloto de 21 días ($600) con transición a retainer Core de $1,200/mes. Foco en la cuenta de wholesaling en inglés. Fidel acepta el modelo.</div>
+        <div class="tl-tags"><span class="tag tg">Primer deal cerrado</span></div>
+      </div>
+
+      <div class="tl-item done">
+        <div class="tl-dot"><i></i></div>
+        <div class="tl-date">2 Junio 2026</div>
+        <div class="tl-title">$600 recibido — El sistema arranca</div>
+        <div class="tl-desc">Panel de aprobación en ClickUp activo desde el día uno. La operación comienza: research, copy, estructura de contenido y primeros flujos en ManyChat.</div>
+        <div class="tl-tags"><span class="tag tg">Paid · Operación iniciada</span></div>
+      </div>
+
+      <div class="tl-item done">
+        <div class="tl-dot"><i></i></div>
+        <div class="tl-date">Junio 2026 — Semanas 1 y 2</div>
+        <div class="tl-title">Infraestructura construida más allá del scope</div>
+        <div class="tl-desc">ManyChat CRM completo, flujos de calificación y booking, plantillas de copy en el tono de Fidel, sistema de PM en ClickUp con calendario de contenido. Todo esto va más allá de lo que el piloto pedía — y es el activo más valioso del proyecto.</div>
+        <div class="tl-tags"><span class="tag ty">IP generada</span><span class="tag tg">Sistemas entregados</span></div>
+      </div>
+
+      <div class="tl-item done">
+        <div class="tl-dot"><i></i></div>
+        <div class="tl-date">Junio 2026 — Semana 3</div>
+        <div class="tl-title">Evaluando la dirección estratégica correcta</div>
+        <div class="tl-desc">El equipo toma el tiempo necesario para analizar a fondo el panorama: qué audiencia tiene mayor velocidad de resultado, qué ángulo de contenido es más diferenciador, y cómo construir una narrativa que resista los próximos 12 meses. Claridad antes que velocidad.</div>
+        <div class="tl-tags"><span class="tag tb">Análisis estratégico</span></div>
+      </div>
+
+      <div class="tl-item done">
+        <div class="tl-dot"><i></i></div>
+        <div class="tl-date">Junio 15–18, 2026</div>
+        <div class="tl-title">Ramiro valida el ángulo ganador</div>
+        <div class="tl-desc">Alejo propone el ángulo de contratistas en español. Fidel lo consulta con su mentor, Ramiro. La respuesta es contundente: ese es el movimiento correcto. La estrategia de dos cuentas se convierte en decisión oficial.</div>
+        <div class="tl-tags"><span class="tag tg">Validado por Ramiro</span></div>
+      </div>
+
+      <div class="tl-item now">
+        <div class="tl-dot"><i></i></div>
+        <div class="tl-date">19 Junio 2026 — Ahora</div>
+        <div class="tl-title">Estrategia de dos cuentas — Punto de inflexión</div>
+        <div class="tl-desc">Dirección confirmada: cuenta EN para wholesalers y agentes (7K seguidores) + cuenta ES nueva para contratistas en USA desde cero. El sistema ya existe. Lo que sigue es ejecutar con velocidad.</div>
+        <div class="tl-tags"><span class="tag ty">Punto de inflexión</span><span class="tag tp">Propuesta v2 lista</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEMS -->
+<section class="section" id="systems">
+  <div class="slabel">Infraestructura</div>
+  <h2 class="stitle">Sistemas construidos y activos</h2>
+  <p class="ssub">No se arranca desde cero. La infraestructura ya existe y el mercado de contratistas es el que tiene mayor potencial de escala — nadie les habla bien en español todavía.</p>
+  <div class="sys-grid">
+
+    <!-- ManyChat CRM -->
+    <div class="sys-card">
+      <div class="sys-header">
+        <div class="sys-icon">💬</div>
+        <div class="sys-title">ManyChat CRM</div>
+        <div class="sys-desc">Sistema de automatización de DMs que convierte comentarios en leads calificados sin intervención manual.</div>
+      </div>
+      <div class="sys-caps">
+        <div class="sys-caps-label">Capacidades</div>
+        <div class="sys-cap-item">Keyword triggers en cada post (ROOFING, LEADS, ADS, TEAM…)</div>
+        <div class="sys-cap-item">Flujo de calificación: presupuesto, ubicación, tipo de trabajo</div>
+        <div class="sys-cap-item">Nurturing automatizado para leads fríos</div>
+        <div class="sys-cap-item">Booking a Calendly solo para leads calificados</div>
+        <div class="sys-cap-item">Etiquetado y segmentación por temperatura</div>
+      </div>
+    </div>
+
+    <!-- ClickUp PM -->
+    <div class="sys-card">
+      <div class="sys-header">
+        <div class="sys-icon">📋</div>
+        <div class="sys-title">ClickUp — Panel de Contenido</div>
+        <div class="sys-desc">Sistema de gestión de proyectos que permite producir y publicar contenido de forma consistente con mínima fricción.</div>
+      </div>
+      <div class="sys-caps">
+        <div class="sys-caps-label">Capacidades</div>
+        <div class="sys-cap-item">Calendario de contenido semanal con fechas de publicación</div>
+        <div class="sys-cap-item">Sistema de aprobación — Fidel aprueba en 15 min/semana</div>
+        <div class="sys-cap-item">Flujo: Idea → Guión → Diseño → Grabación → Edición → Live</div>
+        <div class="sys-cap-item">Archivo de contenido con notas de performance</div>
+        <div class="sys-cap-item">Acceso de todo el equipo con roles diferenciados</div>
+      </div>
+    </div>
+
+    <!-- Copy System -->
+    <div class="sys-card">
+      <div class="sys-header">
+        <div class="sys-icon">✍️</div>
+        <div class="sys-title">Sistema de Copy</div>
+        <div class="sys-desc">Guía de tono, plantillas de hooks y estructura de posts que replican la voz de Fidel con consistencia — sin que él tenga que escribir nada.</div>
+      </div>
+      <div class="sys-caps">
+        <div class="sys-caps-label">Capacidades</div>
+        <div class="sys-cap-item">Research semanal de contenido viral en el nicho</div>
+        <div class="sys-cap-item">30+ plantillas de hooks categorizadas por formato</div>
+        <div class="sys-cap-item">Guía de tono: directo, táctico, sin relleno de coach</div>
+        <div class="sys-cap-item">A/B testing de formatos — carrusel, reel, story, texto</div>
+        <div class="sys-cap-item">Adaptable a inglés (wholesalers) y español (contratistas)</div>
+      </div>
+    </div>
+
+    <!-- Pipeline -->
+    <div class="sys-card">
+      <div class="sys-header">
+        <div class="sys-icon">⚙️</div>
+        <div class="sys-title">Pipeline de Producción</div>
+        <div class="sys-desc">Proceso semanal end-to-end que convierte ideas en contenido publicado con mínimo tiempo de Fidel y máxima calidad de output.</div>
+      </div>
+      <div class="sys-caps">
+        <div class="sys-caps-label">Capacidades</div>
+        <div class="sys-cap-item">Fidel solo graba y aprueba — máx. 2 hrs/semana</div>
+        <div class="sys-cap-item">Paulo y Benja operan bajo dirección de Alejo</div>
+        <div class="sys-cap-item">Reporte semanal: métricas de actividad + DMs generadas</div>
+        <div class="sys-cap-item">Sistema replicable — se adapta a la cuenta española sin rediseñar</div>
+        <div class="sys-cap-item">Escalable: más volumen sin más tiempo de Fidel</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="section" id="roadmap">
+  <div class="slabel">Estrategia</div>
+  <h2 class="stitle">El roadmap a 7 cifras</h2>
+  <p class="ssub">Cinco fases. Cada una construye sobre la anterior. Tocá cada card para ver el detalle.</p>
+  <div class="phases-grid">
+
+    <div class="phase-card" onclick="togglePhase(this)" style="transition-delay:.05s">
+      <div class="phase-header">
+        <div class="phase-num">Fase 1</div>
+        <div class="phase-top">
+          <div><div class="phase-title">Setup & Sistemas</div><div class="phase-when">Julio 2026 · 21 días</div></div>
+          <button class="toggle-btn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+      <div class="phase-money">$1,000 setup</div>
+      <div class="phase-body">
+        <div class="phase-inner">
+          <ul class="phase-items">
+            <li>Estrategia de contenido para contratistas en español definida (pilares, formatos, hooks)</li>
+            <li>Batch de arranque: 2–3 semanas de posts listos para publicar</li>
+            <li>ManyChat configurado para audiencia hispanohablante con triggers y flujos de calificación</li>
+            <li>Paulo entrenado para operar la cuenta sin que Alejo esté en la ejecución diaria</li>
+            <li>Cuenta EN acelerada: volumen + consistencia ahora que la dirección es clara</li>
+          </ul>
+          <div class="phase-unlock">Desbloquea: <strong>conversación de partnership cuando los primeros clientes contratistas cierren</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card" onclick="togglePhase(this)" style="transition-delay:.1s">
+      <div class="phase-header">
+        <div class="phase-num">Fase 2</div>
+        <div class="phase-top">
+          <div><div class="phase-title">Primeros Resultados</div><div class="phase-when">Agosto — Septiembre 2026</div></div>
+          <button class="toggle-btn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+      <div class="phase-money">$80K–$120K/mes</div>
+      <div class="phase-body">
+        <div class="phase-inner">
+          <ul class="phase-items">
+            <li>Cuenta española: primeros 1K seguidores, DMs de contratistas fluyendo</li>
+            <li>ManyChat calificando leads 24/7 sin intervención</li>
+            <li>Primer contratista cierra servicio de ads con Fidel</li>
+            <li>Cuenta EN creciendo: reels de resultados, breakdowns tácticos de Meta Ads</li>
+            <li>Alejo y Fidel abren la conversación de estructura de partnership</li>
+          </ul>
+          <div class="phase-unlock">Desbloquea: <strong>equity / sociedad — hay algo concreto que estructurar y repartir</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card" onclick="togglePhase(this)" style="transition-delay:.15s">
+      <div class="phase-header">
+        <div class="phase-num">Fase 3</div>
+        <div class="phase-top">
+          <div><div class="phase-title">Escalada de Volumen</div><div class="phase-when">Oct — Dic 2026</div></div>
+          <button class="toggle-btn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+      <div class="phase-money">$200K–$350K/mes</div>
+      <div class="phase-body">
+        <div class="phase-inner">
+          <ul class="phase-items">
+            <li>Paid ads sobre el contenido orgánico más fuerte (retargeting de audiencia caliente)</li>
+            <li>Cuenta EN: 15K+ seguidores, pipeline constante de mentorship</li>
+            <li>Cuenta ES: 5K+ seguidores, 10+ contratistas como clientes activos</li>
+            <li>Paulo y Benja operando el sistema de forma autónoma</li>
+            <li>Alejo en rol estratégico: qué publicar, qué cambiar, qué escalar</li>
+            <li>Primer programa grupal para contratistas (ticket $2K–$5K)</li>
+          </ul>
+          <div class="phase-unlock">Desbloquea: <strong>productos de ticket medio que escalan sin más tiempo de Fidel</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card" onclick="togglePhase(this)" style="transition-delay:.2s">
+      <div class="phase-header">
+        <div class="phase-num">Fase 4</div>
+        <div class="phase-top">
+          <div><div class="phase-title">Multiplicación</div><div class="phase-when">Q1 — Q2 2027</div></div>
+          <button class="toggle-btn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+      <div class="phase-money">$500K–$700K/mes</div>
+      <div class="phase-body">
+        <div class="phase-inner">
+          <ul class="phase-items">
+            <li>Mentorship wholesaling: programa premium $10K–$15K/persona</li>
+            <li>Servicio de ads para contratistas: $2,500–$5K/mes por cliente</li>
+            <li>YouTube en español: canal educativo de Meta Ads para contratistas</li>
+            <li>Curso grabado accesible: $997 — volumen sin tiempo de Fidel</li>
+            <li>Embudo automatizado end-to-end para ambos negocios</li>
+            <li>Equipo expandido: closer dedicado al vertical contratistas</li>
+          </ul>
+          <div class="phase-unlock">Desbloquea: <strong>dos fuentes de ingreso en paralelo — volumen + servicio recurrente</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card featured" onclick="togglePhase(this)" style="grid-column:1/-1;transition-delay:.25s">
+      <div class="phase-header">
+        <div class="phase-num">Fase 5 — El Objetivo</div>
+        <div class="phase-top">
+          <div><div class="phase-title">7 Cifras</div><div class="phase-when">Q3 2027 en adelante</div></div>
+          <button class="toggle-btn"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+      <div class="phase-money">$1,000,000+/mes</div>
+      <div class="phase-body">
+        <div class="phase-inner">
+          <ul class="phase-items" style="columns:2;column-gap:32px">
+            <li>Fidel: la voz más grande del mercado hispano de contratistas en USA</li>
+            <li>Pipeline orgánico que reduce la dependencia de Meta Ads pagados</li>
+            <li>Ads para contratistas: 260 clientes × $2,500 = $650K/mes — el vertical principal</li>
+            <li>Wholesaling mentorship: 35 clientes × $10K = $350K/mes</li>
+            <li>Sistema que corre sin Fidel en la ejecución diaria</li>
+            <li>Alejo como socio con equity real en ambos verticales</li>
+          </ul>
+          <div class="phase-unlock">Dos verticales. Un sistema. El contenido orgánico es el activo más valioso del negocio — <strong>genera audiencia, calienta leads y reduce el costo por adquisición en paid.</strong></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AREA CHART -->
+<section class="section">
+  <div class="chart-wrap" id="chart-section">
+    <div class="chart-header">
+      <div class="chart-info">
+        <div class="slabel">Proyección</div>
+        <div class="stitle" style="font-size:20px;margin-bottom:0">Curva de crecimiento mensual</div>
+      </div>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-swatch" style="background:linear-gradient(90deg,#f59e0b,#fcd34d)"></div>Wholesaling</div>
+        <div class="legend-item"><div class="legend-swatch" style="background:linear-gradient(90deg,#8b5cf6,#c4b5fd)"></div>Contratistas</div>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div class="chart-y-labels" style="left:0;width:40px">
+        <span>$1M</span><span>$750K</span><span>$500K</span><span>$250K</span><span>$0</span>
+      </div>
+      <div class="chart-inner">
+        <div style="position:relative" id="chart-container">
+          <svg id="area-chart" viewBox="0 0 800 200" preserveAspectRatio="none" style="width:100%;height:200px;display:block">
+            <defs>
+              <linearGradient id="gw" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="gc" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+              </linearGradient>
+              <clipPath id="reveal">
+                <rect id="reveal-rect" x="0" y="0" width="0" height="200"/>
+              </clipPath>
+            </defs>
+            <!-- Grid lines -->
+            <line x1="0" y1="0"   x2="800" y2="0"   stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="50"  x2="800" y2="50"  stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="100" x2="800" y2="100" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <!-- Areas and lines rendered by JS -->
+            <g id="chart-areas" clip-path="url(#reveal)"></g>
+            <g id="chart-lines" clip-path="url(#reveal)"></g>
+            <g id="chart-dots"></g>
+          </svg>
+          <div class="tooltip" id="tooltip"></div>
+        </div>
+        <div class="chart-x-labels" id="x-labels"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BREAKDOWN -->
+<section class="section" id="breakdown">
+  <div class="slabel">El número</div>
+  <h2 class="stitle">Cómo se construye el millón</h2>
+  <p class="ssub">Dos verticales — el de contratistas es el que tiene mayor escala. Ticket recurrente, mercado virgen en español y un sistema que se opera sin Fidel en la ejecución.</p>
+  <div class="bd-grid">
+    <div class="bd-card" style="transition-delay:.05s;border-color:var(--gold-border)">
+      <div class="bd-icon">🔧</div>
+      <div class="bd-title">Vertical Principal — Contratistas en USA (ES)</div>
+      <div class="bd-desc">Servicio de ads y marketing digital para roofers, plumbers, HVAC y painters. Facturan $300K–$2M/año, no tienen sistemas de marketing y nadie les habla bien en español todavía. El mercado más grande, el menos competido y el de mayor velocidad de resultado.</div>
+      <div class="bd-math">
+        <div class="bd-row"><span>Clientes activos</span><span>260</span></div>
+        <div class="bd-row"><span>Ticket promedio</span><span>$2,500/mes</span></div>
+        <div class="bd-row total"><span>Subtotal</span><span>$650,000/mes</span></div>
+      </div>
+    </div>
+    <div class="bd-card" style="transition-delay:.1s">
+      <div class="bd-icon">🏚️</div>
+      <div class="bd-title">Vertical Secundario — Wholesaling & Real Estate</div>
+      <div class="bd-desc">Mentoría premium para wholesalers, flippers y agentes en USA. Base ya construida con 7K seguidores y un proceso de ventas probado. El contenido en inglés calienta audiencias y reduce el costo por lead en cada campaña de Meta Ads.</div>
+      <div class="bd-math">
+        <div class="bd-row"><span>Clientes activos</span><span>35</span></div>
+        <div class="bd-row"><span>Ticket promedio</span><span>$10,000/mes</span></div>
+        <div class="bd-row total"><span>Subtotal</span><span>$350,000/mes</span></div>
+      </div>
+    </div>
+    <div class="bd-banner bd-card" style="transition-delay:.15s">
+      <div class="bd-banner-lbl">Ingreso mensual combinado</div>
+      <div class="bd-banner-num" id="counter">$1,000,000</div>
+      <div class="bd-banner-sub">El contenido orgánico no reemplaza los Meta Ads — los potencia. Audiencias calientes desde Instagram reducen el CPL en cada campaña de paid.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLE -->
+<section class="section">
+  <div class="slabel">El sistema</div>
+  <h2 class="stitle">El rol de Alejo</h2>
+  <p class="ssub">Director creativo y arquitecto de sistemas. Las decisiones estratégicas pasan por acá — la ejecución, por el equipo.</p>
+  <div class="role-grid">
+    <div class="role-card"><div class="role-icon">🧠</div><div class="role-title">Narrativa y Estrategia</div><div class="role-desc">Define qué se publica, a quién le habla, con qué tono y desde qué ángulo. La narrativa de las dos cuentas pasa por acá.</div></div>
+    <div class="role-card"><div class="role-icon">⚙️</div><div class="role-title">Arquitectura de Sistemas</div><div class="role-desc">ManyChat CRM, ClickUp PM, flujos de calificación, automatizaciones. El equipo ejecuta sobre infraestructura diseñada para escalar.</div></div>
+    <div class="role-card"><div class="role-icon">🎯</div><div class="role-title">Velocidad de Pivote</div><div class="role-desc">Cuando algo no funciona: qué cambiar, cuándo, cómo. La capacidad de ajustar rápido es una ventaja competitiva real.</div></div>
+    <div class="role-card"><div class="role-icon">👥</div><div class="role-title">Training del Equipo</div><div class="role-desc">Paulo y Benja ejecutan porque Alejo los entrenó. El sistema escala sin depender de que Alejo esté en cada pieza de contenido.</div></div>
+    <div class="role-card"><div class="role-icon">📊</div><div class="role-title">Análisis y Optimización</div><div class="role-desc">Qué contenido genera DMs, qué hook convierte, qué formato multiplica el alcance. Decisiones basadas en datos, no en intuición.</div></div>
+    <div class="role-card featured"><div class="role-icon">🤝</div><div class="role-title">Partnership a futuro</div><div class="role-desc">Cuando los primeros contratistas cierren, la conversación es de sociedad — no de retainer. Equity en ambos verticales. Construir algo que escale, no cobrar por hora.</div></div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Fidel × Alejo</strong> — Estrategia 2026–2027</p>
+  <p style="margin-top:6px">Confidencial · Preparado por Alejo Martignoni · Junio 2026</p>
+</footer>
+
+<script>
+// ── INTERSECTION OBSERVER ──
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('vis'), i*90) });
+},{threshold:.08});
+document.querySelectorAll('.tl-item,.sys-card,.phase-card,.bd-card').forEach(el=>io.observe(el));
+
+// ── PHASE TOGGLE ──
+function togglePhase(card){
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.phase-card.open').forEach(c=>c.classList.remove('open'));
+  if(!wasOpen) card.classList.add('open');
+}
+
+// ── AREA CHART ──
+const periods=['Jun\'26','Jul','Ago','Sep','Oct','Nov','Dic','Q1\'27','Q2','Q3'];
+const wData=[60,65,70,80,100,130,160,200,280,350];
+const cData=[0,0,10,25,50,90,140,280,420,650];
+const W=800,H=200,MAX=1000,N=periods.length;
+
+function px(i){return(i/(N-1))*W}
+function py(v){return H-(v/MAX)*H}
+
+function makePath(data,close=false){
+  let d=`M ${px(0)} ${py(data[0])}`;
+  for(let i=1;i<N;i++) d+=` L ${px(i)} ${py(data[i])}`;
+  if(close) d+=` L ${px(N-1)} ${H} L ${px(0)} ${H} Z`;
+  return d;
+}
+
+const totalData=wData.map((v,i)=>v+cData[i]);
+const areasEl=document.getElementById('chart-areas');
+const linesEl=document.getElementById('chart-lines');
+const dotsEl=document.getElementById('chart-dots');
+const xlabels=document.getElementById('x-labels');
+
+// Area total (background)
+const aT=document.createElementNS('http://www.w3.org/2000/svg','path');
+aT.setAttribute('d',makePath(totalData,true));
+aT.setAttribute('fill','url(#gc)');
+areasEl.appendChild(aT);
+
+// Area wholesale
+const aW=document.createElementNS('http://www.w3.org/2000/svg','path');
+aW.setAttribute('d',makePath(wData,true));
+aW.setAttribute('fill','url(#gw)');
+areasEl.appendChild(aW);
+
+// Line total
+const lT=document.createElementNS('http://www.w3.org/2000/svg','path');
+lT.setAttribute('d',makePath(totalData));
+lT.setAttribute('fill','none');lT.setAttribute('stroke','#a78bfa');lT.setAttribute('stroke-width','2');lT.setAttribute('stroke-linejoin','round');
+linesEl.appendChild(lT);
+
+// Line wholesale
+const lW=document.createElementNS('http://www.w3.org/2000/svg','path');
+lW.setAttribute('d',makePath(wData));
+lW.setAttribute('fill','none');lW.setAttribute('stroke','#f59e0b');lW.setAttribute('stroke-width','2');lW.setAttribute('stroke-linejoin','round');
+linesEl.appendChild(lW);
+
+// Dots + x-labels
+periods.forEach((label,i)=>{
+  [wData,totalData].forEach((data,j)=>{
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',px(i));c.setAttribute('cy',py(data[i]));c.setAttribute('r','4');
+    c.setAttribute('fill',j===0?'#f59e0b':'#a78bfa');c.setAttribute('stroke','#07070d');c.setAttribute('stroke-width','2');
+    c.style.opacity='0';c.style.transition=`opacity .3s ${i*60}ms`;
+    dotsEl.appendChild(c);
+  });
+  const sp=document.createElement('span');
+  sp.textContent=label;xlabels.appendChild(sp);
+});
+
+// X-label hover interaction
+const tooltip=document.getElementById('tooltip');
+const svg=document.getElementById('area-chart');
+svg.addEventListener('mousemove',e=>{
+  const rect=svg.getBoundingClientRect();
+  const relX=(e.clientX-rect.left)/rect.width*W;
+  let closest=0,minD=Infinity;
+  periods.forEach((_,i)=>{const d=Math.abs(px(i)-relX);if(d<minD){minD=d;closest=i}});
+  const scX=px(closest)/W*rect.width+rect.left;
+  const scY=py(totalData[closest])/H*rect.height+rect.top;
+  tooltip.style.left=(e.clientX-rect.left+16)+'px';
+  tooltip.style.top=(e.clientY-rect.top-60)+'px';
+  tooltip.style.opacity='1';
+  tooltip.innerHTML=`<div class="tooltip-title">${periods[closest]}</div>
+    <div class="tooltip-row"><span style="color:var(--gold)">Wholesaling</span><span class="tooltip-val">$${wData[closest]}K</span></div>
+    <div class="tooltip-row"><span style="color:var(--purple)">Contratistas</span><span class="tooltip-val">$${cData[closest]}K</span></div>
+    <div class="tooltip-row" style="border-top:1px solid var(--border);margin-top:6px;padding-top:6px"><span>Total</span><span class="tooltip-val" style="color:var(--gold)">$${totalData[closest]}K</span></div>`;
+});
+svg.addEventListener('mouseleave',()=>{tooltip.style.opacity='0'});
+
+// Animate chart on scroll
+const chartObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting){
+    const rect=document.getElementById('reveal-rect');
+    let w=0;const dur=1800;const start=performance.now();
+    function step(now){
+      const t=Math.min((now-start)/dur,1);
+      const ease=1-Math.pow(1-t,3);
+      rect.setAttribute('width',ease*800);
+      document.querySelectorAll('#chart-dots circle').forEach((c,i)=>{ if(i/2<t*N) c.style.opacity='1'; });
+      if(t<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+    chartObs.disconnect();
+  }
+},{threshold:.3});
+chartObs.observe(document.getElementById('chart-section'));
+
+// ── COUNTER ──
+const ctrObs=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting){
+    const el=document.getElementById('counter');
+    const start=performance.now();const dur=2200;
+    function step(now){
+      const t=Math.min((now-start)/dur,1);
+      const e=1-Math.pow(1-t,4);
+      el.textContent='$'+Math.floor(e*1000000).toLocaleString('en-US');
+      if(t<1) requestAnimationFrame(step); else el.textContent='$1,000,000';
+    }
+    requestAnimationFrame(step);
+    ctrObs.disconnect();
+  }
+},{threshold:.5});
+ctrObs.observe(document.getElementById('counter'));
+
+// ── PROGRESS BAR ──
+window.addEventListener('load',()=>{
+  setTimeout(()=>{document.getElementById('ptfill').style.width='6%'},400);
+});
+
+// ── SMOOTH NAV ──
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
