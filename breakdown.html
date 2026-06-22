@@ -13,7 +13,6 @@
   --green:#10b981;--green-dim:rgba(16,185,129,0.09);--green-border:rgba(16,185,129,0.2);
   --blue:#60a5fa;--blue-dim:rgba(96,165,250,0.09);--blue-border:rgba(96,165,250,0.2);
   --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.09);--purple-border:rgba(167,139,250,0.2);
-  --red:#f87171;--red-dim:rgba(248,113,113,0.09);--red-border:rgba(248,113,113,0.2);
   --orange:#fb923c;--orange-dim:rgba(251,146,60,0.09);--orange-border:rgba(251,146,60,0.2);
   --text:#f0f0f4;--text2:#8b8ba8;--text3:#44445a;
   --border:rgba(255,255,255,0.055);
@@ -22,9 +21,8 @@ html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 .orb{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;animation:orb 22s ease-in-out infinite alternate}
-.orb1{width:700px;height:700px;background:rgba(245,158,11,0.05);top:-150px;right:-150px}
+.orb1{width:600px;height:600px;background:rgba(245,158,11,0.05);top:-100px;right:-100px}
 .orb2{width:500px;height:500px;background:rgba(167,139,250,0.04);bottom:-100px;left:-100px;animation-delay:-11s}
-.orb3{width:400px;height:400px;background:rgba(16,185,129,0.03);top:50%;left:50%;animation-delay:-5s}
 @keyframes orb{from{transform:translate(0,0)}to{transform:translate(40px,30px)}}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background:rgba(7,7,13,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -36,220 +34,169 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background
 .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}50%{box-shadow:0 0 0 5px rgba(16,185,129,0)}}
 
-.hero{position:relative;z-index:1;min-height:55vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 60px}
+.hero{position:relative;z-index:1;min-height:45vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 60px}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding:6px 16px;border-radius:100px;background:var(--gold-dim);border:1px solid var(--gold-border);margin-bottom:24px;animation:fadeup .5s ease both}
-.hero h1{font-size:clamp(36px,7vw,80px);font-weight:900;line-height:.95;letter-spacing:-.03em;margin-bottom:16px;animation:fadeup .5s .1s ease both}
+.hero h1{font-size:clamp(36px,7vw,72px);font-weight:900;line-height:.95;letter-spacing:-.03em;margin-bottom:16px;animation:fadeup .5s .1s ease both}
 .hero h1 .dim{color:var(--text3)}
 .hero h1 .gold{color:var(--gold)}
-.hero-sub{font-size:16px;color:var(--text2);max-width:540px;margin-bottom:36px;animation:fadeup .5s .2s ease both}
-.status-bar{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;animation:fadeup .5s .3s ease both}
-.status-chip{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:13px}
-.status-chip .dot{width:8px;height:8px;border-radius:50%}
-.dot-green{background:var(--green)}
-.dot-gold{background:var(--gold)}
-.dot-blue{background:var(--blue)}
+.hero-sub{font-size:16px;color:var(--text2);max-width:520px;animation:fadeup .5s .2s ease both}
 @keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* SECTIONS */
-section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:80px 40px}
-.section-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px}
-.section-title{font-size:clamp(28px,4vw,46px);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:12px}
-.section-sub{font-size:16px;color:var(--text2);max-width:600px;margin-bottom:48px}
+section{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:72px 40px}
+.section-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-size:clamp(26px,3.5vw,40px);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:10px}
+.section-sub{font-size:15px;color:var(--text2);max-width:580px;margin-bottom:40px}
 .divider{border:none;height:1px;background:var(--border);margin:0}
 
-/* WEEK STATUS */
-.week-banner{background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--gold-border);border-radius:20px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:48px;position:relative;overflow:hidden}
+/* WEEK BANNER */
+.week-banner{background:var(--surface);border:1px solid var(--gold-border);border-radius:16px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:48px;position:relative;overflow:hidden}
 .week-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.week-info{flex:1}
-.week-num{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.week-title{font-size:22px;font-weight:800;margin-bottom:4px}
-.week-desc{font-size:14px;color:var(--text2)}
-.week-dates{text-align:right;white-space:nowrap}
-.week-date-main{font-size:18px;font-weight:800;color:var(--gold)}
-.week-date-sub{font-size:12px;color:var(--text3);margin-top:2px}
-.week-progress-bar{background:var(--surface3);border-radius:100px;height:6px;margin-top:16px;overflow:hidden}
-.week-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:100px;width:14%}
-
-/* PILLAR HEADER */
-.pillar-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:36px}
-.pillar-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
-.pillar-num{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
-.pillar-name{font-size:28px;font-weight:900;letter-spacing:-.02em;line-height:1.1;margin-bottom:6px}
-.pillar-desc{font-size:14px;color:var(--text2);max-width:560px}
+.week-num{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.week-title{font-size:19px;font-weight:800;margin-bottom:3px}
+.week-desc{font-size:13px;color:var(--text2)}
+.week-date{font-size:16px;font-weight:800;color:var(--gold);white-space:nowrap}
+.week-date-sub{font-size:11px;color:var(--text3);margin-top:3px;text-align:right}
 
 /* CARDS */
-.cards{display:grid;gap:16px}
+.cards{display:grid;gap:14px}
 .cards-2{grid-template-columns:repeat(2,1fr)}
 .cards-3{grid-template-columns:repeat(3,1fr)}
-.cards-4{grid-template-columns:repeat(4,1fr)}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;transition:border-color .2s,transform .2s}
-.card:hover{border-color:rgba(255,255,255,.12);transform:translateY(-2px)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}
 .card-accent{border-left:3px solid}
 .card-gold{border-left-color:var(--gold)}
 .card-green{border-left-color:var(--green)}
 .card-blue{border-left-color:var(--blue)}
 .card-purple{border-left-color:var(--purple)}
 .card-orange{border-left-color:var(--orange)}
-.card-red{border-left-color:var(--red)}
-.card-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:10px}
+.card-tag{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:8px}
 .tag-gold{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
 .tag-green{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
 .tag-blue{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border)}
 .tag-purple{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple-border)}
 .tag-orange{background:var(--orange-dim);color:var(--orange);border:1px solid var(--orange-border)}
-.tag-red{background:var(--red-dim);color:var(--red);border:1px solid var(--red-border)}
-.card-title{font-size:15px;font-weight:700;margin-bottom:6px}
+.card-title{font-size:14px;font-weight:700;margin-bottom:6px}
 .card-body{font-size:13px;color:var(--text2);line-height:1.55}
-.card-metric{font-size:26px;font-weight:900;line-height:1;margin-bottom:4px}
-.card-metric-label{font-size:11px;color:var(--text3);letter-spacing:.06em;text-transform:uppercase}
 
-/* ICP CARD */
-.icp-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:36px}
-.icp-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px}
-.icp-box-title{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:16px}
-.icp-list{list-style:none;display:flex;flex-direction:column;gap:10px}
-.icp-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text2)}
-.icp-list li::before{content:'→';color:var(--gold);font-weight:700;flex-shrink:0;margin-top:1px}
-.icp-highlight{background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:16px;margin-bottom:36px}
-.icp-highlight-icon{font-size:28px}
-.icp-highlight-text{font-size:14px;color:var(--text2);}
-.icp-highlight-text strong{color:var(--text)}
+/* ICP */
+.icp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:36px}
+.icp-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}
+.icp-box-title{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:14px}
+.icp-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.icp-list li{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--text2)}
+.icp-list li::before{content:'→';color:var(--gold);font-weight:700;flex-shrink:0}
+.icp-callout{background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:14px;padding:18px 22px;font-size:14px;color:var(--text2);margin-bottom:36px}
+.icp-callout strong{color:var(--text)}
 
-/* CONTENT CALENDAR */
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px}
-.cal-day{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 6px;text-align:center}
-.cal-day-name{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
-.cal-posts{display:flex;flex-direction:column;gap:4px}
-.cal-post{font-size:9px;padding:3px 6px;border-radius:4px;font-weight:600;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* PILLAR HEADER */
+.pillar-header{display:flex;align-items:flex-start;gap:18px;margin-bottom:32px}
+.pillar-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.pillar-num{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.pillar-name{font-size:26px;font-weight:900;letter-spacing:-.02em;line-height:1.1;margin-bottom:5px}
+.pillar-desc{font-size:14px;color:var(--text2)}
+
+/* CONTENT PILLARS */
+.pillars-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:32px}
+.pillar-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 12px;text-align:center}
+.pillar-card-icon{font-size:20px;margin-bottom:8px}
+.pillar-card-name{font-size:12px;font-weight:700;margin-bottom:5px}
+.pillar-card-examples{font-size:11px;color:var(--text3);line-height:1.45}
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:12px}
+.cal-day{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 5px;text-align:center}
+.cal-day-name{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:7px}
+.cal-posts{display:flex;flex-direction:column;gap:3px}
+.cal-post{font-size:9px;padding:3px 5px;border-radius:3px;font-weight:600;text-align:left}
 .cp-reel{background:rgba(245,158,11,0.15);color:var(--gold)}
 .cp-carousel{background:rgba(96,165,250,0.15);color:var(--blue)}
 .cp-story{background:rgba(167,139,250,0.15);color:var(--purple)}
 .cp-meme{background:rgba(16,185,129,0.15);color:var(--green)}
-.cal-legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px}
-.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2)}
-.legend-dot{width:10px;height:10px;border-radius:3px}
+.cal-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px;font-size:12px;color:var(--text2)}
+.legend-dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px}
 
-/* CONTENT PILLARS */
-.pillars-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:36px}
-.pillar-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 14px;text-align:center;transition:border-color .2s}
-.pillar-card:hover{border-color:rgba(255,255,255,.12)}
-.pillar-card-icon{font-size:22px;margin-bottom:10px}
-.pillar-card-name{font-size:13px;font-weight:700;margin-bottom:6px}
-.pillar-card-examples{font-size:11px;color:var(--text3);line-height:1.5}
-
-/* HOOK FORMULA */
-.formula-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
-.formula-block{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;white-space:nowrap}
-.formula-plus{color:var(--text3);font-size:18px;font-weight:700}
-.formula-arrow{color:var(--gold);font-size:20px}
+/* HOOK EXAMPLES */
+.hook-list{display:flex;flex-direction:column;gap:8px;margin-bottom:36px}
+.hook-item{background:var(--surface2);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text2)}
+.hook-item strong{color:var(--gold)}
 
 /* KPI TABLE */
-.kpi-table{width:100%;border-collapse:collapse;margin-bottom:36px}
-.kpi-table th{text-align:left;padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border)}
-.kpi-table td{padding:12px 14px;font-size:14px;border-bottom:1px solid rgba(255,255,255,.03)}
-.kpi-table tr:last-child td{border-bottom:none}
-.kpi-table tr:hover td{background:var(--surface2)}
-.kpi-baseline{color:var(--text3)}
-.kpi-w1{color:var(--blue)}
-.kpi-w2{color:var(--purple)}
-.kpi-w3{color:var(--gold)}
-.kpi-w3 strong{font-weight:800}
-.kpi-row-highlight{background:var(--gold-dim)!important}
-.kpi-row-highlight td{color:var(--gold)!important;font-weight:700}
+.kpi-table{width:100%;border-collapse:collapse;margin-bottom:40px;font-size:13px}
+.kpi-table th{text-align:left;padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border)}
+.kpi-table td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.03)}
+.kpi-table tr:hover td{background:rgba(255,255,255,.015)}
+.kw1{color:var(--blue)}
+.kw2{color:var(--purple)}
+.kw3{color:var(--gold);font-weight:700}
+.k-base{color:var(--text3)}
+.kpi-hl td{background:var(--gold-dim)!important;color:var(--gold)!important;font-weight:700}
 
-/* TIMELINE 21 DÍAS */
-.timeline-21{position:relative;padding-left:32px}
-.timeline-21::before{content:'';position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:var(--border)}
-.t21-week{margin-bottom:32px}
-.t21-week-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;padding-left:4px}
-.t21-item{position:relative;margin-bottom:16px;padding:0 0 0 4px}
-.t21-dot{position:absolute;left:-28px;top:50%;transform:translateY(-50%);width:14px;height:14px;border-radius:50%;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center}
-.t21-dot-inner{width:6px;height:6px;border-radius:50%}
-.t21-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;align-items:flex-start;gap:14px}
-.t21-day{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;padding-top:2px;min-width:48px}
-.t21-content-title{font-size:14px;font-weight:700;margin-bottom:3px}
-.t21-content-body{font-size:13px;color:var(--text2)}
-.t21-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+/* MANYCHAT FLOWS */
+.flow-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:36px}
+.flow-col{display:flex;flex-direction:column;gap:14px}
+.flow-step{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+.flow-trigger-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.flow-body{font-size:13px;color:var(--text2)}
+.flow-msg{background:var(--surface2);border-left:2px solid var(--green);border-radius:8px;padding:10px 13px;margin-top:8px;font-size:12px;color:var(--text2);font-style:italic}
+
+/* TIMELINE */
+.timeline-21{position:relative;padding-left:28px}
+.timeline-21::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:var(--border)}
+.t21-week-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin:24px 0 12px 0;padding-left:4px}
+.t21-item{position:relative;margin-bottom:12px}
+.t21-dot{position:absolute;left:-24px;top:50%;transform:translateY(-50%);width:12px;height:12px;border-radius:50%;border:2px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center}
+.t21-inner{width:5px;height:5px;border-radius:50%}
+.t21-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;display:flex;gap:14px}
+.t21-day{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;padding-top:2px;min-width:44px}
+.t21-ct{font-size:13px;font-weight:700;margin-bottom:3px}
+.t21-cb{font-size:12px;color:var(--text2)}
+.t21-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
 .t21-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px}
-.t21-tag-alejo{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
-.t21-tag-paulo{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border)}
-.t21-tag-fidel{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple-border)}
-.t21-tag-auto{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
+.tt-a{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.tt-p{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border)}
+.tt-f{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple-border)}
+.tt-auto{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
 
-/* MANYCHAT */
-.flow-step{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;position:relative}
-.flow-step::after{content:'↓';position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);color:var(--text3);font-size:16px;z-index:2}
-.flow-step:last-child::after{display:none}
-.flow-trigger{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
-.flow-message{font-size:13px;color:var(--text2);line-height:1.5;font-style:italic;background:var(--surface2);border-radius:10px;padding:10px 14px;margin-top:8px;border-left:2px solid var(--green)}
-.flow-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.flows-wrapper{display:flex;flex-direction:column;gap:24px}
-
-/* BENCHMARKS */
-.benchmark-section{margin-bottom:36px}
-.bench-title{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--text2)}
-.bench-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.03)}
+/* BENCH */
+.bench-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.03)}
 .bench-row:last-child{border-bottom:none}
 .bench-label{font-size:13px;color:var(--text2);flex:1}
-.bench-bar-wrap{width:180px;height:6px;background:var(--surface2);border-radius:100px;overflow:hidden}
+.bench-bar-wrap{width:140px;height:5px;background:var(--surface2);border-radius:100px;overflow:hidden}
 .bench-bar{height:100%;border-radius:100px}
-.bench-val{font-size:13px;font-weight:700;min-width:60px;text-align:right}
+.bench-val{font-size:12px;font-weight:700;min-width:56px;text-align:right}
 
-/* COMPETITOR TABLE */
-.comp-table{width:100%;border-collapse:collapse;margin-bottom:36px}
-.comp-table th{padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border);text-align:left}
-.comp-table td{padding:12px 14px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.03);vertical-align:top}
-.comp-table tr:hover td{background:rgba(255,255,255,.015)}
-.comp-score{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;font-size:12px;font-weight:800}
-.score-high{background:var(--green-dim);color:var(--green)}
-.score-med{background:var(--gold-dim);color:var(--gold)}
-.score-low{background:var(--red-dim);color:var(--red)}
+/* ROLES */
+.roles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.role-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}
+.role-name{font-size:15px;font-weight:800;margin-bottom:2px}
+.role-title{font-size:11px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.role-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.role-list li{font-size:12px;color:var(--text2);display:flex;gap:8px;align-items:flex-start}
+.role-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.role-list li.no::before{content:'✗';color:var(--text3)}
 
-/* WEEKLY REVIEW */
-.review-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
-.review-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}
-.review-day{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
-.review-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text2);margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.04)}
-.review-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.review-item-icon{flex-shrink:0;margin-top:1px}
-
-/* ROLE TABLE */
-.role-table{width:100%;border-collapse:collapse}
-.role-table th{padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border);text-align:left}
-.role-table td{padding:12px 14px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.03);vertical-align:top}
-.role-name{font-weight:700;font-size:14px}
-.role-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;margin-left:8px;vertical-align:middle}
-
-/* FOOTER */
-footer{position:relative;z-index:1;text-align:center;padding:60px 40px;border-top:1px solid var(--border);color:var(--text3);font-size:13px}
+footer{position:relative;z-index:1;text-align:center;padding:50px 40px;border-top:1px solid var(--border);color:var(--text3);font-size:12px}
 footer strong{color:var(--text2)}
 
-/* RESPONSIVE */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
 @media(max-width:768px){
   nav{padding:12px 20px}
   .nav-links{display:none}
-  section{padding:60px 20px}
+  section{padding:56px 20px}
   .hero{padding:100px 20px 50px}
-  .cards-2,.cards-3,.cards-4{grid-template-columns:1fr}
-  .icp-grid{grid-template-columns:1fr}
-  .cal-grid{grid-template-columns:repeat(4,1fr)}
+  .cards-2,.cards-3{grid-template-columns:1fr}
+  .icp-grid,.flow-wrap,.roles-grid{grid-template-columns:1fr}
   .pillars-grid{grid-template-columns:repeat(2,1fr)}
-  .flow-cols{grid-template-columns:1fr}
-  .review-grid{grid-template-columns:1fr}
+  .cal-grid{grid-template-columns:repeat(4,1fr)}
   .week-banner{flex-direction:column}
-  .week-dates{text-align:left}
 }
-
-/* SCROLL ANIMATIONS */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
-<div class="orb orb3"></div>
 
 <nav>
   <span class="nav-logo">Fidel × Alejo</span>
@@ -270,73 +217,55 @@ footer strong{color:var(--text2)}
 <!-- HERO -->
 <div class="hero">
   <div class="eyebrow">Breakdown Operacional — Cuenta Contratistas ES</div>
-  <h1>
-    <span class="dim">De 0 a</span><br>
-    <span class="gold">Sistema</span>
-  </h1>
-  <p class="hero-sub">El plan detallado de ejecución para las 3 semanas del piloto. Comunidad, contenido, automatización y benchmarks.</p>
-  <div class="status-bar">
-    <div class="status-chip"><div class="dot dot-green"></div>Deal cerrado — $500 cobrado</div>
-    <div class="status-chip"><div class="dot dot-gold"></div>Semana 1 activa — Jun 22</div>
-    <div class="status-chip"><div class="dot dot-blue"></div>$500 restantes — Jul 6</div>
-  </div>
+  <h1><span class="dim">Plan de</span><br><span class="gold">Ejecución</span></h1>
+  <p class="hero-sub">Los tres pilares del piloto de 21 días: comunidad, contenido y sistemas. Arrancamos desde cero.</p>
 </div>
 
 <hr class="divider">
 
-<!-- ESTADO ACTUAL -->
+<!-- ESTADO -->
 <section id="estado" class="reveal">
-  <div class="section-label" style="color:var(--gold)">Estado actual</div>
-  <div class="section-title">Dónde estamos hoy</div>
-  <p class="section-sub">Semana 1 de 3. Cuenta nueva desde cero. Equipo listo. El trabajo empieza ahora.</p>
+  <div class="section-label" style="color:var(--gold)">Dónde estamos</div>
+  <div class="section-title">Semana 1 de 3</div>
+  <p class="section-sub">Cuenta nueva, equipo listo. El trabajo empieza ahora.</p>
 
   <div class="week-banner">
     <div>
       <div class="week-num">Semana 1 de 3</div>
       <div class="week-title">Fundación — Estrategia + Setup</div>
-      <p class="week-desc">Definir ICP, armado de cuenta, investigación de competencia, primeras piezas creadas</p>
-      <div class="week-progress-bar"><div class="week-progress-fill"></div></div>
+      <p class="week-desc">Definir ICP, armar cuenta, investigar competencia, primeras piezas de contenido</p>
     </div>
-    <div class="week-dates">
-      <div class="week-date-main">Jun 22–28</div>
-      <div class="week-date-sub">7 días de fundación</div>
+    <div>
+      <div class="week-date">Jun 22–28</div>
+      <div class="week-date-sub">Semana de arranque</div>
     </div>
   </div>
 
-  <div class="cards cards-4">
-    <div class="card card-accent card-green">
-      <div class="card-tag tag-green">Completado</div>
-      <div class="card-metric" style="color:var(--green)">$500</div>
-      <div class="card-metric-label">Cobrado ahora</div>
-      <div class="card-body" style="margin-top:10px">Deal cerrado. Fidel pagó la primera mitad. Arranque oficial.</div>
-    </div>
+  <div class="cards cards-3">
     <div class="card card-accent card-gold">
-      <div class="card-tag tag-gold">Semana 3</div>
-      <div class="card-metric">$500</div>
-      <div class="card-metric-label">Segunda cuota</div>
-      <div class="card-body" style="margin-top:10px">Se cobra al completar el setup del día 21. ~Jul 6.</div>
+      <div class="card-tag tag-gold">Ahora</div>
+      <div class="card-title">Cuenta nueva desde cero</div>
+      <div class="card-body">Mercado sin competencia en español. La ventana está abierta.</div>
     </div>
     <div class="card card-accent card-blue">
-      <div class="card-tag tag-blue">En progreso</div>
-      <div class="card-metric" style="color:var(--blue)">0</div>
-      <div class="card-metric-label">Seguidores actuales</div>
-      <div class="card-body" style="margin-top:10px">Cuenta nueva. Cero de base. Todo lo que viene es crecimiento.</div>
+      <div class="card-tag tag-blue">Semana 2</div>
+      <div class="card-title">Sistema activo + equipo entrenado</div>
+      <div class="card-body">ManyChat configurado, Paulo operando, primeros leads entrando.</div>
     </div>
-    <div class="card card-accent card-purple">
-      <div class="card-tag tag-purple">Meta Día 21</div>
-      <div class="card-metric" style="color:var(--purple)">500+</div>
-      <div class="card-metric-label">Seguidores objetivo</div>
-      <div class="card-body" style="margin-top:10px">Con estrategia de engagement activo y contenido de calidad.</div>
+    <div class="card card-accent card-green">
+      <div class="card-tag tag-green">Día 21</div>
+      <div class="card-title">Entrega y traspaso</div>
+      <div class="card-body">Sistema funcionando sin Alejo en ejecución. Primer pipeline de contratistas.</div>
     </div>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- PILAR 1: COMUNIDAD -->
+<!-- COMUNIDAD -->
 <section id="comunidad" class="reveal">
   <div class="pillar-header">
-    <div class="pillar-icon" style="background:var(--gold-dim);border:1px solid var(--gold-border);font-size:26px">🏗️</div>
+    <div class="pillar-icon" style="background:var(--gold-dim);border:1px solid var(--gold-border)">🏗️</div>
     <div>
       <div class="pillar-num" style="color:var(--gold)">Pilar 01</div>
       <div class="pillar-name">Generación de Comunidad</div>
@@ -344,43 +273,20 @@ footer strong{color:var(--text2)}
     </div>
   </div>
 
-  <div class="icp-highlight">
-    <div class="icp-highlight-icon">🎯</div>
-    <div class="icp-highlight-text">El cliente ideal es un <strong>contratista hispano en USA</strong> — roofer, plomero, HVAC, concrete, landscaping — que factura entre <strong>$300K y $2M/año</strong>, opera con cuadrillas propias y consigue trabajo casi exclusivamente por referidos o Craigslist. <strong>No sabe correr Meta Ads</strong>. Habla español en su casa.</div>
+  <div class="icp-callout">
+    El cliente ideal es un <strong>contratista hispano en USA</strong> — roofer, plomero, HVAC, concrete — que factura entre <strong>$300K y $2M/año</strong> y consigue trabajo casi exclusivamente por referidos. <strong>No sabe correr Meta Ads. Habla español en su casa.</strong>
   </div>
 
   <div class="icp-grid">
     <div class="icp-box">
-      <div class="icp-box-title">Quién es</div>
+      <div class="icp-box-title">Quién es y dónde está</div>
       <ul class="icp-list">
         <li>Roofer, Plomero, HVAC, Concrete, Landscaping, Electricista</li>
-        <li>30–52 años, hombre, primera o segunda generación latina</li>
-        <li>USA (Texas, Florida, California, Georgia, North Carolina)</li>
-        <li>Tiene empleados o cuadrillas. Ya pasó la etapa de "solo yo"</li>
-        <li>Factura bien pero el crecimiento llegó al techo de los referidos</li>
-        <li>Tiene dinero para invertir — solo le falta el sistema</li>
-      </ul>
-    </div>
-    <div class="icp-box">
-      <div class="icp-box-title">Qué problema tiene</div>
-      <ul class="icp-list">
-        <li>Sus leads dependen 100% de referidos o word of mouth</li>
-        <li>No sabe cómo llenar la agenda de trabajos de forma consistente</li>
-        <li>Ha intentado Facebook Ads y quemó plata sin sistema</li>
-        <li>Ve gringuitos vendiéndole ads y no confía — prefiere español</li>
-        <li>Quiere crecer pero no quiere depender de una agencia cara</li>
-        <li>Nadie le explica Meta Ads en su idioma y desde su realidad</li>
-      </ul>
-    </div>
-    <div class="icp-box">
-      <div class="icp-box-title">Dónde lo encontramos</div>
-      <ul class="icp-list">
-        <li>Instagram: sigue cuentas de herramientas, materiales, contractors</li>
+        <li>30–52 años, primera o segunda generación latina en USA</li>
+        <li>Texas, Florida, California, Georgia, North Carolina</li>
+        <li>Tiene cuadrillas. Ya pasó la etapa de solo trabajar él.</li>
+        <li>Instagram: sigue cuentas de herramientas, materiales, trucks</li>
         <li>Facebook Groups: grupos de contratistas hispanos por estado</li>
-        <li>Hashtags: #roofingcontractor, #contratistahispano, #plomerousa</li>
-        <li>Comentarios en posts de marketing para construcción</li>
-        <li>Seguidores de competidores directos en el nicho</li>
-        <li>YouTube: busca "cómo conseguir clientes" en español</li>
       </ul>
     </div>
     <div class="icp-box">
@@ -388,88 +294,61 @@ footer strong{color:var(--text2)}
       <ul class="icp-list">
         <li>Números reales: "conseguí 12 leads de techado en 3 días"</li>
         <li>Lenguaje de trabajador, no de coach motivacional</li>
-        <li>Sistemas simples — él no quiere aprender tecnología</li>
-        <li>Resultados rápidos y tangibles, sin jerga de marketing</li>
+        <li>Sistemas simples — no quiere aprender tecnología</li>
         <li>Alguien que habla su idioma y entiende su negocio</li>
-        <li>Prueba social de otros contratistas como él</li>
+        <li>Ha intentado Facebook Ads y quemó plata sin sistema</li>
+        <li>Nadie le habla de Meta Ads en español desde su realidad</li>
       </ul>
     </div>
   </div>
 
-  <div class="section-label" style="color:var(--green);margin-bottom:16px">Estrategia de crecimiento orgánico</div>
-  <div class="cards cards-3" style="margin-bottom:36px">
-    <div class="card card-accent card-green">
-      <div class="card-tag tag-green">Acción diaria</div>
+  <div class="cards cards-3">
+    <div class="card card-accent card-gold">
+      <div class="card-tag tag-gold">Diario</div>
       <div class="card-title">Engagement Sprint</div>
-      <div class="card-body">
-        30–50 follows/día a cuentas de contratistas, materiales de construcción y marketing hispano.<br><br>
-        20 comentarios reales en posts virales del nicho. No spam — comentarios que aporten.<br><br>
-        <strong style="color:var(--text)">Meta:</strong> Aparecer en el radar de la audiencia antes de que nos sigan.
-      </div>
+      <div class="card-body">30–50 follows/día a cuentas del nicho.<br>20 comentarios reales en posts virales de contractors.<br><br>Aparecer en el radar antes de que nos sigan.</div>
     </div>
     <div class="card card-accent card-blue">
       <div class="card-tag tag-blue">Táctica</div>
-      <div class="card-title">Keyword Targeting</div>
-      <div class="card-body">
-        Hashtags primarios: #contratistahispano #roofingcontractor #hvaccontractor #plomerousa #landscapingbusiness<br><br>
-        Hashtags secundarios: #negociohispano #marketingparacontratistas #leadgeneration<br><br>
-        <strong style="color:var(--text)">Regla:</strong> Máx 8 hashtags. Todos específicos, no genéricos.
-      </div>
+      <div class="card-title">Hashtags objetivo</div>
+      <div class="card-body">#contratistahispano #roofingcontractor #hvaccontractor #plomerousa #landscapingbusiness<br><br>Máx 8 hashtags. Todos específicos, nada genérico.</div>
     </div>
-    <div class="card card-accent card-gold">
-      <div class="card-tag tag-gold">Acelerador</div>
+    <div class="card card-accent card-green">
+      <div class="card-tag tag-green">Acelerador</div>
       <div class="card-title">CTA en cada post</div>
-      <div class="card-body">
-        Todo post tiene UN solo llamado a la acción. Las opciones que funcionan:<br><br>
-        • "Comenta <strong>LEADS</strong> y te mando el sistema"<br>
-        • "Manda un DM con la palabra <strong>CRECER</strong>"<br>
-        • "Guarda esto si sos contratista"<br><br>
-        ManyChat responde automático al keyword.
-      </div>
+      <div class="card-body">Todo post tiene un solo llamado a la acción:<br><br>• "Comenta <strong>LEADS</strong>"<br>• "DM con <strong>CRECER</strong>"<br>• "Guarda esto si sos contratista"<br><br>ManyChat responde automático.</div>
     </div>
     <div class="card card-accent card-purple">
       <div class="card-tag tag-purple">Semana 2+</div>
       <div class="card-title">IG Lives tácticos</div>
-      <div class="card-body">
-        1 Live por semana (30 min). Formato: respondo preguntas sobre Meta Ads para contratistas.<br><br>
-        Se anuncia con 24h de anticipación via Stories.<br><br>
-        Se corta en clips para Reels post-Live.
-      </div>
+      <div class="card-body">1 Live por semana (30 min). "Respondo preguntas de Meta Ads para contratistas." Se anuncia con 24h anticipación. Los clips se convierten en Reels.</div>
     </div>
     <div class="card card-accent card-orange">
       <div class="card-tag tag-orange">Semana 3</div>
       <div class="card-title">Colaboraciones</div>
-      <div class="card-body">
-        Identificar 3–5 cuentas de proveedores de materiales o herramientas para contratistas hispanos con 2K–20K seguidores.<br><br>
-        Propuesta: post conjunto o mención cruzada a cambio de visibilidad mutua.
-      </div>
+      <div class="card-body">Identificar 3–5 cuentas de proveedores de materiales con 2K–20K seguidores. Mención cruzada. No compiten — son el canal de distribución hacia nuestro ICP.</div>
     </div>
-    <div class="card card-accent card-green">
-      <div class="card-tag tag-green">Continuo</div>
-      <div class="card-title">Seguir seguidores de competidores</div>
-      <div class="card-body">
-        Cada semana: identificar 2–3 cuentas que ya tengan a nuestro ICP como audiencia.<br><br>
-        Seguir a sus seguidores más activos (comentan, guardan, interactúan).<br><br>
-        Tasa de follow-back esperada: 15–30%.
-      </div>
+    <div class="card card-accent card-gold">
+      <div class="card-tag tag-gold">Continuo</div>
+      <div class="card-title">Seguidores de competidores</div>
+      <div class="card-body">Cada semana: seguir a los más activos de 2–3 cuentas que ya tienen a nuestro ICP como audiencia. Tasa de follow-back esperada: 15–30%.</div>
     </div>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- PILAR 2: CONTENIDO -->
+<!-- CONTENIDO -->
 <section id="contenido" class="reveal">
   <div class="pillar-header">
-    <div class="pillar-icon" style="background:var(--blue-dim);border:1px solid var(--blue-border);font-size:26px">📲</div>
+    <div class="pillar-icon" style="background:var(--blue-dim);border:1px solid var(--blue-border)">📲</div>
     <div>
       <div class="pillar-num" style="color:var(--blue)">Pilar 02</div>
-      <div class="pillar-name">Volumen y Calidad de Contenido</div>
+      <div class="pillar-name">Volumen y Calidad</div>
       <p class="pillar-desc">Qué publicamos, cuánto, con qué estructura y cómo mantenemos calidad sin que todo dependa de Alejo.</p>
     </div>
   </div>
 
-  <div class="section-label" style="color:var(--blue);margin-bottom:16px">Pilares de contenido</div>
   <div class="pillars-grid">
     <div class="pillar-card">
       <div class="pillar-card-icon">📚</div>
@@ -493,12 +372,12 @@ footer strong{color:var(--text2)}
     </div>
     <div class="pillar-card">
       <div class="pillar-card-icon">🔄</div>
-      <div class="pillar-card-name">Proceso / Sistemas</div>
-      <div class="pillar-card-examples">Cómo funciona un funnel<br>Qué herramientas usar<br>Automatizaciones</div>
+      <div class="pillar-card-name">Sistemas</div>
+      <div class="pillar-card-examples">Cómo funciona un funnel<br>Herramientas útiles<br>Automatizaciones</div>
     </div>
   </div>
 
-  <div class="section-label" style="color:var(--blue);margin-bottom:16px">Calendario semanal — volumen target</div>
+  <div class="section-label" style="color:var(--blue);margin-bottom:14px">Calendario semanal — ~27 piezas/semana</div>
   <div class="cal-grid">
     <div class="cal-day">
       <div class="cal-day-name">Lun</div>
@@ -551,61 +430,48 @@ footer strong{color:var(--text2)}
     </div>
   </div>
   <div class="cal-legend">
-    <div class="legend-item"><div class="legend-dot" style="background:rgba(245,158,11,0.5)"></div>Reel (3/sem)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:rgba(96,165,250,0.5)"></div>Carousel (2/sem)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:rgba(16,185,129,0.5)"></div>Meme (2/sem)</div>
-    <div class="legend-item"><div class="legend-dot" style="background:rgba(167,139,250,0.5)"></div>Stories (20+/sem)</div>
-    <div style="font-size:12px;color:var(--text3)">→ ~27 piezas/semana en total</div>
+    <span><span class="legend-dot" style="background:rgba(245,158,11,0.5)"></span>Reel (3/sem)</span>
+    <span><span class="legend-dot" style="background:rgba(96,165,250,0.5)"></span>Carousel (2/sem)</span>
+    <span><span class="legend-dot" style="background:rgba(16,185,129,0.5)"></span>Meme (2/sem)</span>
+    <span><span class="legend-dot" style="background:rgba(167,139,250,0.5)"></span>Stories (20+/sem)</span>
   </div>
 
-  <div class="section-label" style="color:var(--blue);margin-bottom:16px">Fórmula de Hook (obligatorio en todo Reel)</div>
-  <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:36px">
-    <div class="formula-row">
-      <div class="formula-block" style="background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold)">Número o resultado</div>
-      <span class="formula-plus">+</span>
-      <div class="formula-block">Audiencia específica</div>
-      <span class="formula-plus">+</span>
-      <div class="formula-block">Promesa o contradicción</div>
-      <span class="formula-arrow">→</span>
-      <div class="formula-block" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Hook que para el scroll</div>
+  <div class="section-label" style="color:var(--blue);margin-bottom:14px">Fórmula de hook — obligatorio en cada Reel</div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:36px">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;font-size:13px">
+      <div style="background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold);border-radius:8px;padding:7px 12px;font-weight:700">Número o resultado</div>
+      <span style="color:var(--text3)">+</span>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-weight:600">Audiencia específica</div>
+      <span style="color:var(--text3)">+</span>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-weight:600">Promesa o contradicción</div>
     </div>
-    <div style="display:grid;gap:10px;margin-top:20px">
-      <div style="background:var(--surface2);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text2)">
-        <strong style="color:var(--gold)">"Conseguí 18 leads de HVAC en 72 horas</strong> y solo gasté $120 en Meta Ads. Te muestro exactamente qué corrí."
-      </div>
-      <div style="background:var(--surface2);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text2)">
-        <strong style="color:var(--gold)">"Si sos roofer y dependés solo de referidos,</strong> te voy a mostrar por qué tu negocio tiene techo — y cómo romperlo."
-      </div>
-      <div style="background:var(--surface2);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text2)">
-        <strong style="color:var(--gold)">"El error que cometen el 90% de los contratistas hispanos</strong> cuando intentan correr Facebook Ads por primera vez."
-      </div>
-      <div style="background:var(--surface2);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text2)">
-        <strong style="color:var(--gold)">"3 tipos de anuncios que uso con mis clientes contratistas</strong> para llenar su agenda en menos de una semana."
-      </div>
+    <div class="hook-list">
+      <div class="hook-item"><strong>"Conseguí 18 leads de HVAC en 72 horas</strong> y solo gasté $120 en Meta Ads. Te muestro exactamente qué corrí."</div>
+      <div class="hook-item"><strong>"Si sos roofer y dependés solo de referidos,</strong> te voy a mostrar por qué tu negocio tiene techo — y cómo romperlo."</div>
+      <div class="hook-item"><strong>"El error que cometen el 90% de los contratistas hispanos</strong> cuando intentan correr Facebook Ads por primera vez."</div>
     </div>
   </div>
 
-  <div class="section-label" style="color:var(--blue);margin-bottom:16px">Quality Control — Checklist por pieza</div>
-  <div class="cards cards-2" style="margin-bottom:36px">
+  <div class="section-label" style="color:var(--blue);margin-bottom:14px">Quality control — checklist antes de publicar</div>
+  <div class="cards cards-2">
     <div class="card">
-      <div class="card-tag tag-blue">Antes de publicar</div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Hook score ≥7/10</strong> — ¿Para el scroll en los primeros 2 segundos?</span></div>
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Un solo CTA</strong> — "Comenta LEADS", "Guardá esto", "DM CRECER". Solo uno.</span></div>
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Audiencia mencionada</strong> — "Si sos roofer..." / "Para contratistas hispanos..."</span></div>
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Sin jerga de coach</strong> — Hablar como contratista, no como consultor.</span></div>
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Caption corto</strong> — Máx 3 líneas. Curiosidad o dato. Hashtags al final.</span></div>
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Thumbnail con texto bold</strong> — Visible sin audio en el feed.</span></div>
+      <div class="card-tag tag-blue">Cada pieza</div>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-top:6px">
+        <div style="display:flex;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Hook score ≥7/10</strong> — ¿Para el scroll en 2 segundos?</span></div>
+        <div style="display:flex;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Un solo CTA</strong> — "Comenta LEADS" o "Guarda esto". Solo uno.</span></div>
+        <div style="display:flex;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Audiencia mencionada</strong> — "Si sos roofer..." en los primeros 5 segundos.</span></div>
+        <div style="display:flex;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Sin jerga de coach</strong> — Hablar como contratista, no como consultor.</span></div>
+        <div style="display:flex;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--green)">✓</span><span><strong style="color:var(--text)">Thumbnail con texto bold</strong> — Visible sin audio en el feed.</span></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-tag tag-gold">Proceso de producción (Paulo)</div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--gold)">1</span><span>Alejo escribe el script y el copy en el doc de ClickUp.</span></div>
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--gold)">2</span><span>Paulo usa la plantilla de Canva del sistema para diseñar thumbnail / slide.</span></div>
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--gold)">3</span><span>Benja edita el reel según el script. Captions en video con la fuente del brand.</span></div>
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--gold)">4</span><span>Alejo revisa y aprueba en ClickUp (task pasa a "Listo para publicar").</span></div>
-        <div style="display:flex;gap:10px;font-size:13px;color:var(--text2);align-items:flex-start"><span style="color:var(--gold)">5</span><span>Paulo sube y programa en Meta via Business Suite con el caption de Alejo.</span></div>
+      <div class="card-tag tag-gold">Proceso de producción</div>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-top:6px">
+        <div style="display:flex;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--gold);font-weight:700">1</span><span>Alejo escribe el script y el copy en ClickUp.</span></div>
+        <div style="display:flex;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--gold);font-weight:700">2</span><span>Paulo diseña thumbnail / carousel con la plantilla del brand.</span></div>
+        <div style="display:flex;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--gold);font-weight:700">3</span><span>Benja edita el Reel con captions según el script.</span></div>
+        <div style="display:flex;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--gold);font-weight:700">4</span><span>Alejo aprueba. Task pasa a "Listo para publicar" en ClickUp.</span></div>
+        <div style="display:flex;gap:8px;font-size:13px;color:var(--text2)"><span style="color:var(--gold);font-weight:700">5</span><span>Paulo sube y programa en Meta Business Suite.</span></div>
       </div>
     </div>
   </div>
@@ -613,69 +479,51 @@ footer strong{color:var(--text2)}
 
 <hr class="divider">
 
-<!-- PILAR 3: MANYCHAT -->
+<!-- MANYCHAT -->
 <section id="manychat" class="reveal">
   <div class="pillar-header">
-    <div class="pillar-icon" style="background:var(--green-dim);border:1px solid var(--green-border);font-size:26px">🤖</div>
+    <div class="pillar-icon" style="background:var(--green-dim);border:1px solid var(--green-border)">🤖</div>
     <div>
       <div class="pillar-num" style="color:var(--green)">Sistema</div>
-      <div class="pillar-name">ManyChat — Automatización de DMs</div>
-      <p class="pillar-desc">Cada CTA en cada post activa un flow. El sistema califica y agenda solo.</p>
+      <div class="pillar-name">ManyChat — Automatización</div>
+      <p class="pillar-desc">Cada CTA activa un flow. El sistema califica y agenda sin intervención manual.</p>
     </div>
   </div>
 
-  <div class="flow-cols" style="margin-bottom:36px">
-    <div class="flows-wrapper">
+  <div class="flow-wrap">
+    <div class="flow-col">
       <div class="flow-step">
-        <div class="flow-trigger" style="color:var(--gold)">🎯 Trigger: Comenta "LEADS"</div>
-        <div class="card-body">Usuario comenta la palabra clave en cualquier post que tenga el CTA activo.</div>
-        <div class="flow-message">"Ey! Vi tu comentario. Te mando el sistema que usamos para conseguir leads de [techos/plomería/HVAC] con Meta Ads. Dame 30 segundos. 🔨"</div>
+        <div class="flow-trigger-label" style="color:var(--gold)">Trigger: Comenta "LEADS"</div>
+        <div class="flow-body">Usuario comenta la palabra clave en cualquier post con CTA activo.</div>
+        <div class="flow-msg">"Ey! Vi tu comentario. Te mando el sistema que usamos para conseguir leads de techos/HVAC con Meta Ads. Dame 30 segundos. 🔨"</div>
       </div>
-      <div class="flow-step" style="margin-top:24px">
-        <div class="flow-trigger" style="color:var(--blue)">📋 Paso 1: Calificación</div>
-        <div class="card-body">ManyChat envía 2 preguntas de calificación vía DM.</div>
-        <div class="flow-message">"Primero dime: ¿cuál es tu trade? (techado, plomería, HVAC, otro) → Y ¿estás en USA?"</div>
-      </div>
-      <div class="flow-step" style="margin-top:24px">
-        <div class="flow-trigger" style="color:var(--purple)">🔀 Paso 2: Segmentación</div>
-        <div class="card-body">Según respuesta, el flow bifurca: calificado → envía lead magnet + agenda call. No calificado → envía contenido educativo gratis.</div>
-        <div class="flow-message">"Perfecto. Acá te mando el PDF 'Los 3 tipos de anuncios que funcionan para roofers en USA' → [LINK] 🎁 Y si querés ver si podemos ayudarte con un sistema completo, te dejo el link para una llamada de 15 min sin costo."</div>
-      </div>
-    </div>
-    <div class="flows-wrapper">
       <div class="flow-step">
-        <div class="flow-trigger" style="color:var(--gold)">🎯 Trigger: Comenta "CRECER"</div>
-        <div class="card-body">Trigger alternativo usado en posts de contenido de autoridad o cultura.</div>
-        <div class="flow-message">"Me alegra que quieras crecer tu negocio! Para mandarte la info correcta, necesito saber: ¿Cuántos empleados o cuadrillas tenés ahora mismo?"</div>
+        <div class="flow-trigger-label" style="color:var(--blue)">Paso 1: Calificación</div>
+        <div class="flow-body">ManyChat envía 2 preguntas de calificación automáticas.</div>
+        <div class="flow-msg">"¿Cuál es tu trade? (techado, plomería, HVAC, otro) → ¿Estás en USA?"</div>
       </div>
-      <div class="flow-step" style="margin-top:24px">
-        <div class="flow-trigger" style="color:var(--green)">📲 Story Responders</div>
-        <div class="card-body">Cuando alguien responde a una Story específica con la palabra clave, entra al flow de calificación automáticamente.</div>
-        <div class="flow-message">"Vi que respondiste la historia. Eso me dice que le estás prestando atención al marketing de tu negocio — eso ya te pone adelante del 80% de los contratistas. ¿Tenés 2 minutos para contarme de tu negocio?"</div>
-      </div>
-      <div class="flow-step" style="margin-top:24px">
-        <div class="flow-trigger" style="color:var(--blue)">🔁 Follow-up a los 48h</div>
-        <div class="card-body">Si el lead no agendó la llamada, ManyChat envía un follow-up automático a las 48 horas.</div>
-        <div class="flow-message">"Hola de nuevo! Sé que estás ocupado — los contratistas buenos siempre lo están. ¿Querés que miremos 15 min cómo podría verse un sistema de leads para tu negocio esta semana?"</div>
+      <div class="flow-step">
+        <div class="flow-trigger-label" style="color:var(--purple)">Paso 2: Bifurcación</div>
+        <div class="flow-body">Calificado → lead magnet + link de agenda. No calificado → contenido educativo gratis.</div>
+        <div class="flow-msg">"Perfecto. Acá te mando el PDF '3 tipos de anuncios que funcionan para roofers en USA' → [LINK] 🎁 Si querés ver si podemos ayudarte, te dejo el link para una llamada de 15 min sin costo."</div>
       </div>
     </div>
-  </div>
-
-  <div class="cards cards-3">
-    <div class="card card-accent card-green">
-      <div class="card-tag tag-green">Meta Semana 1</div>
-      <div class="card-title">Setup completo</div>
-      <div class="card-body">Flows configurados en español. Keywords activos. Conexión con Calendly o link de agenda de Fidel. Test end-to-end.</div>
-    </div>
-    <div class="card card-accent card-blue">
-      <div class="card-tag tag-blue">Meta Semana 2</div>
-      <div class="card-title">Primeros contactos</div>
-      <div class="card-body">10+ conversaciones ManyChat iniciadas. 3–5 leads calificados entrando al pipeline. Paulo entrenado para monitorear y escalar.</div>
-    </div>
-    <div class="card card-accent card-gold">
-      <div class="card-tag tag-gold">Meta Semana 3</div>
-      <div class="card-title">Primer cliente</div>
-      <div class="card-body">Al menos 1 contratista en conversación avanzada para cerrar. Pipeline con 5–10 leads en distintas etapas. Sistema operando sin supervisión de Alejo.</div>
+    <div class="flow-col">
+      <div class="flow-step">
+        <div class="flow-trigger-label" style="color:var(--gold)">Trigger: Comenta "CRECER"</div>
+        <div class="flow-body">Trigger alternativo para posts de autoridad y cultura.</div>
+        <div class="flow-msg">"Me alegra que quieras crecer tu negocio. Para mandarte la info correcta: ¿cuántos empleados o cuadrillas tenés ahora mismo?"</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-trigger-label" style="color:var(--green)">Story Responders</div>
+        <div class="flow-body">Quien responde una Story con la keyword entra al flow de calificación automáticamente.</div>
+        <div class="flow-msg">"Vi que respondiste la historia. Eso ya te pone adelante del 80% de los contratistas. ¿Tenés 2 minutos para contarme de tu negocio?"</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-trigger-label" style="color:var(--blue)">Follow-up 48h</div>
+        <div class="flow-body">Si el lead no agendó la llamada, ManyChat manda un follow-up automático a las 48 horas.</div>
+        <div class="flow-msg">"Hola de nuevo. Sé que estás ocupado — los buenos contratistas siempre lo están. ¿Miramos 15 min cómo podría verse un sistema de leads para tu negocio?"</div>
+      </div>
     </div>
   </div>
 </section>
@@ -685,20 +533,19 @@ footer strong{color:var(--text2)}
 <!-- BENCHMARKS -->
 <section id="benchmarks" class="reveal">
   <div class="pillar-header">
-    <div class="pillar-icon" style="background:var(--purple-dim);border:1px solid var(--purple-border);font-size:26px">📈</div>
+    <div class="pillar-icon" style="background:var(--purple-dim);border:1px solid var(--purple-border)">📈</div>
     <div>
       <div class="pillar-num" style="color:var(--purple)">Pilar 03</div>
       <div class="pillar-name">Benchmarks & KPIs</div>
-      <p class="pillar-desc">Qué medimos, contra qué lo comparamos y cuándo ajustamos la estrategia.</p>
+      <p class="pillar-desc">Qué medimos, contra qué lo comparamos y cuándo ajustamos.</p>
     </div>
   </div>
 
-  <div class="section-label" style="color:var(--purple);margin-bottom:16px">KPIs por semana</div>
-  <table class="kpi-table" style="margin-bottom:48px">
+  <table class="kpi-table" style="margin-bottom:40px">
     <thead>
       <tr>
         <th>Métrica</th>
-        <th>Base (hoy)</th>
+        <th>Base</th>
         <th style="color:var(--blue)">Semana 1</th>
         <th style="color:var(--purple)">Semana 2</th>
         <th style="color:var(--gold)">Semana 3</th>
@@ -708,199 +555,127 @@ footer strong{color:var(--text2)}
     <tbody>
       <tr>
         <td><strong>Seguidores</strong></td>
-        <td class="kpi-baseline">0</td>
-        <td class="kpi-w1">50–150</td>
-        <td class="kpi-w2">200–350</td>
-        <td class="kpi-w3"><strong>500+</strong></td>
-        <td style="font-size:12px;color:var(--text3)">Prueba de que el perfil atrae a la audiencia correcta</td>
+        <td class="k-base">0</td>
+        <td class="kw1">50–150</td>
+        <td class="kw2">200–350</td>
+        <td class="kw3">500+</td>
+        <td style="font-size:11px;color:var(--text3)">Prueba de que el perfil atrae a la audiencia correcta</td>
       </tr>
       <tr>
         <td><strong>Alcance de Reels</strong></td>
-        <td class="kpi-baseline">—</td>
-        <td class="kpi-w1">500–2K</td>
-        <td class="kpi-w2">2K–8K</td>
-        <td class="kpi-w3"><strong>5K–20K</strong></td>
-        <td style="font-size:12px;color:var(--text3)">El algoritmo empuja Reels — es el driver de crecimiento</td>
+        <td class="k-base">—</td>
+        <td class="kw1">500–2K</td>
+        <td class="kw2">2K–8K</td>
+        <td class="kw3">5K–20K</td>
+        <td style="font-size:11px;color:var(--text3)">El driver principal de crecimiento orgánico</td>
       </tr>
       <tr>
         <td><strong>Engagement Rate</strong></td>
-        <td class="kpi-baseline">—</td>
-        <td class="kpi-w1">4–8%</td>
-        <td class="kpi-w2">5–9%</td>
-        <td class="kpi-w3"><strong>>6%</strong></td>
-        <td style="font-size:12px;color:var(--text3)">Nicho educativo con buenas hooks = ER alto. Benchmark general es 3%</td>
+        <td class="k-base">—</td>
+        <td class="kw1">4–8%</td>
+        <td class="kw2">5–9%</td>
+        <td class="kw3">&gt;6%</td>
+        <td style="font-size:11px;color:var(--text3)">Benchmark general del nicho educativo es 3%. Apuntamos al doble.</td>
       </tr>
       <tr>
         <td><strong>Saves por post</strong></td>
-        <td class="kpi-baseline">—</td>
-        <td class="kpi-w1">5–15</td>
-        <td class="kpi-w2">20–50</td>
-        <td class="kpi-w3"><strong>50+</strong></td>
-        <td style="font-size:12px;color:var(--text3)">Saves = intención de consumir luego. La mejor señal de valor</td>
+        <td class="k-base">—</td>
+        <td class="kw1">5–15</td>
+        <td class="kw2">20–50</td>
+        <td class="kw3">50+</td>
+        <td style="font-size:11px;color:var(--text3)">Saves = la mejor señal de valor. El algoritmo lo premia.</td>
       </tr>
       <tr>
         <td><strong>Comentarios keyword</strong></td>
-        <td class="kpi-baseline">0</td>
-        <td class="kpi-w1">2–5</td>
-        <td class="kpi-w2">10–20</td>
-        <td class="kpi-w3"><strong>30+</strong></td>
-        <td style="font-size:12px;color:var(--text3)">Activan ManyChat — son leads en la entrada del pipeline</td>
+        <td class="k-base">0</td>
+        <td class="kw1">2–5</td>
+        <td class="kw2">10–20</td>
+        <td class="kw3">30+</td>
+        <td style="font-size:11px;color:var(--text3)">Activan ManyChat — son leads en la entrada del funnel</td>
       </tr>
-      <tr>
-        <td><strong>Conversaciones ManyChat</strong></td>
-        <td class="kpi-baseline">0</td>
-        <td class="kpi-w1">5–10</td>
-        <td class="kpi-w2">15–30</td>
-        <td class="kpi-w3"><strong>50+</strong></td>
-        <td style="font-size:12px;color:var(--text3)">Cada conversación es un lead que entró al funnel</td>
-      </tr>
-      <tr class="kpi-row-highlight">
+      <tr class="kpi-hl">
         <td><strong>Leads calificados</strong></td>
         <td>0</td>
         <td>0–1</td>
         <td>2–4</td>
-        <td><strong>5–10</strong></td>
-        <td style="font-size:12px;color:rgba(245,158,11,0.7)">La métrica que determina si el sistema funciona</td>
-      </tr>
-      <tr>
-        <td><strong>Piezas publicadas</strong></td>
-        <td class="kpi-baseline">0</td>
-        <td class="kpi-w1">7–10</td>
-        <td class="kpi-w2">15–20</td>
-        <td class="kpi-w3"><strong>25–30</strong></td>
-        <td style="font-size:12px;color:var(--text3)">Volumen necesario para que el algoritmo empiece a entender el perfil</td>
+        <td>5–10</td>
+        <td style="font-size:11px;color:rgba(245,158,11,0.7)">La métrica que determina si el sistema funciona</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="section-label" style="color:var(--purple);margin-bottom:16px">Benchmarks del nicho — Contratistas Hispanos</div>
-  <div class="cards cards-2" style="margin-bottom:36px">
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px">
-      <div style="font-size:13px;font-weight:700;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px">Instagram — Cuentas educativas nicho</div>
-      <div class="benchmark-section">
-        <div class="bench-row">
-          <div class="bench-label">Engagement Rate (niche educ.)</div>
-          <div class="bench-bar-wrap"><div class="bench-bar" style="width:70%;background:var(--gold)"></div></div>
-          <div class="bench-val" style="color:var(--gold)">4–9%</div>
-        </div>
-        <div class="bench-row">
-          <div class="bench-label">Engagement Rate (general)</div>
-          <div class="bench-bar-wrap"><div class="bench-bar" style="width:30%;background:var(--text3)"></div></div>
-          <div class="bench-val" style="color:var(--text3)">1.5–3%</div>
-        </div>
-        <div class="bench-row">
-          <div class="bench-label">Views/Reel (0–1K followers)</div>
-          <div class="bench-bar-wrap"><div class="bench-bar" style="width:25%;background:var(--blue)"></div></div>
-          <div class="bench-val" style="color:var(--blue)">500–3K</div>
-        </div>
-        <div class="bench-row">
-          <div class="bench-label">Views/Reel (1K–5K followers)</div>
-          <div class="bench-bar-wrap"><div class="bench-bar" style="width:50%;background:var(--blue)"></div></div>
-          <div class="bench-val" style="color:var(--blue)">2K–12K</div>
-        </div>
-        <div class="bench-row">
-          <div class="bench-label">Saves rate (buenas cuentas)</div>
-          <div class="bench-bar-wrap"><div class="bench-bar" style="width:45%;background:var(--purple)"></div></div>
-          <div class="bench-val" style="color:var(--purple)">3–8%</div>
-        </div>
+  <div class="cards cards-2" style="margin-bottom:40px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:16px">Instagram — Benchmarks del nicho educativo</div>
+      <div class="bench-row">
+        <div class="bench-label">Engagement Rate (nicho educ.)</div>
+        <div class="bench-bar-wrap"><div class="bench-bar" style="width:70%;background:var(--gold)"></div></div>
+        <div class="bench-val" style="color:var(--gold)">4–9%</div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label">Engagement Rate (general)</div>
+        <div class="bench-bar-wrap"><div class="bench-bar" style="width:28%;background:var(--text3)"></div></div>
+        <div class="bench-val" style="color:var(--text3)">1.5–3%</div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label">Views/Reel (0–1K followers)</div>
+        <div class="bench-bar-wrap"><div class="bench-bar" style="width:22%;background:var(--blue)"></div></div>
+        <div class="bench-val" style="color:var(--blue)">500–3K</div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label">Views/Reel (1K–5K)</div>
+        <div class="bench-bar-wrap"><div class="bench-bar" style="width:48%;background:var(--blue)"></div></div>
+        <div class="bench-val" style="color:var(--blue)">2K–12K</div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label">Saves rate (cuentas buenas)</div>
+        <div class="bench-bar-wrap"><div class="bench-bar" style="width:42%;background:var(--purple)"></div></div>
+        <div class="bench-val" style="color:var(--purple)">3–8%</div>
       </div>
     </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px">
-      <div style="font-size:13px;font-weight:700;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px">Conversión — ManyChat → Cliente</div>
-      <div class="benchmark-section">
-        <div class="bench-row">
-          <div class="bench-label">Comentan keyword / total alcance</div>
-          <div class="bench-bar-wrap"><div class="bench-bar" style="width:20%;background:var(--green)"></div></div>
-          <div class="bench-val" style="color:var(--green)">0.5–2%</div>
-        </div>
-        <div class="bench-row">
-          <div class="bench-label">ManyChat → lead calificado</div>
-          <div class="bench-bar-wrap"><div class="bench-bar" style="width:35%;background:var(--gold)"></div></div>
-          <div class="bench-val" style="color:var(--gold)">20–35%</div>
-        </div>
-        <div class="bench-row">
-          <div class="bench-label">Lead calificado → llama</div>
-          <div class="bench-bar-wrap"><div class="bench-bar" style="width:40%;background:var(--blue)"></div></div>
-          <div class="bench-val" style="color:var(--blue)">30–50%</div>
-        </div>
-        <div class="bench-row">
-          <div class="bench-label">Llamada → cliente (mes 1)</div>
-          <div class="bench-bar-wrap"><div class="bench-bar" style="width:25%;background:var(--purple)"></div></div>
-          <div class="bench-val" style="color:var(--purple)">15–30%</div>
-        </div>
-        <div class="bench-row">
-          <div class="bench-label">ACV estimado por cliente</div>
-          <div class="bench-bar-wrap"><div class="bench-bar" style="width:60%;background:var(--gold)"></div></div>
-          <div class="bench-val" style="color:var(--gold)">$2.5–5K</div>
-        </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:16px">Conversión ManyChat → Cliente</div>
+      <div class="bench-row">
+        <div class="bench-label">Comentan keyword / total alcance</div>
+        <div class="bench-bar-wrap"><div class="bench-bar" style="width:18%;background:var(--green)"></div></div>
+        <div class="bench-val" style="color:var(--green)">0.5–2%</div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label">ManyChat → lead calificado</div>
+        <div class="bench-bar-wrap"><div class="bench-bar" style="width:33%;background:var(--gold)"></div></div>
+        <div class="bench-val" style="color:var(--gold)">20–35%</div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label">Lead calificado → llama</div>
+        <div class="bench-bar-wrap"><div class="bench-bar" style="width:40%;background:var(--blue)"></div></div>
+        <div class="bench-val" style="color:var(--blue)">30–50%</div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label">Llamada → cliente (mes 1)</div>
+        <div class="bench-bar-wrap"><div class="bench-bar" style="width:25%;background:var(--purple)"></div></div>
+        <div class="bench-val" style="color:var(--purple)">15–30%</div>
+      </div>
+      <div class="bench-row">
+        <div class="bench-label">Ticket promedio por cliente</div>
+        <div class="bench-bar-wrap"><div class="bench-bar" style="width:55%;background:var(--gold)"></div></div>
+        <div class="bench-val" style="color:var(--gold)">$2.5–5K</div>
       </div>
     </div>
   </div>
 
-  <div class="section-label" style="color:var(--purple);margin-bottom:16px">Competencia a estudiar</div>
-  <table class="comp-table" style="margin-bottom:36px">
-    <thead>
-      <tr>
-        <th>Tipo de cuenta</th>
-        <th>Qué hacen bien</th>
-        <th>Qué les falta</th>
-        <th>Oportunidad para Fidel</th>
-        <th>Threat</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Marketing agencies en inglés para contractors</strong><br><span style="font-size:11px;color:var(--text3)">Home services marketing (EN)</span></td>
-        <td style="font-size:12px;color:var(--text2)">Mucho volumen, prueba social fuerte, ads masivos</td>
-        <td style="font-size:12px;color:var(--text2)">No hablan español. No entienden la cultura del contratista hispano</td>
-        <td style="font-size:12px;color:var(--green)">El idioma + la cultura = diferenciación inmediata. Fidel es de ellos, habla como ellos</td>
-        <td><div class="comp-score score-low">B</div></td>
-      </tr>
-      <tr>
-        <td><strong>Gurús de Meta Ads en español</strong><br><span style="font-size:11px;color:var(--text3)">General / LATAM</span></td>
-        <td style="font-size:12px;color:var(--text2)">Audiencia grande, buen alcance, español nativo</td>
-        <td style="font-size:12px;color:var(--text2)">No especializados en contractors. Hablan de ecom, coaches, infoproductos</td>
-        <td style="font-size:12px;color:var(--green)">Verticalizarse en contractors los hace irrelevantes. Nosotros somos los specialists</td>
-        <td><div class="comp-score score-low">C</div></td>
-      </tr>
-      <tr>
-        <td><strong>Contratistas hispanos con audiencia</strong><br><span style="font-size:11px;color:var(--text3)">Roofers / Plumbers con IG</span></td>
-        <td style="font-size:12px;color:var(--text2)">Prueba social inmediata, audiencia fiel, cultura auténtica</td>
-        <td style="font-size:12px;color:var(--text2)">No venden marketing — hablan de su oficio, no de conseguir clientes</td>
-        <td style="font-size:12px;color:var(--green)">Colaborar con ellos. Mención cruzada. No compiten — son el canal de distribución</td>
-        <td><div class="comp-score score-high">A</div></td>
-      </tr>
-      <tr>
-        <td><strong>Agencias latinas de marketing digital</strong><br><span style="font-size:11px;color:var(--text3)">Generales, LATAM-based</span></td>
-        <td style="font-size:12px;color:var(--text2)">Profesionales, español, servicio completo</td>
-        <td style="font-size:12px;color:var(--text2)">Genéricas. No tienen credibilidad específica en contractors. Cara</td>
-        <td style="font-size:12px;color:var(--green)">Posicionarse como el único que sabe de contractors hispanos en USA = defensible moat</td>
-        <td><div class="comp-score score-med">B+</div></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="section-label" style="color:var(--purple);margin-bottom:16px">Revisión semanal — Protocolo domingo</div>
-  <div class="review-grid">
-    <div class="review-card">
-      <div class="review-day" style="color:var(--green)">📊 Pull métricas</div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>Abrir Metricool: extraer alcance, ER, saves, seguidores de la semana</span></div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>Revisar ManyChat: conversations iniciadas, leads calificados, calls agendadas</span></div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>Top 3 posts por alcance y por saves. Anotar qué tienen en común.</span></div>
+  <div class="section-label" style="color:var(--purple);margin-bottom:14px">Protocolo de revisión — cada domingo</div>
+  <div class="cards cards-3">
+    <div class="card card-accent card-green">
+      <div class="card-tag tag-green">Pull métricas</div>
+      <div class="card-body">Metricool: alcance, ER, saves, seguidores.<br>ManyChat: conversaciones, leads calificados, calls agendadas.<br>Top 3 posts por alcance y por saves.</div>
     </div>
-    <div class="review-card">
-      <div class="review-day" style="color:var(--blue)">🔍 Análisis</div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>¿El hook funcionó? (ER >5% en Reels = sí)</span></div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>¿Qué formato funcionó mejor esta semana: Reel, Carousel o Meme?</span></div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>¿El CTA generó comentarios? Si no: cambiar la palabra clave</span></div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>¿Cuántos leads entraron vs semana anterior? Tendencia.</span></div>
+    <div class="card card-accent card-blue">
+      <div class="card-tag tag-blue">Análisis</div>
+      <div class="card-body">¿El hook funcionó? (ER >5% = sí)<br>¿Qué formato ganó esta semana?<br>¿El CTA generó comentarios?<br>¿Tendencia de leads vs semana anterior?</div>
     </div>
-    <div class="review-card">
-      <div class="review-day" style="color:var(--gold)">🔄 Ajuste</div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>Si un hook funcionó: repetir el ángulo con otro trade (roofer → plomero)</span></div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>Si un formato bajo: reducir su frecuencia la próxima semana</span></div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>Actualizar el plan de contenido del lunes con los insights</span></div>
-      <div class="review-item"><span class="review-item-icon">→</span><span>Reportar a Fidel: 3 bullets, números, qué cambiamos.</span></div>
+    <div class="card card-accent card-gold">
+      <div class="card-tag tag-gold">Ajuste</div>
+      <div class="card-body">Hook que funcionó → repetir ángulo con otro trade.<br>Formato bajo → reducir frecuencia.<br>Reporte a Fidel: 3 números, 1 insight, 1 cambio.</div>
     </div>
   </div>
 </section>
@@ -915,183 +690,144 @@ footer strong{color:var(--text2)}
 
   <div class="timeline-21">
 
-    <div class="t21-week">
-      <div class="t21-week-label">⚙️ Semana 1 — Jun 22–28 — Fundación</div>
+    <div class="t21-week-label">⚙️ Semana 1 — Jun 22–28 — Fundación</div>
 
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--gold)"><div class="t21-dot-inner" style="background:var(--gold)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--gold)">Día 1–2</div>
-          <div>
-            <div class="t21-content-title">Kickoff call + definición de ICP y pilares</div>
-            <div class="t21-content-body">30 min con Fidel. Confirmar quién es el cliente ideal (trade principal a atacar primero: roofers o HVAC). Definir los 5 pilares de contenido. Decidir el tono de voz y los hooks iniciales. Determinar dónde graba Fidel (setup mínimo).</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-alejo">Alejo</span>
-              <span class="t21-tag t21-tag-fidel">Fidel</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--gold)"><div class="t21-dot-inner" style="background:var(--gold)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--gold)">Día 2–3</div>
-          <div>
-            <div class="t21-content-title">Setup de cuenta + bio + branding base</div>
-            <div class="t21-content-body">Bio optimizada para keyword "contratistas hispanos + Meta Ads". Foto de perfil, highlight covers en Canva. Link in bio activo (Linktree o landing simple). Primer post de presentación de la cuenta.</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-alejo">Alejo (copy)</span>
-              <span class="t21-tag t21-tag-paulo">Paulo (diseño)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--gold)"><div class="t21-dot-inner" style="background:var(--gold)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--gold)">Día 3–5</div>
-          <div>
-            <div class="t21-content-title">Research de competencia + swipe file de hooks</div>
-            <div class="t21-content-body">Analizar 20 posts virales de cuentas similares. Anotar qué hooks funcionan, qué formatos generan más saves. Construir swipe file de 15 hooks adaptados al nicho de contractors. Identificar 50 cuentas objetivo para engagement sprint.</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-alejo">Alejo</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--gold)"><div class="t21-dot-inner" style="background:var(--gold)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--gold)">Día 4–7</div>
-          <div>
-            <div class="t21-content-title">Batch 1 — 5 piezas listas para publicar</div>
-            <div class="t21-content-body">Scripts escritos por Alejo. Paulo diseña carousels y thumbnails. Benja edita Reels. Target: 2 Reels, 2 Carousels, 1 Meme. Todas con CTA "Comenta LEADS" activo. Publicar las primeras 2 al final de la semana.</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-alejo">Alejo (scripts)</span>
-              <span class="t21-tag t21-tag-paulo">Paulo (diseño)</span>
-            </div>
-          </div>
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--gold)"><div class="t21-inner" style="background:var(--gold)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--gold)">Día 1–2</div>
+        <div>
+          <div class="t21-ct">Kickoff — ICP, pilares, tono de voz</div>
+          <div class="t21-cb">30 min con Fidel. Trade principal a atacar (roofers o HVAC), 5 pilares de contenido, dónde graba Fidel.</div>
+          <div class="t21-tags"><span class="t21-tag tt-a">Alejo</span><span class="t21-tag tt-f">Fidel</span></div>
         </div>
       </div>
     </div>
 
-    <div class="t21-week">
-      <div class="t21-week-label">🚀 Semana 2 — Jun 29–Jul 5 — Sistema + Lanzamiento</div>
-
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--blue)"><div class="t21-dot-inner" style="background:var(--blue)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--blue)">Día 8–9</div>
-          <div>
-            <div class="t21-content-title">ManyChat: configuración completa en español</div>
-            <div class="t21-content-body">Flows de "LEADS" y "CRECER" configurados. Preguntas de calificación. Bifurcación calificado/no calificado. Conexión con Calendly de Fidel. Test end-to-end con cuenta real. Follow-up de 48h activado.</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-alejo">Alejo</span>
-              <span class="t21-tag t21-tag-auto">Sistema automático</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--blue)"><div class="t21-dot-inner" style="background:var(--blue)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--blue)">Día 9–11</div>
-          <div>
-            <div class="t21-content-title">Training de Paulo — Proceso de contenido</div>
-            <div class="t21-content-body">Call de 45 min: mostrarle el proceso completo de producción en ClickUp. Cómo tomar el script de Alejo, diseñar con las plantillas, subir a la cola de publicación. Paulo publica y programa de forma autónoma las piezas del batch.</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-alejo">Alejo (training)</span>
-              <span class="t21-tag t21-tag-paulo">Paulo (learning)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--blue)"><div class="t21-dot-inner" style="background:var(--blue)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--blue)">Día 10–13</div>
-          <div>
-            <div class="t21-content-title">Batch 2 + Engagement Sprint activo</div>
-            <div class="t21-content-body">5 piezas más del batch (Reel educativo, Carousel táctico, 2 Memes, Reel de prueba social). Engagement sprint: 50 follows/día, 20 comentarios/día en cuentas del nicho. Primeras Stories activas con polls y preguntas.</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-alejo">Alejo (scripts + engagement)</span>
-              <span class="t21-tag t21-tag-paulo">Paulo (producción)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--blue)"><div class="t21-dot-inner" style="background:var(--blue)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--blue)">Día 14</div>
-          <div>
-            <div class="t21-content-title">Review de semana 1 — Primer ajuste de estrategia</div>
-            <div class="t21-content-body">Pull de métricas en Metricool. ¿Qué hook funcionó mejor? ¿Qué formato generó más saves? Ajustar el plan de la semana 3. Reporte a Fidel: 3 números, 1 insight, 1 ajuste.</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-alejo">Alejo</span>
-              <span class="t21-tag t21-tag-fidel">Reporte a Fidel</span>
-            </div>
-          </div>
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--gold)"><div class="t21-inner" style="background:var(--gold)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--gold)">Día 2–3</div>
+        <div>
+          <div class="t21-ct">Setup de cuenta + bio + branding</div>
+          <div class="t21-cb">Bio optimizada con keyword. Foto, highlight covers, link in bio. Primer post de presentación.</div>
+          <div class="t21-tags"><span class="t21-tag tt-a">Alejo (copy)</span><span class="t21-tag tt-p">Paulo (diseño)</span></div>
         </div>
       </div>
     </div>
 
-    <div class="t21-week">
-      <div class="t21-week-label">🏆 Semana 3 — Jul 6–12 — Entrega y Traspaso</div>
-
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--green)"><div class="t21-dot-inner" style="background:var(--green)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--green)">Día 15–17</div>
-          <div>
-            <div class="t21-content-title">Live 1 + Batch 3 + Paulo opera solo</div>
-            <div class="t21-content-body">Primer IG Live de Fidel: "3 preguntas de contratistas sobre Meta Ads" (30 min). Clips del Live se convierten en 2–3 Reels más. Paulo gestiona publicación y calendario sin supervisión de Alejo. Alejo solo revisa y aprueba.</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-fidel">Fidel (Live)</span>
-              <span class="t21-tag t21-tag-paulo">Paulo (operativo)</span>
-              <span class="t21-tag t21-tag-alejo">Alejo (aprobación)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--green)"><div class="t21-dot-inner" style="background:var(--green)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--green)">Día 17–20</div>
-          <div>
-            <div class="t21-content-title">Primeros leads calificados + pipeline activo</div>
-            <div class="t21-content-body">ManyChat con conversaciones activas. Fidel o Paulo hacen seguimiento en DMs. Se buscan colaboraciones con 2–3 cuentas de proveedores para contractor. Identificar al primer contratista interesado en la llamada.</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-fidel">Fidel (ventas)</span>
-              <span class="t21-tag t21-tag-auto">ManyChat (automático)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="t21-item">
-        <div class="t21-dot" style="border-color:var(--green)"><div class="t21-dot-inner" style="background:var(--green)"></div></div>
-        <div class="t21-card">
-          <div class="t21-day" style="color:var(--green)">Día 21</div>
-          <div>
-            <div class="t21-content-title">Entrega final + Review call + $500 restantes</div>
-            <div class="t21-content-body">Reunión de 45 min con Fidel. Presentar: métricas del piloto, sistema funcionando, equipo operativo, plan del mes siguiente. Paulo entrenado. ManyChat activo. Primer pipeline de leads. Cobro de la segunda cuota ($500). Conversación de equity si hay resultados.</div>
-            <div class="t21-tags">
-              <span class="t21-tag t21-tag-alejo">Alejo</span>
-              <span class="t21-tag t21-tag-fidel">Fidel</span>
-              <span class="t21-tag" style="background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)">$500 cobrado</span>
-            </div>
-          </div>
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--gold)"><div class="t21-inner" style="background:var(--gold)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--gold)">Día 3–5</div>
+        <div>
+          <div class="t21-ct">Research de competencia + swipe file</div>
+          <div class="t21-cb">Analizar 20 posts virales del nicho. Construir swipe file de 15 hooks. Identificar 50 cuentas para engagement sprint.</div>
+          <div class="t21-tags"><span class="t21-tag tt-a">Alejo</span></div>
         </div>
       </div>
     </div>
+
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--gold)"><div class="t21-inner" style="background:var(--gold)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--gold)">Día 4–7</div>
+        <div>
+          <div class="t21-ct">Batch 1 — 5 piezas listas para publicar</div>
+          <div class="t21-cb">2 Reels, 2 Carousels, 1 Meme. Todas con CTA "Comenta LEADS". Publicar las primeras 2 al final de la semana.</div>
+          <div class="t21-tags"><span class="t21-tag tt-a">Alejo (scripts)</span><span class="t21-tag tt-p">Paulo</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t21-week-label">🚀 Semana 2 — Jun 29–Jul 5 — Sistema</div>
+
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--blue)"><div class="t21-inner" style="background:var(--blue)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--blue)">Día 8–9</div>
+        <div>
+          <div class="t21-ct">ManyChat — configuración completa en español</div>
+          <div class="t21-cb">Flows de "LEADS" y "CRECER". Calificación, bifurcación, conexión con Calendly. Test end-to-end. Follow-up de 48h activado.</div>
+          <div class="t21-tags"><span class="t21-tag tt-a">Alejo</span><span class="t21-tag tt-auto">Automático</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--blue)"><div class="t21-inner" style="background:var(--blue)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--blue)">Día 9–11</div>
+        <div>
+          <div class="t21-ct">Training de Paulo — proceso de contenido</div>
+          <div class="t21-cb">Call de 45 min: proceso completo en ClickUp. Tomar el script → diseñar con plantillas → subir a la cola de publicación. Paulo publica el batch de forma autónoma.</div>
+          <div class="t21-tags"><span class="t21-tag tt-a">Alejo (training)</span><span class="t21-tag tt-p">Paulo (learning)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--blue)"><div class="t21-inner" style="background:var(--blue)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--blue)">Día 10–13</div>
+        <div>
+          <div class="t21-ct">Batch 2 + Engagement Sprint activo</div>
+          <div class="t21-cb">5 piezas más. 50 follows/día, 20 comentarios/día en cuentas del nicho. Primeras Stories con polls y preguntas.</div>
+          <div class="t21-tags"><span class="t21-tag tt-a">Alejo (scripts)</span><span class="t21-tag tt-p">Paulo (ejecución)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--blue)"><div class="t21-inner" style="background:var(--blue)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--blue)">Día 14</div>
+        <div>
+          <div class="t21-ct">Review semana 1 — primer ajuste de estrategia</div>
+          <div class="t21-cb">Pull de métricas en Metricool. ¿Qué hook funcionó? ¿Qué formato ganó? Ajustar plan de semana 3. Reporte breve a Fidel.</div>
+          <div class="t21-tags"><span class="t21-tag tt-a">Alejo</span><span class="t21-tag tt-f">Reporte a Fidel</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t21-week-label">🏆 Semana 3 — Jul 6–12 — Traspaso</div>
+
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--green)"><div class="t21-inner" style="background:var(--green)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--green)">Día 15–17</div>
+        <div>
+          <div class="t21-ct">Live 1 + Batch 3 + Paulo opera solo</div>
+          <div class="t21-cb">Primer IG Live de Fidel (30 min). Clips del Live → 2–3 Reels. Paulo gestiona publicación sin supervisión de Alejo. Alejo solo aprueba.</div>
+          <div class="t21-tags"><span class="t21-tag tt-f">Fidel (Live)</span><span class="t21-tag tt-p">Paulo (operativo)</span><span class="t21-tag tt-a">Alejo (aprueba)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--green)"><div class="t21-inner" style="background:var(--green)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--green)">Día 17–20</div>
+        <div>
+          <div class="t21-ct">Primeros leads + pipeline activo</div>
+          <div class="t21-cb">ManyChat con conversaciones. Fidel o Paulo hacen seguimiento en DMs. Búsqueda de colaboraciones con proveedores. Identificar primer contratista interesado.</div>
+          <div class="t21-tags"><span class="t21-tag tt-f">Fidel (ventas)</span><span class="t21-tag tt-auto">ManyChat</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t21-item">
+      <div class="t21-dot" style="border-color:var(--green)"><div class="t21-inner" style="background:var(--green)"></div></div>
+      <div class="t21-card">
+        <div class="t21-day" style="color:var(--green)">Día 21</div>
+        <div>
+          <div class="t21-ct">Entrega final + Review call</div>
+          <div class="t21-cb">Reunión 45 min con Fidel. Presentar: métricas del piloto, sistema funcionando, equipo operativo, plan del mes siguiente. Conversación sobre qué sigue.</div>
+          <div class="t21-tags"><span class="t21-tag tt-a">Alejo</span><span class="t21-tag tt-f">Fidel</span></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1100,150 +836,72 @@ footer strong{color:var(--text2)}
 <!-- ROLES -->
 <section id="roles" class="reveal">
   <div class="section-label" style="color:var(--text3)">Equipo</div>
-  <div class="section-title">Roles y responsabilidades</div>
-  <p class="section-sub">Quién hace qué para que el sistema funcione sin ambigüedad.</p>
+  <div class="section-title">Quién hace qué</div>
+  <p class="section-sub">Sin ambigüedad. Cada uno sabe su carril.</p>
 
-  <table class="role-table" style="margin-bottom:48px">
-    <thead>
-      <tr>
-        <th>Persona</th>
-        <th>Rol</th>
-        <th>Responsabilidades</th>
-        <th>No hace</th>
-        <th>Disponibilidad</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <div class="role-name">Alejo</div>
-          <span class="role-tag" style="background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)">Director Creativo</span>
-        </td>
-        <td style="font-size:13px;color:var(--text2)">Estrategia, copy y sistemas</td>
-        <td style="font-size:13px;color:var(--text2)">
-          Scripts de todos los posts<br>
-          Estrategia semanal<br>
-          ManyChat flows<br>
-          Aprobación final de contenido<br>
-          Revisión domingo de métricas<br>
-          Decisiones de ajuste de estrategia
-        </td>
-        <td style="font-size:13px;color:var(--red)">
-          No edita videos<br>
-          No diseña gráficas<br>
-          No publica posts<br>
-          No responde DMs diarios<br>
-          No ejecuta operaciones
-        </td>
-        <td style="font-size:13px;color:var(--text2)">Disponible para decisiones estratégicas. No para ejecución diaria.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="role-name">Paulo</div>
-          <span class="role-tag" style="background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border)">Operador</span>
-        </td>
-        <td style="font-size:13px;color:var(--text2)">Producción y publicación</td>
-        <td style="font-size:13px;color:var(--text2)">
-          Diseño de carousels y thumbnails<br>
-          Programación de publicaciones<br>
-          Monitoreo de ManyChat<br>
-          Engagement sprint diario<br>
-          Ejecución del calendario de contenido<br>
-          Coordinación con Benja
-        </td>
-        <td style="font-size:13px;color:var(--red)">
-          No define estrategia<br>
-          No escribe copy<br>
-          No toma decisiones de ángulo<br>
-          No habla con leads de cierre
-        </td>
-        <td style="font-size:13px;color:var(--text2)">Operativo diario. Es el motor de ejecución del sistema.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="role-name">Benja</div>
-          <span class="role-tag" style="background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple-border)">Producción</span>
-        </td>
-        <td style="font-size:13px;color:var(--text2)">Edición de video</td>
-        <td style="font-size:13px;color:var(--text2)">
-          Edición de todos los Reels<br>
-          Captions en video según script<br>
-          Clips cortos de Lives<br>
-          Entrega en tiempo para el calendario
-        </td>
-        <td style="font-size:13px;color:var(--red)">
-          No escribe copy<br>
-          No decide formatos<br>
-          No publica
-        </td>
-        <td style="font-size:13px;color:var(--text2)">Por proyecto/batch. Pagado por Fidel directamente.</td>
-      </tr>
-      <tr>
-        <td>
-          <div class="role-name">Fidel</div>
-          <span class="role-tag" style="background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)">Fundador</span>
-        </td>
-        <td style="font-size:13px;color:var(--text2)">Cara, venta, decisión</td>
-        <td style="font-size:13px;color:var(--text2)">
-          Grabar video para Reels<br>
-          Hacer IG Lives semanales<br>
-          Cerrar llamadas de ventas con leads<br>
-          Aprobar dirección estratégica<br>
-          Pagar al equipo puntualmente
-        </td>
-        <td style="font-size:13px;color:var(--red)">
-          No edita<br>
-          No diseña<br>
-          No responde DMs de screening (ManyChat lo hace)<br>
-          No decide los hooks o copy
-        </td>
-        <td style="font-size:13px;color:var(--text2)">Disponible para grabar 2–3 veces/semana y para calls de cierre.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="cards cards-2">
-    <div class="card" style="background:var(--gold-dim);border-color:var(--gold-border)">
-      <div class="card-title" style="color:var(--gold)">Trigger para conversación de equity</div>
-      <div class="card-body">
-        Cuando el sistema genere el <strong style="color:var(--text)">primer cliente contratista cerrado</strong>, abrimos la conversación de sociedad.<br><br>
-        Ahí hay algo para estructurar. Ahí los números justifican el porcentaje. No antes.
-      </div>
+  <div class="roles-grid">
+    <div class="role-card">
+      <div class="role-name">Alejo</div>
+      <div class="role-title">Director Creativo & Sistemas</div>
+      <ul class="role-list">
+        <li>Scripts y copy de todos los posts</li>
+        <li>Estrategia semanal y ajuste de ángulos</li>
+        <li>Configuración y optimización de ManyChat</li>
+        <li>Aprobación final de contenido</li>
+        <li>Revisión domingo de métricas</li>
+        <li class="no">No edita video ni diseña gráficas</li>
+        <li class="no">No publica posts ni responde DMs</li>
+      </ul>
     </div>
-    <div class="card">
-      <div class="card-title">Lo que le entregamos al final del día 21</div>
-      <div class="card-body">
-        ✓ Cuenta activa con sistema rodando<br>
-        ✓ Paulo entrenado y operando solo<br>
-        ✓ ManyChat en español funcionando<br>
-        ✓ Pipeline con 5–10 leads en cola<br>
-        ✓ Plan de contenido del mes siguiente<br>
-        ✓ Métricas documentadas como baseline
-      </div>
+    <div class="role-card">
+      <div class="role-name">Paulo</div>
+      <div class="role-title">Operador de Contenido</div>
+      <ul class="role-list">
+        <li>Diseño de carousels y thumbnails</li>
+        <li>Programación y publicación en Meta</li>
+        <li>Monitoreo de ManyChat</li>
+        <li>Engagement sprint diario</li>
+        <li>Coordinación con Benja</li>
+        <li class="no">No define estrategia ni escribe copy</li>
+        <li class="no">No habla con leads de cierre</li>
+      </ul>
+    </div>
+    <div class="role-card">
+      <div class="role-name">Benja</div>
+      <div class="role-title">Edición de Video</div>
+      <ul class="role-list">
+        <li>Edición de todos los Reels</li>
+        <li>Captions en video según script</li>
+        <li>Clips cortos de Lives</li>
+        <li>Entrega a tiempo para el calendario</li>
+        <li class="no">No escribe copy ni decide formatos</li>
+      </ul>
+    </div>
+    <div class="role-card">
+      <div class="role-name">Fidel</div>
+      <div class="role-title">Fundador & Cara del Negocio</div>
+      <ul class="role-list">
+        <li>Graba video para Reels (2–3x/semana)</li>
+        <li>Hace los IG Lives semanales</li>
+        <li>Cierra las llamadas de ventas con leads</li>
+        <li>Aprueba dirección estratégica</li>
+        <li class="no">No responde DMs de screening (lo hace ManyChat)</li>
+        <li class="no">No decide hooks ni copy</li>
+      </ul>
     </div>
   </div>
 </section>
 
 <footer>
-  <p><strong>Fidel × Alejo</strong> — Breakdown Operacional Semana 1/3</p>
-  <p style="margin-top:8px">Cuenta contratistas hispanos USA — Jun–Jul 2026 — Confidencial</p>
+  <p><strong>Fidel × Alejo</strong> — Breakdown Operacional · Cuenta Contratistas Hispanos USA</p>
+  <p style="margin-top:6px">Piloto 21 días · Jun–Jul 2026 · Confidencial</p>
 </footer>
 
 <script>
-// Scroll reveal
-const reveals = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }});
-}, {threshold: 0.07});
-reveals.forEach(r => io.observe(r));
-
-// Week progress animation
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const fill = document.querySelector('.week-progress-fill');
-    if(fill) fill.style.width = '14%'; // Week 1 of 3, day 1
-  }, 500);
-});
+const io = new IntersectionObserver(e => {
+  e.forEach(x => { if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)} });
+},{threshold:0.07});
+document.querySelectorAll('.reveal').forEach(r => io.observe(r));
 </script>
 </body>
 </html>
