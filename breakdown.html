@@ -17,7 +17,7 @@
   --text:#f0f0f4;--text2:#8b8ba8;--text3:#44445a;
   --border:rgba(255,255,255,0.055);
 }
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 .orb{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;animation:orb 22s ease-in-out infinite alternate}
@@ -120,7 +120,8 @@ section{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:72px 4
 .hook-item strong{color:var(--gold)}
 
 /* KPI TABLE */
-.kpi-table{width:100%;border-collapse:collapse;margin-bottom:40px;font-size:13px}
+.kpi-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:40px;border-radius:10px}
+.kpi-table{width:100%;border-collapse:collapse;font-size:13px;min-width:540px}
 .kpi-table th{text-align:left;padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border)}
 .kpi-table td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.03)}
 .kpi-table tr:hover td{background:rgba(255,255,255,.015)}
@@ -180,16 +181,119 @@ footer strong{color:var(--text2)}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* ─── TABLET ─── */
 @media(max-width:768px){
-  nav{padding:12px 20px}
+  nav{padding:12px 16px}
   .nav-links{display:none}
-  section{padding:56px 20px}
-  .hero{padding:100px 20px 50px}
+  .nav-logo{font-size:11px;letter-spacing:.07em}
+
+  section{padding:52px 18px}
+  .hero{padding:90px 18px 44px}
+  .hero-sub{font-size:14px}
+
+  .eyebrow{font-size:9px;letter-spacing:.1em;padding:5px 12px;white-space:normal;text-align:center;line-height:1.4}
+
   .cards-2,.cards-3{grid-template-columns:1fr}
   .icp-grid,.flow-wrap,.roles-grid{grid-template-columns:1fr}
   .pillars-grid{grid-template-columns:repeat(2,1fr)}
+
+  .week-banner{flex-direction:column;gap:12px}
+  .week-date{font-size:14px}
+  .week-date-sub{text-align:left}
+
+  /* Calendar: show 4 days, last 3 wrap */
   .cal-grid{grid-template-columns:repeat(4,1fr)}
-  .week-banner{flex-direction:column}
+
+  /* Benchmark: hide the bar, just label + value */
+  .bench-bar-wrap{display:none}
+  .bench-label{font-size:12px}
+
+  /* Timeline: stack day above content */
+  .t21-card{flex-direction:column;gap:6px;align-items:flex-start}
+  .t21-day{min-width:auto;padding-top:0}
+
+  /* Pillar header: reduce title size */
+  .pillar-name{font-size:22px}
+}
+
+/* ─── PHONE ─── */
+@media(max-width:480px){
+  section{padding:44px 14px}
+  .hero{padding:80px 14px 36px}
+  .hero h1{letter-spacing:-.025em}
+
+  nav{padding:10px 14px}
+  .nav-pill{font-size:10px;padding:4px 10px}
+  .nav-pill .pulse{width:6px;height:6px}
+
+  .pillar-header{gap:12px}
+  .pillar-icon{width:40px;height:40px;font-size:18px;border-radius:10px}
+  .pillar-name{font-size:20px}
+
+  .pillars-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .pillar-card{padding:12px 10px}
+  .pillar-card-icon{font-size:17px;margin-bottom:6px}
+  .pillar-card-name{font-size:11px}
+  .pillar-card-examples{font-size:10px}
+
+  /* Calendar: 3+4 layout (first 3, last 4 or vice versa) */
+  .cal-grid{grid-template-columns:repeat(3,1fr);gap:4px}
+  .cal-day{padding:6px 3px}
+  .cal-day-name{font-size:8px;margin-bottom:5px}
+  .cal-post{font-size:8px;padding:2px 4px}
+
+  /* Cards padding */
+  .card{padding:16px}
+
+  /* ICP callout */
+  .icp-callout{font-size:13px;padding:14px 16px}
+  .icp-list li{font-size:12px}
+  .icp-box-title{font-size:10px}
+
+  /* Benchmark: compact */
+  .bench-row{padding:7px 0}
+  .bench-label{font-size:11px}
+  .bench-val{font-size:11px;min-width:44px}
+
+  /* Flow messages */
+  .flow-msg{font-size:11px;padding:8px 10px}
+  .flow-body{font-size:12px}
+
+  /* Section title smaller */
+  .section-title{font-size:clamp(22px,7vw,32px)}
+  .section-sub{font-size:13px}
+
+  /* Cards body */
+  .card-body{font-size:12px}
+  .card-title{font-size:13px}
+
+  /* Hook items */
+  .hook-item{font-size:12px;padding:10px 12px}
+
+  /* Timeline */
+  .timeline-21{padding-left:22px}
+  .timeline-21::before{left:6px}
+  .t21-dot{left:-19px;width:10px;height:10px}
+  .t21-inner{width:4px;height:4px}
+  .t21-card{padding:12px 14px;border-radius:10px}
+  .t21-ct{font-size:12px}
+  .t21-cb{font-size:11px}
+  .t21-week-label{font-size:9px}
+  .t21-tag{font-size:9px;padding:2px 7px}
+
+  /* Roles */
+  .role-name{font-size:14px}
+  .role-list li{font-size:11px}
+
+  /* Week banner */
+  .week-banner{padding:18px 16px}
+  .week-title{font-size:16px}
+  .week-desc{font-size:12px}
+
+  /* Cards-2 for bench boxes */
+  .cards-2{gap:12px}
+
+  footer{padding:36px 16px}
 }
 </style>
 </head>
@@ -541,7 +645,7 @@ footer strong{color:var(--text2)}
     </div>
   </div>
 
-  <table class="kpi-table" style="margin-bottom:40px">
+  <div class="kpi-table-wrap"><table class="kpi-table">
     <thead>
       <tr>
         <th>Métrica</th>
@@ -602,7 +706,7 @@ footer strong{color:var(--text2)}
         <td style="font-size:11px;color:rgba(245,158,11,0.7)">La métrica que determina si el sistema funciona</td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 
   <div class="cards cards-2" style="margin-bottom:40px">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px">
