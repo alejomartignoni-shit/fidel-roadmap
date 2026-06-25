@@ -242,6 +242,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background
 .resp-list.no-list li::before{content:'✕';color:var(--red);flex-shrink:0;font-weight:700;margin-top:1px}
 .resp-divider{height:1px;background:var(--border)}
 
+/* CADENCE */
+.cadence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.cadence-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease,border-color .3s}
+.cadence-card.vis{opacity:1;transform:translateY(0)}
+.cadence-card:hover{border-color:var(--gold-border);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.cadence-header{padding:22px 24px 18px;border-bottom:1px solid var(--border)}
+.cadence-badge{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:12px}
+.cadence-badge.weekly{background:var(--purple-dim);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
+.cadence-badge.daily{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.cadence-title{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
+.cadence-who{font-size:12px;color:var(--text3);letter-spacing:.06em}
+.cadence-body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px}
+.cadence-objective{font-size:13px;color:var(--text2);line-height:1.6;padding:10px 14px;background:var(--surface2);border-radius:10px;border-left:3px solid var(--gold)}
+.cadence-agenda-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.cadence-agenda{list-style:none;display:flex;flex-direction:column;gap:7px}
+.cadence-agenda li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--text2);line-height:1.55}
+.cadence-agenda li::before{content:'→';color:var(--gold);flex-shrink:0;font-weight:700;margin-top:1px}
+.cadence-rule{display:flex;align-items:flex-start;gap:10px;background:var(--red-dim);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px 14px;font-size:12px;color:var(--text2);margin-top:4px}
+.cadence-rule-icon{font-size:14px;flex-shrink:0}
+
 /* FOOTER */
 footer{position:relative;z-index:1;text-align:center;padding:60px 40px;border-top:1px solid var(--border);font-size:12px;color:var(--text3)}
 footer strong{color:var(--text2)}
@@ -280,6 +300,7 @@ footer strong{color:var(--text2)}
     <a href="#roadmap">Roadmap</a>
     <a href="#breakdown">7 Cifras</a>
     <a href="#responsabilidades">El equipo</a>
+    <a href="#cadencia">Ritmo</a>
   </div>
   <div class="nav-pill"><div class="pulse"></div>Piloto v2 — Activo</div>
 </nav>
@@ -779,6 +800,7 @@ footer strong{color:var(--text2)}
             <li>No opera el ClickUp ni el calendario de contenido día a día</li>
             <li>No gestiona al equipo creativo directamente</li>
             <li>No edita ni diseña — eso es de Paulo y el equipo</li>
+            <li>No responde DMs de leads — el CRM y el setter gestionan el pipeline hasta que el lead está listo para cerrar</li>
           </ul>
         </div>
       </div>
@@ -844,6 +866,65 @@ footer strong{color:var(--text2)}
   </div>
 </section>
 
+<!-- CADENCE -->
+<section class="section" id="cadencia">
+  <div class="slabel">Operación</div>
+  <h2 class="stitle">Ritmo de trabajo</h2>
+  <p class="ssub">Instancias fijas con agenda cerrada. Sin improvisar, sin desviarse. Cada reunión empieza y termina en su objetivo.</p>
+  <div class="cadence-grid">
+
+    <div class="cadence-card" style="transition-delay:.05s">
+      <div class="cadence-header">
+        <div class="cadence-badge weekly">Semanal</div>
+        <div class="cadence-title">Reunión de Marketing</div>
+        <div class="cadence-who">Alejo · Paulo</div>
+      </div>
+      <div class="cadence-body">
+        <div class="cadence-objective">Revisar el ClickUp de principio a fin. Nada más, nada menos.</div>
+        <div>
+          <div class="cadence-agenda-label">Agenda fija</div>
+          <ul class="cadence-agenda">
+            <li>Revisar todos los pendientes del tablero — ninguno sin estado</li>
+            <li>Extraer ideas nuevas, cargarlas en ClickUp y enriquecerlas con contexto</li>
+            <li>Actualizar comentarios en cada tarea activa</li>
+            <li>Asignar o ajustar fechas de publicación y prioridades</li>
+            <li>Revisar métricas de la semana anterior</li>
+          </ul>
+        </div>
+        <div class="cadence-rule">
+          <div class="cadence-rule-icon">🚫</div>
+          <span>Sin small talk. La reunión arranca en el tablero y termina cuando el tablero está limpio.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cadence-card" style="transition-delay:.1s">
+      <div class="cadence-header">
+        <div class="cadence-badge daily">Diaria</div>
+        <div class="cadence-title">Revisión de CRM</div>
+        <div class="cadence-who">Paulo</div>
+      </div>
+      <div class="cadence-body">
+        <div class="cadence-objective">Ningún lead se queda sin seguimiento. El CRM se revisa todos los días sin excepción.</div>
+        <div>
+          <div class="cadence-agenda-label">Qué se revisa</div>
+          <ul class="cadence-agenda">
+            <li>Nuevos DMs recibidos — clasificar y etiquetar por temperatura</li>
+            <li>Leads en seguimiento — actualizar estado y próximo paso</li>
+            <li>Leads calificados listos para mover a llamada — notificar a Fidel</li>
+            <li>Leads fríos — activar flujo de nurturing automático si aplica</li>
+          </ul>
+        </div>
+        <div class="cadence-rule">
+          <div class="cadence-rule-icon">🚫</div>
+          <span>Fidel no responde mensajes de leads. El CRM y el setter gestionan el pipeline — Fidel solo entra cuando el lead ya está calificado y listo para cerrar.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <footer>
   <p><strong>Fidel × Alejo</strong> — Estrategia 2026–2027</p>
   <p style="margin-top:6px">Confidencial · Preparado por Alejo Martignoni · Junio 2026</p>
@@ -854,7 +935,7 @@ footer strong{color:var(--text2)}
 const io = new IntersectionObserver(entries => {
   entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('vis'), i*90) });
 },{threshold:.08});
-document.querySelectorAll('.tl-item,.sys-card,.phase-card,.bd-card,.role-resp-card').forEach(el=>io.observe(el));
+document.querySelectorAll('.tl-item,.sys-card,.phase-card,.bd-card,.role-resp-card,.cadence-card').forEach(el=>io.observe(el));
 
 // ── PHASE TOGGLE ──
 function togglePhase(card){
