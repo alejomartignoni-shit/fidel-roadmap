@@ -12,11 +12,10 @@
   --blue:#60a5fa;--blue-dim:rgba(96,165,250,0.09);--blue-border:rgba(96,165,250,0.25);
   --green:#10b981;--green-dim:rgba(16,185,129,0.09);--green-border:rgba(16,185,129,0.2);
   --gold:#f59e0b;--gold-dim:rgba(245,158,11,0.10);--gold-border:rgba(245,158,11,0.25);
-  --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.09);
-  --red:#f87171;--red-dim:rgba(248,113,113,0.09);
+  --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.09);--purple-border:rgba(167,139,250,0.2);
+  --red:#f87171;--red-dim:rgba(248,113,113,0.09);--red-border:rgba(248,113,113,0.2);
   --text:#f0f0f4;--text2:#8b8ba8;--text3:#44445a;
   --border:rgba(255,255,255,0.055);
-  --accent:var(--blue);--accent-dim:var(--blue-dim);--accent-border:var(--blue-border);
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
@@ -26,24 +25,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .orb2{width:500px;height:500px;background:rgba(167,139,250,0.045);bottom:-100px;left:-100px;animation-delay:-11s}
 @keyframes orb{from{transform:translate(0,0)}to{transform:translate(50px,40px)}}
 
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background:rgba(7,7,13,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px}
 .nav-logo{font-size:13px;font-weight:800;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;white-space:nowrap}
-.nav-links{display:flex;gap:28px}
+.nav-links{display:flex;gap:24px}
 .nav-links a{font-size:12px;color:var(--text2);text-decoration:none;transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:var(--text)}
 .nav-pill{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text2);background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:5px 12px;white-space:nowrap}
 .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}50%{box-shadow:0 0 0 5px rgba(16,185,129,0)}}
 
-/* HERO */
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);padding:6px 16px;border-radius:100px;background:var(--blue-dim);border:1px solid var(--blue-border);margin-bottom:28px;animation:fadeup .6s ease both}
 .hero h1{font-size:clamp(40px,8vw,90px);font-weight:900;line-height:.95;letter-spacing:-.03em;margin-bottom:20px;animation:fadeup .6s .1s ease both}
 .hero h1 .dim{color:var(--text3)}
 .hero h1 .accent{color:var(--blue)}
 .hero-sub{font-size:17px;color:var(--text2);max-width:540px;margin-bottom:48px;animation:fadeup .6s .2s ease both}
-.hero-pillars{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fadeup .6s .3s ease both}
+.hero-pillars{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;animation:fadeup .6s .3s ease both}
 .pillar{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:8px 18px}
 .pillar-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0}
 .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;color:var(--text3);letter-spacing:.1em;animation:fadeup .6s .6s ease both}
@@ -51,13 +48,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
 @keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* SECTION */
 .section{position:relative;z-index:1;padding:80px 48px;max-width:1200px;margin:0 auto}
 .slabel{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
 .stitle{font-size:clamp(26px,3.5vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
 .ssub{font-size:15px;color:var(--text2);margin-bottom:56px}
 
-/* TEAM CARDS */
+/* TEAM */
 .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .team-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;opacity:0;transform:translateY(18px);transition:all .5s ease}
 .team-card.vis{opacity:1;transform:translateY(0)}
@@ -68,17 +64,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background
 .team-name{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
 .team-title{font-size:12px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase}
 .team-body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:14px}
-.team-block-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
-.team-block-label.yes{color:var(--green)}
-.team-block-label.no{color:var(--red)}
-.team-list{list-style:none;display:flex;flex-direction:column;gap:7px}
-.team-list li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--text2);line-height:1.55}
-.team-list.yes-list li::before{content:'✓';color:var(--green);flex-shrink:0;font-weight:700;margin-top:1px}
-.team-list.no-list li::before{content:'✕';color:var(--red);flex-shrink:0;font-weight:700;margin-top:1px}
-.team-divider{height:1px;background:var(--border)}
+.block-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.block-label.yes{color:var(--green)}
+.block-label.no{color:var(--red)}
+.block-label.note{color:var(--gold)}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.check-list li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--text2);line-height:1.55}
+.check-list.yes li::before{content:'✓';color:var(--green);flex-shrink:0;font-weight:700;margin-top:1px}
+.check-list.no li::before{content:'✕';color:var(--red);flex-shrink:0;font-weight:700;margin-top:1px}
+.divider{height:1px;background:var(--border)}
+.note-box{background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--text2);margin-top:4px}
 
 /* WORKFLOW */
-.flow-steps{display:flex;flex-direction:column;gap:0}
+.flow-steps{display:flex;flex-direction:column}
 .flow-step{display:flex;gap:28px;align-items:flex-start;position:relative;opacity:0;transform:translateX(-16px);transition:opacity .5s ease,transform .5s ease}
 .flow-step.vis{opacity:1;transform:translateX(0)}
 .flow-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:48px}
@@ -93,17 +91,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background
 .flow-detail-list{list-style:none;display:flex;flex-direction:column;gap:6px}
 .flow-detail-list li{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--text2);line-height:1.5}
 .flow-detail-list li::before{content:'→';color:var(--blue);flex-shrink:0;font-weight:700}
+.flow-detail-list li.warn::before{content:'⚠';color:var(--gold);flex-shrink:0;font-weight:700}
 
-/* HOW TO BRIEF */
+/* BRIEF */
 .brief-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 .brief-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;opacity:0;transform:translateY(18px);transition:all .5s ease}
 .brief-card.vis{opacity:1;transform:translateY(0)}
 .brief-card:hover{border-color:var(--blue-border)}
+.brief-card.highlight{border-color:var(--gold-border);background:var(--gold-dim)}
 .brief-icon{font-size:22px;margin-bottom:12px}
 .brief-title{font-size:14px;font-weight:700;margin-bottom:6px}
 .brief-desc{font-size:13px;color:var(--text2);line-height:1.65}
 .brief-example{margin-top:12px;background:var(--surface2);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--text3);line-height:1.6;border-left:3px solid var(--blue)}
 .brief-example span{color:var(--blue)}
+.brief-card.highlight .brief-example{border-left-color:var(--gold)}
+.brief-card.highlight .brief-example span{color:var(--gold)}
 
 /* STANDARDS */
 .standards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
@@ -115,16 +117,41 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background
 .std-list{list-style:none;display:flex;flex-direction:column;gap:7px}
 .std-list li{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--text2);line-height:1.5}
 .std-list li::before{content:'✓';color:var(--green);flex-shrink:0;font-size:11px;margin-top:1px}
+.std-list li.warn::before{content:'⚠';color:var(--gold);flex-shrink:0;font-size:11px;margin-top:1px}
+
+/* STATUS TAGS */
+.status-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px}
+.status-tag{display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 18px;min-width:140px}
+.status-dot{width:8px;height:8px;border-radius:50%;margin-bottom:6px}
+.status-name{font-size:12px;font-weight:700}
+.status-desc{font-size:11px;color:var(--text3);line-height:1.4}
+
+/* RANKING */
+.accounts-note{display:flex;align-items:center;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:36px;font-size:13px;color:var(--text2)}
+.accounts-note strong{color:var(--text)}
+.rank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:32px}
+.rank-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:24px;opacity:0;transform:translateY(18px);transition:all .5s ease;position:relative}
+.rank-card.vis{opacity:1;transform:translateY(0)}
+.rank-card.rank-min{border-color:var(--green-border)}
+.rank-card.rank-max{border-color:var(--gold-border);background:linear-gradient(135deg,rgba(245,158,11,.07),rgba(167,139,250,.04))}
+.rank-badge{display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:14px}
+.rank-badge.n1{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
+.rank-badge.n2{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border)}
+.rank-badge.n3{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple-border)}
+.rank-badge.n4{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.rank-level{font-size:13px;font-weight:800;margin-bottom:16px}
+.rank-items{list-style:none;display:flex;flex-direction:column;gap:8px}
+.rank-items li{font-size:13px;color:var(--text2);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.rank-items li span{font-weight:700;color:var(--text);text-align:right}
+.rank-min-tag{display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;background:var(--green-dim);color:var(--green);border:1px solid var(--green-border);margin-left:6px}
+.rank-max-tag{display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);margin-left:6px}
 
 /* CADENCE */
-.cadence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .cadence-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;opacity:0;transform:translateY(18px);transition:all .5s ease}
 .cadence-card.vis{opacity:1;transform:translateY(0)}
 .cadence-card:hover{border-color:var(--blue-border);box-shadow:0 20px 40px rgba(0,0,0,.3)}
 .cadence-header{padding:22px 24px 18px;border-bottom:1px solid var(--border)}
-.cadence-badge{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:12px}
-.cadence-badge.weekly{background:var(--purple-dim);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
-.cadence-badge.daily{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.cadence-badge{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:12px;background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple-border)}
 .cadence-title{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:4px}
 .cadence-who{font-size:12px;color:var(--text3);letter-spacing:.06em}
 .cadence-body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px}
@@ -133,19 +160,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background
 .cadence-agenda{list-style:none;display:flex;flex-direction:column;gap:7px}
 .cadence-agenda li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--text2);line-height:1.55}
 .cadence-agenda li::before{content:'→';color:var(--blue);flex-shrink:0;font-weight:700;margin-top:1px}
-.cadence-rule{display:flex;align-items:flex-start;gap:10px;background:var(--red-dim);border:1px solid rgba(248,113,113,.2);border-radius:10px;padding:11px 14px;font-size:12px;color:var(--text2);margin-top:4px}
+.cadence-rule{display:flex;align-items:flex-start;gap:10px;background:var(--red-dim);border:1px solid var(--red-border);border-radius:10px;padding:11px 14px;font-size:12px;color:var(--text2);margin-top:4px}
 
-/* FOOTER */
 footer{position:relative;z-index:1;text-align:center;padding:60px 40px;border-top:1px solid var(--border);font-size:12px;color:var(--text3)}
 footer strong{color:var(--text2)}
 
 @media(max-width:768px){
-  nav{padding:12px 20px}
-  .nav-links{display:none}
-  .section{padding:60px 20px}
-  .hero{padding:100px 20px 70px}
-  .flow-step{gap:16px}
+  nav{padding:12px 20px}.nav-links{display:none}
+  .section{padding:60px 20px}.hero{padding:100px 20px 70px}
+  .flow-step{gap:16px}.rank-grid{grid-template-columns:1fr 1fr}
 }
+@media(max-width:480px){.rank-grid{grid-template-columns:1fr}}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--blue-border);border-radius:4px}
@@ -155,20 +180,19 @@ footer strong{color:var(--text2)}
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">Paulo — Operación Creativa</div>
   <div class="nav-links">
     <a href="#equipo">El equipo</a>
     <a href="#flujo">Tu flujo</a>
-    <a href="#facundo">Dirigir a Facundo</a>
+    <a href="#briefing">Briefing</a>
     <a href="#estandares">Estándares</a>
+    <a href="#posting">Posting</a>
     <a href="#cadencia">Cadencia</a>
   </div>
   <div class="nav-pill"><div class="pulse"></div>Activo</div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="eyebrow">📋 Rol y responsabilidades</div>
   <h1>Vos liderás<br><span class="accent">la operación.</span></h1>
@@ -176,7 +200,7 @@ footer strong{color:var(--text2)}
   <div class="hero-pillars">
     <div class="pillar"><div class="pillar-dot"></div>Project Management</div>
     <div class="pillar"><div class="pillar-dot"></div>Dirección Creativa</div>
-    <div class="pillar"><div class="pillar-dot"></div>Seguimiento al equipo</div>
+    <div class="pillar"><div class="pillar-dot"></div>Briefing al equipo</div>
     <div class="pillar"><div class="pillar-dot"></div>Entrega sin fricción</div>
   </div>
   <div class="scroll-hint">
@@ -189,7 +213,7 @@ footer strong{color:var(--text2)}
 <section class="section" id="equipo">
   <div class="slabel">El equipo</div>
   <h2 class="stitle">Tu rol y el de Facundo</h2>
-  <p class="ssub">Dos roles claros, sin solapamiento. Paulo dirige y coordina. Facundo ejecuta la edición.</p>
+  <p class="ssub">Dos roles claros, sin solapamiento. Paulo dirige y coordina. Facundo ejecuta la edición. A medida que escale el volumen, se suman más miembros al equipo.</p>
   <div class="team-grid">
 
     <div class="team-card featured" style="transition-delay:.05s">
@@ -200,26 +224,27 @@ footer strong{color:var(--text2)}
       </div>
       <div class="team-body">
         <div>
-          <div class="team-block-label yes">Sí hace</div>
-          <ul class="team-list yes-list">
-            <li>Opera el ClickUp y mantiene el tablero actualizado día a día</li>
-            <li>Da seguimiento diario a Facundo y al equipo de diseñadores</li>
-            <li>Asegura que cada pieza pase por el flujo correcto hasta publicarse</li>
+          <div class="block-label yes">Sí hace</div>
+          <ul class="check-list yes">
+            <li>Opera el ClickUp: fechas, prioridades, asignaciones y estados correctos — siempre al día</li>
+            <li>Da seguimiento diario a Facundo y a los demás miembros del equipo</li>
+            <li>Asegura que cada pieza pase por el flujo completo hasta publicarse</li>
             <li>Aplica los lineamientos de dirección creativa y copy que establece Alejo</li>
-            <li>Sube ideas al tablero con contexto suficiente para que Facundo pueda ejecutar</li>
-            <li>Reporta el avance semanal en la reunión de marketing</li>
+            <li>Briefea al equipo con contexto claro y completo antes de arrancar cada pieza</li>
+            <li>Revisa las entregas antes de que lleguen a Alejo</li>
+            <li>Reporta el avance en la reunión semanal de marketing</li>
           </ul>
         </div>
-        <div class="team-divider"></div>
+        <div class="divider"></div>
         <div>
-          <div class="team-block-label no">No hace</div>
-          <ul class="team-list no-list">
+          <div class="block-label no">No hace</div>
+          <ul class="check-list no">
             <li>No define la estrategia de contenido ni los pilares — eso es de Alejo</li>
             <li>No toma decisiones de qué publicar o cuándo sin aprobación</li>
-            <li>No edita ni diseña — para eso está Facundo</li>
             <li>No gestiona los DMs ni el CRM de leads</li>
           </ul>
         </div>
+        <div class="note-box">Edita o diseña solo cuando el volumen lo exige y no hay equipo disponible para cubrirlo.</div>
       </div>
     </div>
 
@@ -227,25 +252,25 @@ footer strong{color:var(--text2)}
       <div class="team-header">
         <div class="team-avatar">🎬</div>
         <div class="team-name">Facundo</div>
-        <div class="team-title">Editor · Equipo Creativo</div>
+        <div class="team-title">Editor · y futuras contrataciones del equipo</div>
       </div>
       <div class="team-body">
         <div>
-          <div class="team-block-label yes">Sí hace</div>
-          <ul class="team-list yes-list">
+          <div class="block-label yes">Sí hace</div>
+          <ul class="check-list yes">
             <li>Edita el contenido según el brief que recibe de Paulo</li>
             <li>Entrega en los tiempos acordados, dentro del flujo del ClickUp</li>
-            <li>Comunica bloqueos o dudas a Paulo — no directamente a Fidel ni Alejo</li>
+            <li>Comunica bloqueos o dudas a Paulo — no directamente a Fidel ni a Alejo</li>
             <li>Aplica las correcciones del ciclo de revisión sin demorar la entrega</li>
           </ul>
         </div>
-        <div class="team-divider"></div>
+        <div class="divider"></div>
         <div>
-          <div class="team-block-label no">No hace</div>
-          <ul class="team-list no-list">
+          <div class="block-label no">No hace</div>
+          <ul class="check-list no">
             <li>No toma decisiones creativas por su cuenta — sigue el brief</li>
             <li>No publica nada directamente</li>
-            <li>No se comunica con Fidel para pedir feedback — eso pasa por Paulo</li>
+            <li>No se comunica con Fidel ni Alejo para pedir feedback — eso pasa por Paulo</li>
           </ul>
         </div>
       </div>
@@ -258,7 +283,7 @@ footer strong{color:var(--text2)}
 <section class="section" id="flujo">
   <div class="slabel">Tu flujo semanal</div>
   <h2 class="stitle">Cómo corre la semana</h2>
-  <p class="ssub">Un proceso paso a paso que se repite cada semana. Cuando el flujo está claro, el equipo no necesita preguntar qué sigue.</p>
+  <p class="ssub">Un proceso que se repite cada semana. Cuando el flujo es claro, el equipo no necesita preguntar qué sigue.</p>
   <div class="flow-steps">
 
     <div class="flow-step">
@@ -266,13 +291,14 @@ footer strong{color:var(--text2)}
       <div class="flow-content">
         <div class="flow-tag">Lunes</div>
         <div class="flow-title">Revisar el tablero y arrancar la semana</div>
-        <div class="flow-desc">Lo primero de la semana es abrir el ClickUp y revisar el estado de cada tarea. Ninguna puede quedar sin fecha, sin responsable o sin comentario actualizado.</div>
+        <div class="flow-desc">Lo primero es abrir el ClickUp y dejar el tablero limpio: cada tarea con fecha, responsable, prioridad y estado correcto. Ninguna en blanco.</div>
         <div class="flow-detail">
           <ul class="flow-detail-list">
-            <li>Revisar qué quedó pendiente de la semana anterior</li>
-            <li>Confirmar qué piezas se publican esta semana y en qué orden</li>
+            <li>Revisar qué quedó pendiente de la semana anterior y actualizar estados</li>
+            <li>Confirmar qué piezas se publican esta semana, en qué orden y en qué cuenta (EN o ES)</li>
             <li>Briefear a Facundo con lo que tiene que editar y para cuándo</li>
-            <li>Si hay ideas sin cargar, cargarlas con contexto antes del mediodía</li>
+            <li>Cargar ideas nuevas con contexto completo antes del mediodía</li>
+            <li class="warn">Si hay tarea sin información suficiente, asignarle el estado "Need more info" antes de avanzar</li>
           </ul>
         </div>
       </div>
@@ -282,13 +308,13 @@ footer strong{color:var(--text2)}
       <div class="flow-left"><div class="flow-num">2</div><div class="flow-connector"></div></div>
       <div class="flow-content">
         <div class="flow-tag">Martes — Jueves</div>
-        <div class="flow-title">Seguimiento a Facundo y al equipo</div>
-        <div class="flow-desc">Estar encima del avance sin microgestionar. Cada pieza en edición tiene que tener un estado actualizado en el tablero y una fecha de entrega clara.</div>
+        <div class="flow-title">Seguimiento al equipo</div>
+        <div class="flow-desc">Estar encima del avance sin microgestionar. Cada pieza en producción tiene un estado actualizado en el tablero y fecha de entrega clara.</div>
         <div class="flow-detail">
           <ul class="flow-detail-list">
-            <li>Checkear que Facundo avanzó en lo que se le asignó</li>
+            <li>Checkear que Facundo avanzó en lo asignado</li>
             <li>Revisar entregas y dar feedback en el mismo día que llegan</li>
-            <li>Actualizar comentarios en el ClickUp con el estado real de cada tarea</li>
+            <li>Actualizar comentarios en el ClickUp con el estado real — no el de ayer</li>
             <li>Escalar a Alejo solo si hay un bloqueo que no se puede resolver solo</li>
           </ul>
         </div>
@@ -299,14 +325,16 @@ footer strong{color:var(--text2)}
       <div class="flow-left"><div class="flow-num">3</div><div class="flow-connector"></div></div>
       <div class="flow-content">
         <div class="flow-tag">Durante la semana</div>
-        <div class="flow-title">Ciclo de revisión y aprobación</div>
-        <div class="flow-desc">Antes de que cualquier pieza llegue a Fidel, Paulo ya la revisó. Fidel solo aprueba — no corrige ni reformula desde cero.</div>
+        <div class="flow-title">Ciclo de revisión — Paulo → Alejo → Fidel</div>
+        <div class="flow-desc">Antes de que cualquier pieza llegue a Alejo, Paulo ya la revisó. Antes de que llegue a Fidel, Alejo ya la aprobó. Fidel solo dice sí o da un comentario puntual.</div>
         <div class="flow-detail">
           <ul class="flow-detail-list">
-            <li>Recibir entrega de Facundo → revisar contra el brief</li>
-            <li>Si necesita corrección: devolver a Facundo con comentario claro</li>
-            <li>Si está lista: mover al estado "Para aprobación" en ClickUp</li>
-            <li>Fidel aprueba o da una sola ronda de feedback</li>
+            <li>Facundo entrega → Paulo revisa contra el brief</li>
+            <li>Si necesita corrección: devolver a Facundo con comentario claro en ClickUp</li>
+            <li>Si está lista: mover al estado "Para revisión Alejo"</li>
+            <li>Alejo revisa → si aprueba, mueve a "Para aprobación Fidel"</li>
+            <li>Fidel aprueba → se agenda para publicar</li>
+            <li class="warn">Nada llega a Alejo que Paulo no aprobaría por su cuenta. Nada llega a Fidel que Alejo no haya visto.</li>
           </ul>
         </div>
       </div>
@@ -321,7 +349,7 @@ footer strong{color:var(--text2)}
         <div class="flow-detail">
           <ul class="flow-detail-list">
             <li>Revisar qué se publicó y actualizar métricas en el tablero</li>
-            <li>Cerrar tareas completadas</li>
+            <li>Cerrar tareas completadas — no dejar "en progreso" si ya terminaron</li>
             <li>Cargar las ideas y tareas de la semana siguiente con contexto</li>
             <li>Dejar el tablero listo para la reunión de marketing</li>
           </ul>
@@ -332,53 +360,67 @@ footer strong{color:var(--text2)}
   </div>
 </section>
 
-<!-- CÓMO DIRIGIR A FACUNDO -->
-<section class="section" id="facundo">
-  <div class="slabel">Dirigir a Facundo</div>
-  <h2 class="stitle">Cómo briefear al editor</h2>
-  <p class="ssub">Un brief claro es la diferencia entre una entrega en tiempo y una revisión que atrasa todo. Cuanto más específico el brief, menos correcciones después.</p>
+<!-- BRIEFING -->
+<section class="section" id="briefing">
+  <div class="slabel">Dirigir al equipo</div>
+  <h2 class="stitle">Cómo briefear a Facundo</h2>
+  <p class="ssub">Un brief claro es la diferencia entre una entrega en tiempo y una revisión que atrasa todo. Cuanto más específico, menos correcciones después.</p>
   <div class="brief-grid">
 
+    <div class="brief-card highlight" style="transition-delay:.02s">
+      <div class="brief-icon">🪝</div>
+      <div class="brief-title">Gancho probado — siempre</div>
+      <div class="brief-desc">Nunca se asigna un video sin un gancho que ya demostró funcionar. El gancho va en el brief, no lo elige Facundo. Si no hay un gancho probado disponible, se lo pedís a Alejo antes de avanzar.</div>
+      <div class="brief-example"><span>Regla:</span> "El hook para este reel es [gancho X — probado]. Va en los primeros 3 segundos y no se cambia sin aprobación."</div>
+    </div>
+
     <div class="brief-card" style="transition-delay:.05s">
+      <div class="brief-icon">🎬</div>
+      <div class="brief-title">Título en pantalla — obligatorio</div>
+      <div class="brief-desc">Todo video tiene que tener un título en pantalla de 2 líneas (máximo 3) que dure aproximadamente 3 segundos y aparezca desde el segundo 0:00. Sin excepción.</div>
+      <div class="brief-example"><span>Regla:</span> "Título desde 0:00 hasta ~0:03. Máximo 3 renglones. Si el texto no se lee en 3 segundos, es demasiado largo."</div>
+    </div>
+
+    <div class="brief-card" style="transition-delay:.08s">
       <div class="brief-icon">🎯</div>
-      <div class="brief-title">Qué tiene que transmitir la pieza</div>
-      <div class="brief-desc">Antes de darle el material a Facundo, definí cuál es el mensaje principal. Una pieza tiene una sola idea central.</div>
+      <div class="brief-title">Qué tiene que transmitir</div>
+      <div class="brief-desc">Una sola idea central por pieza. Antes de dar el material a Facundo, definí cuál es el mensaje principal.</div>
       <div class="brief-example"><span>Ejemplo:</span> "Este reel tiene que transmitir que los contratistas pueden conseguir clientes por internet sin depender de referidos."</div>
     </div>
 
-    <div class="brief-card" style="transition-delay:.1s">
+    <div class="brief-card" style="transition-delay:.11s">
       <div class="brief-icon">👤</div>
       <div class="brief-title">A quién le habla</div>
-      <div class="brief-desc">Decirle a quién va dirigida la pieza cambia el tono, el ritmo de edición y qué se resalta. No lo des por supuesto.</div>
-      <div class="brief-example"><span>Ejemplo:</span> "Va para contratistas en USA, hispanohablantes, que ya tienen trabajos pero no saben cómo conseguir más."</div>
+      <div class="brief-desc">Decirle a quién va dirigida cambia el tono, el ritmo y qué se resalta. Especificá si es para la cuenta EN o ES.</div>
+      <div class="brief-example"><span>Ejemplo:</span> "Cuenta ES. Va para contratistas en USA, hispanohablantes, que ya tienen trabajos pero no saben cómo conseguir más."</div>
     </div>
 
-    <div class="brief-card" style="transition-delay:.15s">
+    <div class="brief-card" style="transition-delay:.14s">
       <div class="brief-icon">⏱️</div>
       <div class="brief-title">Formato y duración</div>
-      <div class="brief-desc">Siempre especificá: reel / carrusel / story. Si es video, la duración máxima. Si es carrusel, cuántas slides.</div>
-      <div class="brief-example"><span>Ejemplo:</span> "Reel de 30–45 segundos. Hook en los primeros 3 segundos. Sin música lenta."</div>
+      <div class="brief-desc">Siempre especificá: reel / gráfica / story. Si es video, la duración máxima. Si es gráfica, cuántas slides.</div>
+      <div class="brief-example"><span>Ejemplo:</span> "Reel de 30–45 segundos. Sin música que tape la voz. Sin transiciones llamativas."</div>
+    </div>
+
+    <div class="brief-card" style="transition-delay:.17s">
+      <div class="brief-icon">📅</div>
+      <div class="brief-title">Fecha de entrega exacta</div>
+      <div class="brief-desc">No "lo antes posible". Una fecha y hora. Si no hay fecha, no hay urgencia y la tarea se arrastra.</div>
+      <div class="brief-example"><span>Ejemplo:</span> "Entrega: miércoles 18hs. Si hay algo que bloquea, avisame el martes antes del mediodía."</div>
     </div>
 
     <div class="brief-card" style="transition-delay:.2s">
-      <div class="brief-icon">📅</div>
-      <div class="brief-title">Fecha de entrega clara</div>
-      <div class="brief-desc">No "lo antes posible". Una fecha y hora exacta. Si no hay fecha, no hay urgencia y la tarea se arrastra.</div>
-      <div class="brief-example"><span>Ejemplo:</span> "Entrega: miércoles a las 18hs. Si hay algo que bloquea, avisame el martes."</div>
-    </div>
-
-    <div class="brief-card" style="transition-delay:.25s">
       <div class="brief-icon">🔄</div>
-      <div class="brief-title">Cuántas rondas de revisión</div>
-      <div class="brief-desc">Definilo antes. Una ronda de feedback por defecto. Si necesita más, es que el brief no estuvo claro.</div>
-      <div class="brief-example"><span>Ejemplo:</span> "Tenés una ronda de corrección. Si hay algo que no entendés del brief, preguntá antes de arrancar."</div>
+      <div class="brief-title">Una ronda de revisión</div>
+      <div class="brief-desc">Una sola ronda de corrección por defecto. Si necesita más, el brief no estuvo claro — no es problema de Facundo.</div>
+      <div class="brief-example"><span>Regla:</span> "Tenés una ronda. Si no entendés algo del brief, preguntá antes de arrancar — no cuando ya terminaste."</div>
     </div>
 
-    <div class="brief-card" style="transition-delay:.3s">
+    <div class="brief-card" style="transition-delay:.23s">
       <div class="brief-icon">🚫</div>
       <div class="brief-title">Qué no hacer</div>
-      <div class="brief-desc">Si hay algo específico que Facundo no debe incluir — un estilo, una transición, un texto — decíselo en el brief. No asumas que lo sabe.</div>
-      <div class="brief-example"><span>Ejemplo:</span> "Sin transiciones flashy. Sin texto en pantalla que tape la cara de Fidel. Sin música que tape la voz."</div>
+      <div class="brief-desc">Si hay algo específico que Facundo no debe incluir, decíselo en el brief. No lo des por supuesto.</div>
+      <div class="brief-example"><span>Ejemplo:</span> "Sin texto en pantalla que tape la cara de Fidel. Sin transiciones flashy. Sin cortes bruscos."</div>
     </div>
 
   </div>
@@ -388,39 +430,55 @@ footer strong{color:var(--text2)}
 <section class="section" id="estandares">
   <div class="slabel">Calidad</div>
   <h2 class="stitle">Estándares de entrega</h2>
-  <p class="ssub">Una pieza lista para publicar cumple todo esto. Si falta algo, vuelve a Facundo antes de llegar a Fidel.</p>
+  <p class="ssub">Una pieza lista para publicar cumple todo esto. Si falta algo, vuelve a Facundo antes de llegar a Alejo.</p>
+
+  <div style="margin-bottom:40px">
+    <div class="cadence-agenda-label" style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:14px">Estados del ClickUp</div>
+    <div class="status-grid">
+      <div class="status-tag"><div class="status-dot" style="background:#6b7280"></div><div class="status-name">Sin estado</div><div class="status-desc">Recién creada — asignar estado de inmediato</div></div>
+      <div class="status-tag"><div class="status-dot" style="background:#f59e0b"></div><div class="status-name">Need more info</div><div class="status-desc">Falta información para avanzar</div></div>
+      <div class="status-tag"><div class="status-dot" style="background:#60a5fa"></div><div class="status-name">En progreso</div><div class="status-desc">Facundo o el equipo trabajando en ella</div></div>
+      <div class="status-tag"><div class="status-dot" style="background:#a78bfa"></div><div class="status-name">Para revisión Alejo</div><div class="status-desc">Paulo aprobó — pasa a Alejo</div></div>
+      <div class="status-tag"><div class="status-dot" style="background:#f97316"></div><div class="status-name">Para aprobación Fidel</div><div class="status-desc">Alejo aprobó — pasa a Fidel</div></div>
+      <div class="status-tag"><div class="status-dot" style="background:#10b981"></div><div class="status-name">Aprobado</div><div class="status-desc">Listo para agendar y publicar</div></div>
+    </div>
+  </div>
+
   <div class="standards-grid">
 
     <div class="standard-card" style="transition-delay:.05s">
       <div class="std-label">Tablero</div>
-      <div class="std-title">ClickUp al día</div>
+      <div class="std-title">ClickUp siempre al día</div>
       <ul class="std-list">
-        <li>Cada tarea tiene responsable, fecha y estado actualizado</li>
-        <li>Los comentarios reflejan el estado real — no el del día anterior</li>
-        <li>Ninguna tarea en "sin estado" por más de 24hs</li>
+        <li>Cada tarea tiene responsable, fecha, prioridad y estado correcto</li>
+        <li>Los comentarios reflejan el estado real — no el de ayer</li>
+        <li>Ninguna tarea en blanco por más de 24hs</li>
+        <li>Si falta info → estado "Need more info" inmediatamente</li>
         <li>Las ideas nuevas se cargan el mismo día que surgen</li>
       </ul>
     </div>
 
     <div class="standard-card" style="transition-delay:.1s">
-      <div class="std-label">Entrega de Facundo</div>
-      <div class="std-title">Contenido listo para revisión</div>
+      <div class="std-label">Video</div>
+      <div class="std-title">Checklist antes de entregar</div>
       <ul class="std-list">
-        <li>El video / diseño respeta el brief punto por punto</li>
-        <li>El formato y duración son los especificados</li>
-        <li>El hook aparece en los primeros 3 segundos</li>
-        <li>Entregado en el link o carpeta acordada — no por WhatsApp</li>
+        <li>Título en pantalla desde 0:00 — 2 líneas (máx. 3), ~3 segundos</li>
+        <li>Gancho del brief presente en los primeros 3 segundos</li>
+        <li>Formato y duración respetan lo especificado</li>
+        <li>El texto no tapa la cara de Fidel en ningún momento</li>
+        <li>Entregado en la carpeta acordada — no por WhatsApp</li>
       </ul>
     </div>
 
     <div class="standard-card" style="transition-delay:.15s">
-      <div class="std-label">Aprobación</div>
-      <div class="std-title">Lo que llega a Fidel</div>
+      <div class="std-label">Flujo de aprobación</div>
+      <div class="std-title">Antes de llegar a Fidel</div>
       <ul class="std-list">
-        <li>Paulo revisó y aprobó antes de mandar a Fidel</li>
-        <li>Se manda con contexto: "Este reel es para X audiencia, sale el jueves"</li>
-        <li>Fidel solo necesita decir sí o dar un comentario puntual</li>
-        <li>No llega nada a Fidel que Paulo no aprobaría por su cuenta</li>
+        <li>Paulo revisó y aprobó — recién ahí se mueve a Alejo</li>
+        <li>Alejo revisó y aprobó — recién ahí se mueve a Fidel</li>
+        <li>Se manda con contexto: qué es, para qué cuenta, cuándo sale</li>
+        <li>Fidel solo dice sí o da un comentario puntual</li>
+        <li class="warn">Nunca saltar pasos — si hay urgencia, avisarle a Alejo con anticipación</li>
       </ul>
     </div>
 
@@ -428,64 +486,103 @@ footer strong{color:var(--text2)}
       <div class="std-label">Comunicación</div>
       <div class="std-title">Cómo reportar</div>
       <ul class="std-list">
-        <li>Los bloqueos se reportan en el día — no al final de la semana</li>
+        <li>Los bloqueos se reportan el mismo día — no al final de la semana</li>
         <li>Si algo va a demorarse, aviso previo con nueva fecha</li>
-        <li>El reporte semanal es en la reunión de marketing — no por separado</li>
-        <li>Facundo habla con Paulo, no directamente con Fidel o Alejo</li>
+        <li>Facundo habla con Paulo, no con Fidel ni Alejo directamente</li>
+        <li>El reporte semanal es en la reunión de marketing</li>
       </ul>
     </div>
 
   </div>
 </section>
 
+<!-- POSTING OBJETIVOS Y RANKING -->
+<section class="section" id="posting">
+  <div class="slabel">Objetivos de posting</div>
+  <h2 class="stitle">Niveles de operación</h2>
+  <p class="ssub">El objetivo es escalar gradualmente la cantidad de contenido publicado. Hay un mínimo no negociable y un máximo al que aspiramos. Cada nivel es un escalón.</p>
+
+  <div class="accounts-note">
+    📲&nbsp;&nbsp;<strong>Dos cuentas activas:</strong>&nbsp;inglés (wholesalers · EN) y español (contratistas · ES). Los objetivos de posting aplican para cada cuenta de forma independiente.
+  </div>
+
+  <div class="rank-grid">
+
+    <div class="rank-card rank-min" style="transition-delay:.05s">
+      <div class="rank-badge n1">Nivel 1 — Base <span class="rank-min-tag">Mínimo</span></div>
+      <div class="rank-level">Operación mínima</div>
+      <ul class="rank-items">
+        <li>Reels por día <span>1</span></li>
+        <li>Gráficas por día <span>—</span></li>
+        <li>Stories por día <span>3</span></li>
+      </ul>
+    </div>
+
+    <div class="rank-card" style="transition-delay:.1s">
+      <div class="rank-badge n2">Nivel 2 — Activo</div>
+      <div class="rank-level">Ritmo constante</div>
+      <ul class="rank-items">
+        <li>Reels por día <span>1</span></li>
+        <li>Gráficas por día <span>1</span></li>
+        <li>Stories por día <span>5</span></li>
+      </ul>
+    </div>
+
+    <div class="rank-card" style="transition-delay:.15s">
+      <div class="rank-badge n3">Nivel 3 — Escala</div>
+      <div class="rank-level">Alta producción</div>
+      <ul class="rank-items">
+        <li>Reels por día <span>2</span></li>
+        <li>Gráficas por día <span>2</span></li>
+        <li>Stories por día <span>7</span></li>
+      </ul>
+    </div>
+
+    <div class="rank-card rank-max" style="transition-delay:.2s">
+      <div class="rank-badge n4">Nivel 4 — Máximo <span class="rank-max-tag">Techo</span></div>
+      <div class="rank-level">Operación plena</div>
+      <ul class="rank-items">
+        <li>Reels por día <span>3</span></li>
+        <li>Gráficas por día <span>3</span></li>
+        <li>Stories por día <span>9</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)">Cómo usar este ranking</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.75">El equipo sabe en qué nivel está operando cada semana. Si no se llega al Nivel 1 en alguna cuenta, es una alerta inmediata. El objetivo no es llegar al Nivel 4 de una vez — es subir un nivel a la vez, con consistencia, sin romper la calidad.</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.75">Paulo reporta en la reunión semanal en qué nivel terminó cada cuenta la semana anterior y cuál es el objetivo para la siguiente.</div>
+  </div>
+</section>
+
 <!-- CADENCIA -->
 <section class="section" id="cadencia">
   <div class="slabel">Ritmo de trabajo</div>
-  <h2 class="stitle">Reuniones en las que participás</h2>
-  <p class="ssub">Instancias fijas con agenda cerrada. Llegás con el tablero actualizado — no hay nada que improvisar.</p>
-  <div class="cadence-grid">
+  <h2 class="stitle">Reunión de Marketing</h2>
+  <p class="ssub">Una instancia fija por semana con agenda cerrada. Llegás con el tablero actualizado — no hay nada que improvisar.</p>
 
-    <div class="cadence-card" style="transition-delay:.05s">
-      <div class="cadence-header">
-        <div class="cadence-badge weekly">Semanal</div>
-        <div class="cadence-title">Reunión de Marketing</div>
-        <div class="cadence-who">Fidel · Paulo · Alejo</div>
-      </div>
-      <div class="cadence-body">
-        <div class="cadence-objective">Revisar el ClickUp de principio a fin. Sin desvíos.</div>
-        <div>
-          <div class="cadence-agenda-label">Lo que se revisa</div>
-          <ul class="cadence-agenda">
-            <li>Todos los pendientes del tablero — ninguno sin estado</li>
-            <li>Ideas nuevas: cargarlas, enriquecerlas, asignarlas</li>
-            <li>Actualizar comentarios en cada tarea activa</li>
-            <li>Asignar fechas de publicación y prioridades de la semana</li>
-            <li>Métricas de la semana anterior</li>
-          </ul>
-        </div>
-        <div class="cadence-rule">🚫&nbsp;&nbsp;Sin small talk. La reunión arranca en el tablero y termina cuando el tablero está limpio.</div>
-      </div>
+  <div class="cadence-card" style="max-width:680px">
+    <div class="cadence-header">
+      <div class="cadence-badge">Semanal</div>
+      <div class="cadence-title">Reunión de Marketing</div>
+      <div class="cadence-who">Fidel · Paulo · Alejo · Facundo</div>
     </div>
-
-    <div class="cadence-card" style="transition-delay:.1s">
-      <div class="cadence-header">
-        <div class="cadence-badge daily">Diaria</div>
-        <div class="cadence-title">Revisión de CRM</div>
-        <div class="cadence-who">Fidel · Alejo</div>
+    <div class="cadence-body">
+      <div class="cadence-objective">Revisar el ClickUp de principio a fin. Sin desvíos. La reunión arranca en el tablero y termina cuando el tablero está limpio.</div>
+      <div>
+        <div class="cadence-agenda-label">Lo que se revisa</div>
+        <ul class="cadence-agenda">
+          <li>Todos los pendientes del tablero — ninguno sin estado</li>
+          <li>Ideas nuevas: cargarlas, enriquecerlas, asignarlas</li>
+          <li>Actualizar comentarios en cada tarea activa</li>
+          <li>Asignar fechas, prioridades y responsables de la semana</li>
+          <li>Métricas de la semana anterior y nivel de posting alcanzado por cuenta</li>
+        </ul>
       </div>
-      <div class="cadence-body">
-        <div class="cadence-objective">Paulo no participa de esta instancia. Se menciona para que entiendas el sistema completo.</div>
-        <div>
-          <div class="cadence-agenda-label">Qué pasa acá</div>
-          <ul class="cadence-agenda">
-            <li>Se revisan los leads del día en el CRM</li>
-            <li>Se actualizan estados y próximos pasos</li>
-            <li>Fidel no responde DMs de leads — el sistema lo gestiona</li>
-          </ul>
-        </div>
-      </div>
+      <div class="cadence-rule">🚫&nbsp;&nbsp;Sin small talk. Sin temas que no estén en el tablero. Si hay algo para discutir que no es del ClickUp, se agenda para otro momento.</div>
     </div>
-
   </div>
 </section>
 
@@ -496,10 +593,9 @@ footer strong{color:var(--text2)}
 
 <script>
 const io = new IntersectionObserver(entries => {
-  entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('vis'), i*80) });
-},{threshold:.08});
-document.querySelectorAll('.team-card,.flow-step,.brief-card,.standard-card,.cadence-card').forEach(el=>io.observe(el));
-
+  entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('vis'), i*70) });
+},{threshold:.06});
+document.querySelectorAll('.team-card,.flow-step,.brief-card,.standard-card,.rank-card,.cadence-card').forEach(el=>io.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     e.preventDefault();
