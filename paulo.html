@@ -25,16 +25,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .orb2{width:500px;height:500px;background:rgba(167,139,250,0.045);bottom:-100px;left:-100px;animation-delay:-11s}
 @keyframes orb{from{transform:translate(0,0)}to{transform:translate(50px,40px)}}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background:rgba(7,7,13,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px}
-.nav-logo{font-size:13px;font-weight:800;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;white-space:nowrap}
-.nav-links{display:flex;gap:24px}
-.nav-links a{font-size:12px;color:var(--text2);text-decoration:none;transition:color .2s;white-space:nowrap}
-.nav-links a:hover{color:var(--text)}
-.nav-pill{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text2);background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:5px 12px;white-space:nowrap}
-.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}50%{box-shadow:0 0 0 5px rgba(16,185,129,0)}}
 
-.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px}
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 40px 80px}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);padding:6px 16px;border-radius:100px;background:var(--blue-dim);border:1px solid var(--blue-border);margin-bottom:28px;animation:fadeup .6s ease both}
 .hero h1{font-size:clamp(40px,8vw,90px);font-weight:900;line-height:.95;letter-spacing:-.03em;margin-bottom:20px;animation:fadeup .6s .1s ease both}
 .hero h1 .dim{color:var(--text3)}
@@ -129,22 +121,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 48px;background
 /* RANKING */
 .accounts-note{display:flex;align-items:center;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:36px;font-size:13px;color:var(--text2)}
 .accounts-note strong{color:var(--text)}
-.rank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:32px}
-.rank-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:24px;opacity:0;transform:translateY(18px);transition:all .5s ease;position:relative}
+.rank-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px}
+.rank-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:22px;opacity:0;transform:translateY(18px);transition:all .5s ease;position:relative}
 .rank-card.vis{opacity:1;transform:translateY(0)}
-.rank-card.rank-min{border-color:var(--green-border)}
-.rank-card.rank-max{border-color:var(--gold-border);background:linear-gradient(135deg,rgba(245,158,11,.07),rgba(167,139,250,.04))}
-.rank-badge{display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:14px}
-.rank-badge.n1{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
-.rank-badge.n2{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border)}
-.rank-badge.n3{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple-border)}
-.rank-badge.n4{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
-.rank-level{font-size:13px;font-weight:800;margin-bottom:16px}
+.rank-card.rank-bronce{border-color:rgba(180,120,60,.35)}
+.rank-card.rank-plata{border-color:rgba(180,180,195,.3)}
+.rank-card.rank-oro{border-color:var(--gold-border)}
+.rank-card.rank-platino{border-color:rgba(147,210,220,.35)}
+.rank-card.rank-diamante{border-color:rgba(96,165,250,.4);background:var(--blue-dim)}
+.rank-card.rank-leyenda{border-color:var(--purple-border);background:linear-gradient(135deg,rgba(167,139,250,.09),rgba(245,158,11,.05))}
+.rank-icon{font-size:28px;margin-bottom:10px}
+.rank-name{font-size:15px;font-weight:800;margin-bottom:14px}
 .rank-items{list-style:none;display:flex;flex-direction:column;gap:8px}
-.rank-items li{font-size:13px;color:var(--text2);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.rank-items li{font-size:12px;color:var(--text2);display:flex;justify-content:space-between;align-items:center;gap:8px}
 .rank-items li span{font-weight:700;color:var(--text);text-align:right}
-.rank-min-tag{display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;background:var(--green-dim);color:var(--green);border:1px solid var(--green-border);margin-left:6px}
-.rank-max-tag{display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);margin-left:6px}
+.rank-pill{display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;margin-top:12px}
+.rank-pill.min{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
+.rank-pill.max{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple-border)}
 
 /* CADENCE */
 .cadence-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;opacity:0;transform:translateY(18px);transition:all .5s ease}
@@ -167,7 +160,7 @@ footer strong{color:var(--text2)}
 
 @media(max-width:768px){
   nav{padding:12px 20px}.nav-links{display:none}
-  .section{padding:60px 20px}.hero{padding:100px 20px 70px}
+  .section{padding:60px 20px}.hero{padding:60px 20px 70px}.rank-grid{grid-template-columns:repeat(2,1fr)}
   .flow-step{gap:16px}.rank-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:480px){.rank-grid{grid-template-columns:1fr}}
@@ -180,18 +173,6 @@ footer strong{color:var(--text2)}
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 
-<nav>
-  <div class="nav-logo">Paulo — Operación Creativa</div>
-  <div class="nav-links">
-    <a href="#equipo">El equipo</a>
-    <a href="#flujo">Tu flujo</a>
-    <a href="#briefing">Briefing</a>
-    <a href="#estandares">Estándares</a>
-    <a href="#posting">Posting</a>
-    <a href="#cadencia">Cadencia</a>
-  </div>
-  <div class="nav-pill"><div class="pulse"></div>Activo</div>
-</nav>
 
 <div class="hero">
   <div class="eyebrow">📋 Rol y responsabilidades</div>
@@ -508,44 +489,66 @@ footer strong{color:var(--text2)}
 
   <div class="rank-grid">
 
-    <div class="rank-card rank-min" style="transition-delay:.05s">
-      <div class="rank-badge n1">Nivel 1 — Base <span class="rank-min-tag">Mínimo</span></div>
-      <div class="rank-level">Operación mínima</div>
+    <div class="rank-card rank-bronce" style="transition-delay:.04s">
+      <div class="rank-icon">🥉</div>
+      <div class="rank-name">Bronce</div>
       <ul class="rank-items">
-        <li>Reels por día <span>1</span></li>
-        <li>Gráficas por día <span>—</span></li>
-        <li>Stories por día <span>3</span></li>
+        <li>Reels / día <span>1</span></li>
+        <li>Gráficas / día <span>—</span></li>
+        <li>Stories / día <span>3</span></li>
+      </ul>
+      <div class="rank-pill min">Mínimo</div>
+    </div>
+
+    <div class="rank-card rank-plata" style="transition-delay:.08s">
+      <div class="rank-icon">🥈</div>
+      <div class="rank-name">Plata</div>
+      <ul class="rank-items">
+        <li>Reels / día <span>1</span></li>
+        <li>Gráficas / día <span>1</span></li>
+        <li>Stories / día <span>4</span></li>
       </ul>
     </div>
 
-    <div class="rank-card" style="transition-delay:.1s">
-      <div class="rank-badge n2">Nivel 2 — Activo</div>
-      <div class="rank-level">Ritmo constante</div>
+    <div class="rank-card rank-oro" style="transition-delay:.12s">
+      <div class="rank-icon">🥇</div>
+      <div class="rank-name">Oro</div>
       <ul class="rank-items">
-        <li>Reels por día <span>1</span></li>
-        <li>Gráficas por día <span>1</span></li>
-        <li>Stories por día <span>5</span></li>
+        <li>Reels / día <span>1</span></li>
+        <li>Gráficas / día <span>2</span></li>
+        <li>Stories / día <span>5</span></li>
       </ul>
     </div>
 
-    <div class="rank-card" style="transition-delay:.15s">
-      <div class="rank-badge n3">Nivel 3 — Escala</div>
-      <div class="rank-level">Alta producción</div>
+    <div class="rank-card rank-platino" style="transition-delay:.16s">
+      <div class="rank-icon">🔷</div>
+      <div class="rank-name">Platino</div>
       <ul class="rank-items">
-        <li>Reels por día <span>2</span></li>
-        <li>Gráficas por día <span>2</span></li>
-        <li>Stories por día <span>7</span></li>
+        <li>Reels / día <span>2</span></li>
+        <li>Gráficas / día <span>2</span></li>
+        <li>Stories / día <span>7</span></li>
       </ul>
     </div>
 
-    <div class="rank-card rank-max" style="transition-delay:.2s">
-      <div class="rank-badge n4">Nivel 4 — Máximo <span class="rank-max-tag">Techo</span></div>
-      <div class="rank-level">Operación plena</div>
+    <div class="rank-card rank-diamante" style="transition-delay:.2s">
+      <div class="rank-icon">💎</div>
+      <div class="rank-name">Diamante</div>
       <ul class="rank-items">
-        <li>Reels por día <span>3</span></li>
-        <li>Gráficas por día <span>3</span></li>
-        <li>Stories por día <span>9</span></li>
+        <li>Reels / día <span>2</span></li>
+        <li>Gráficas / día <span>3</span></li>
+        <li>Stories / día <span>8</span></li>
       </ul>
+    </div>
+
+    <div class="rank-card rank-leyenda" style="transition-delay:.24s">
+      <div class="rank-icon">👑</div>
+      <div class="rank-name">Leyenda</div>
+      <ul class="rank-items">
+        <li>Reels / día <span>3</span></li>
+        <li>Gráficas / día <span>3</span></li>
+        <li>Stories / día <span>9</span></li>
+      </ul>
+      <div class="rank-pill max">Máximo</div>
     </div>
 
   </div>
