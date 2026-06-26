@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fidel — Roadmap & Day to Day</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07070d;--surface:#0f0f1a;--surface2:#161625;--surface3:#1d1d30;
+  --gold:#f59e0b;--gold-light:#fcd34d;--gold-dim:rgba(245,158,11,0.10);--gold-border:rgba(245,158,11,0.25);
+  --green:#10b981;--green-dim:rgba(16,185,129,0.09);--green-border:rgba(16,185,129,0.2);
+  --blue:#60a5fa;--blue-dim:rgba(96,165,250,0.09);--blue-border:rgba(96,165,250,0.25);
+  --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.09);--purple-border:rgba(167,139,250,0.2);
+  --red:#f87171;--red-dim:rgba(248,113,113,0.09);--red-border:rgba(248,113,113,0.2);
+  --text:#f0f0f4;--text2:#8b8ba8;--text3:#44445a;
+  --border:rgba(255,255,255,0.055);
+  /* Rocket League tier colors */
+  --rl-plata:#8892A4;--rl-plata-dim:rgba(136,146,164,0.10);--rl-plata-border:rgba(136,146,164,0.3);
+  --rl-oro:#F5BC3D;--rl-oro-dim:rgba(245,188,61,0.10);--rl-oro-border:rgba(245,188,61,0.3);
+  --rl-platino:#49C4CF;--rl-platino-dim:rgba(73,196,207,0.09);--rl-platino-border:rgba(73,196,207,0.3);
+  --rl-diamante:#5B8FFF;--rl-diamante-dim:rgba(91,143,255,0.09);--rl-diamante-border:rgba(91,143,255,0.3);
+  --rl-champion:#E05A52;--rl-champion-dim:rgba(224,90,82,0.09);--rl-champion-border:rgba(224,90,82,0.3);
+  --rl-gc:#CF5DEC;--rl-gc-dim:rgba(207,93,236,0.09);--rl-gc-border:rgba(207,93,236,0.3);
+  --rl-ge:#21E5AD;--rl-ge-dim:rgba(33,229,173,0.09);--rl-ge-border:rgba(33,229,173,0.3);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+.orb{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;animation:orb 22s ease-in-out infinite alternate}
+.orb1{width:700px;height:700px;background:rgba(245,158,11,0.055);top:-150px;right:-150px}
+.orb2{width:500px;height:500px;background:rgba(167,139,250,0.04);bottom:-100px;left:-100px;animation-delay:-11s}
+@keyframes orb{from{transform:translate(0,0)}to{transform:translate(50px,40px)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 40px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding:6px 16px;border-radius:100px;background:var(--gold-dim);border:1px solid var(--gold-border);margin-bottom:28px;animation:fadeup .6s ease both}
+.hero h1{font-size:clamp(42px,9vw,96px);font-weight:900;line-height:.95;letter-spacing:-.03em;margin-bottom:20px;animation:fadeup .6s .1s ease both}
+.hero h1 .dim{color:var(--text3)}
+.hero h1 .gold{color:var(--gold)}
+.hero-sub{font-size:17px;color:var(--text2);max-width:560px;margin-bottom:48px;animation:fadeup .6s .2s ease both;line-height:1.7}
+.hero-pillars{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fadeup .6s .3s ease both}
+.pillar-chip{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text);background:var(--surface);border:1px solid var(--gold-border);border-radius:100px;padding:9px 20px}
+.pillar-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;color:var(--text3);letter-spacing:.1em;animation:fadeup .6s .6s ease both}
+.scroll-hint svg{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+/* SECTION */
+.section{position:relative;z-index:1;padding:80px 48px;max-width:1200px;margin:0 auto}
+.slabel{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.stitle{font-size:clamp(26px,3.5vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.ssub{font-size:15px;color:var(--text2);margin-bottom:56px;line-height:1.7}
+
+/* PILLAR CARDS */
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pillar-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;opacity:0;transform:translateY(18px);transition:all .5s ease}
+.pillar-card.vis{opacity:1;transform:translateY(0)}
+.pillar-card:hover{border-color:var(--gold-border);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.pillar-card.featured{border-color:var(--gold-border);background:linear-gradient(135deg,rgba(245,158,11,.07),rgba(167,139,250,.04))}
+.p-num{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.p-title{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:10px}
+.p-desc{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:18px}
+.p-items{list-style:none;display:flex;flex-direction:column;gap:8px}
+.p-items li{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--text2);line-height:1.5}
+.p-items li::before{content:'→';color:var(--gold);flex-shrink:0;font-weight:700}
+
+/* CLIENT IDEAL */
+.client-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.client-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;opacity:0;transform:translateY(18px);transition:all .5s ease}
+.client-card.vis{opacity:1;transform:translateY(0)}
+.client-card:hover{border-color:var(--gold-border)}
+.client-header{padding:24px 24px 18px;border-bottom:1px solid var(--border)}
+.client-tag{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:12px}
+.tag-en{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border)}
+.tag-es{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.client-name{font-size:19px;font-weight:800;margin-bottom:4px}
+.client-desc{font-size:12px;color:var(--text3)}
+.client-body{padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px}
+.avatar-section{background:var(--surface2);border-radius:14px;padding:16px 18px}
+.avatar-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.avatar-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.avatar-list li{font-size:12px;color:var(--text2);display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.avatar-list li::before{content:'·';color:var(--gold);font-weight:900;flex-shrink:0}
+.pain-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.pain-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.pain-list li{font-size:12px;color:var(--text2);display:flex;gap:8px;line-height:1.5}
+.pain-list li::before{content:'×';color:var(--red);flex-shrink:0;font-weight:700}
+
+/* DAY TO DAY */
+.day-wrap{display:flex;flex-direction:column;gap:0}
+.day-block{display:flex;gap:28px;align-items:flex-start;opacity:0;transform:translateX(-16px);transition:opacity .5s ease,transform .5s ease}
+.day-block.vis{opacity:1;transform:translateX(0)}
+.day-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:56px}
+.day-time{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.06em;text-align:center;line-height:1.3;margin-bottom:6px}
+.day-line{width:1px;flex:1;min-height:28px;background:linear-gradient(to bottom,var(--gold-border),transparent);margin-top:4px}
+.day-block:last-child .day-line{display:none}
+.day-content{padding-bottom:36px;flex:1}
+.day-tag{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);margin-bottom:10px}
+.day-title{font-size:17px;font-weight:700;margin-bottom:6px}
+.day-desc{font-size:13px;color:var(--text2);line-height:1.75;max-width:620px}
+.day-box{margin-top:12px;background:var(--surface2);border-radius:12px;padding:14px 16px}
+.day-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.day-list li{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--text2);line-height:1.5}
+.day-list li::before{content:'→';color:var(--gold);flex-shrink:0;font-weight:700}
+.day-list li.ritual::before{content:'✦';color:var(--purple);flex-shrink:0}
+.day-list li.fire::before{content:'⚡';flex-shrink:0}
+.roleplay-box{margin-top:12px;background:linear-gradient(135deg,rgba(224,90,82,.07),rgba(245,158,11,.05));border:1px solid var(--red-border);border-radius:12px;padding:16px 18px}
+.roleplay-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.roleplay-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.roleplay-list li{font-size:12px;color:var(--text2);display:flex;gap:8px;line-height:1.5}
+.roleplay-list li::before{content:'▸';color:var(--red);flex-shrink:0;font-weight:700}
+
+/* CVJ */
+.cvj-wrap{display:flex;flex-direction:column;gap:16px}
+.cvj-row{display:grid;grid-template-columns:200px 1fr 1fr;gap:16px;align-items:start;opacity:0;transform:translateY(12px);transition:all .5s ease}
+.cvj-row.vis{opacity:1;transform:translateY(0)}
+.cvj-level{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+.cvj-level-num{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:4px}
+.cvj-level-name{font-size:13px;font-weight:700;margin-bottom:4px}
+.cvj-level-desc{font-size:11px;color:var(--text3);line-height:1.5}
+.cvj-content{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+.cvj-account{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.cvj-ideas{list-style:none;display:flex;flex-direction:column;gap:5px}
+.cvj-ideas li{font-size:12px;color:var(--text2);display:flex;gap:7px;line-height:1.5}
+.cvj-ideas li::before{content:'·';font-weight:900;flex-shrink:0}
+.cvj-header-row{display:grid;grid-template-columns:200px 1fr 1fr;gap:16px;margin-bottom:8px}
+.cvj-col-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);padding:0 16px}
+
+/* CONTENT PHILOSOPHY */
+.phil-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.phil-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;opacity:0;transform:translateY(18px);transition:all .5s ease}
+.phil-card.vis{opacity:1;transform:translateY(0)}
+.phil-card:hover{border-color:var(--gold-border)}
+.phil-card.featured{border-color:var(--gold-border);background:var(--gold-dim)}
+.ph-icon{font-size:22px;margin-bottom:12px}
+.ph-title{font-size:14px;font-weight:700;margin-bottom:6px}
+.ph-desc{font-size:13px;color:var(--text2);line-height:1.65}
+.ph-rule{margin-top:12px;background:var(--surface2);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--text3);line-height:1.6;border-left:3px solid var(--gold)}
+
+/* RANKING */
+.rank-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.rank-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:20px;opacity:0;transform:translateY(18px);transition:all .5s ease}
+.rank-card.vis{opacity:1;transform:translateY(0)}
+.rank-name{font-size:15px;font-weight:900;letter-spacing:-.01em;margin-bottom:4px}
+.rank-tier{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:14px}
+.rank-stats{list-style:none;display:flex;flex-direction:column;gap:7px}
+.rank-stats li{font-size:12px;color:var(--text2);display:flex;justify-content:space-between;gap:8px}
+.rank-stats li span{font-weight:700;color:var(--text)}
+.rank-pill{display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:100px;margin-top:12px}
+/* Tier styles */
+.rank-plata{border-color:var(--rl-plata-border)}.rank-plata .rank-name{color:var(--rl-plata)}
+.rank-oro{border-color:var(--rl-oro-border)}.rank-oro .rank-name{color:var(--rl-oro)}
+.rank-platino{border-color:var(--rl-platino-border)}.rank-platino .rank-name{color:var(--rl-platino)}
+.rank-diamante{border-color:var(--rl-diamante-border);background:var(--rl-diamante-dim)}.rank-diamante .rank-name{color:var(--rl-diamante)}
+.rank-champion{border-color:var(--rl-champion-border);background:var(--rl-champion-dim)}.rank-champion .rank-name{color:var(--rl-champion)}
+.rank-gc{border-color:var(--rl-gc-border);background:var(--rl-gc-dim)}.rank-gc .rank-name{color:var(--rl-gc)}
+.rank-ge{border-color:var(--rl-ge-border);background:var(--rl-ge-dim)}.rank-ge .rank-name{color:var(--rl-ge)}
+.rank-legend{border-color:rgba(255,255,255,.15);background:linear-gradient(135deg,rgba(207,93,236,.08),rgba(91,143,255,.07),rgba(33,229,173,.07))}.rank-legend .rank-name{background:linear-gradient(135deg,var(--rl-gc),var(--rl-diamante),var(--rl-ge));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pill-min{background:var(--rl-plata-dim);color:var(--rl-plata);border:1px solid var(--rl-plata-border)}
+.pill-max{background:var(--rl-gc-dim);color:var(--rl-gc);border:1px solid var(--rl-gc-border)}
+
+footer{position:relative;z-index:1;text-align:center;padding:60px 40px;border-top:1px solid var(--border);font-size:12px;color:var(--text3)}
+footer strong{color:var(--text2)}
+
+@media(max-width:900px){
+  .pillar-grid{grid-template-columns:1fr}
+  .client-grid{grid-template-columns:1fr}
+  .rank-grid{grid-template-columns:repeat(2,1fr)}
+  .cvj-row,.cvj-header-row{grid-template-columns:1fr}
+  .cvj-level{display:none}
+}
+@media(max-width:768px){
+  .section{padding:60px 20px}
+  .hero{padding:60px 20px}
+  .rank-grid{grid-template-columns:1fr 1fr}
+  .day-block{gap:16px}
+}
+@media(max-width:480px){.rank-grid{grid-template-columns:1fr}}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:4px}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Estrategia 2026 — Fidel</div>
+  <h1>El líder que<br><span class="gold">más trabaja</span><br><span class="dim">en el cuarto.</span></h1>
+  <p class="hero-sub">Autenticidad, comunidad genuina y resultados reales. El plan no es crecer rápido — es crecer sólido. Sin atajos, sin publicidad. Solo contenido de verdad, clientes bien atendidos y ventas bien cerradas.</p>
+  <div class="hero-pillars">
+    <div class="pillar-chip"><div class="pillar-dot"></div>Fulfillment</div>
+    <div class="pillar-chip"><div class="pillar-dot"></div>Ventas</div>
+    <div class="pillar-chip"><div class="pillar-dot"></div>Liderazgo</div>
+  </div>
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2.5 8l4.5 4.5 4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </div>
+</div>
+
+<!-- 3 PILARES -->
+<section class="section" id="pilares">
+  <div class="slabel">Los fundamentos</div>
+  <h2 class="stitle">Los 3 pilares del negocio</h2>
+  <p class="ssub">Todo lo que Fidel hace en el día — contenido, ventas, liderazgo — tiene que fortalecer estos tres pilares. Si uno falla, el negocio tiembla.</p>
+  <div class="pillar-grid">
+
+    <div class="pillar-card featured" style="transition-delay:.05s">
+      <div class="p-num">Pilar 01</div>
+      <div class="p-title">Fulfillment</div>
+      <div class="p-desc">Los clientes que ya pagaron son la prioridad. Un cliente con resultado es el mejor activo de marketing que existe. Sin fulfillment sólido, las ventas son un balde agujereado.</div>
+      <ul class="p-items">
+        <li>Revisar el progreso de cada cliente activo al menos una vez por semana</li>
+        <li>Saber exactamente en qué punto está cada cliente y qué necesita</li>
+        <li>Cuando un cliente tiene un resultado, capturarlo — eso es contenido y prueba social</li>
+        <li>Si algo no está funcionando para un cliente, atacarlo antes de que lo escale</li>
+      </ul>
+    </div>
+
+    <div class="pillar-card" style="transition-delay:.1s">
+      <div class="p-num">Pilar 02</div>
+      <div class="p-title">Ventas</div>
+      <div class="p-desc">Fidel es el closer. Nadie más cierra con la misma autoridad. El pipeline tiene que tener leads calificados llegando — y Fidel tiene que estar en modo de cierre todos los días.</div>
+      <ul class="p-items">
+        <li>Practicar objeciones antes de cada jornada de ventas — roleplay diario</li>
+        <li>Conocer a fondo el dolor del prospecto antes de entrar a la llamada</li>
+        <li>El contenido es el precalentador — Fidel cierra a gente que ya lo conoce</li>
+        <li>Revisar el CRM todas las mañanas: quién está listo, quién necesita seguimiento</li>
+      </ul>
+    </div>
+
+    <div class="pillar-card" style="transition-delay:.15s">
+      <div class="p-num">Pilar 03</div>
+      <div class="p-title">Liderazgo</div>
+      <div class="p-desc">La audiencia no solo compra conocimiento — compra a la persona. Fidel tiene que mostrarse como el referente que ya es: seguro, táctico, auténtico. El liderazgo se construye con consistencia.</div>
+      <ul class="p-items">
+        <li>Compartir el proceso — no solo los resultados. Los viajes venden más que los trofeos</li>
+        <li>Tener opiniones propias y defenderlas. El que opina igual que todos no lidera a nadie</li>
+        <li>Estudiar a sus propios clientes para hablarles mejor que nadie en el mercado</li>
+        <li>Mostrar el detrás de escena: cómo piensa, cómo decide, cómo opera</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLIENTE IDEAL -->
+<section class="section" id="cliente">
+  <div class="slabel">A quién le habla</div>
+  <h2 class="stitle">El cliente ideal de cada negocio</h2>
+  <p class="ssub">Antes de crear contenido, Fidel tiene que conocer a esta persona mejor que ella misma. Leer lo que lee, entender qué le quita el sueño, hablar su idioma.</p>
+  <div class="client-grid">
+
+    <div class="client-card" style="transition-delay:.05s">
+      <div class="client-header">
+        <div class="client-tag tag-en">Cuenta EN · Inglés</div>
+        <div class="client-name">El Wholesaler que ya opera</div>
+        <div class="client-desc">Professionals who already do deals but want to scale</div>
+      </div>
+      <div class="client-body">
+        <div class="avatar-section">
+          <div class="avatar-label">Quién es</div>
+          <ul class="avatar-list">
+            <li>Hace deals pero de forma inconsistente — algunos meses bien, otros no hay nada</li>
+            <li>Ya sabe lo básico: tiene script, conoce los contratos, hizo algunas transacciones</li>
+            <li>El problema no es el conocimiento — es el sistema. No tiene pipeline predecible</li>
+            <li>Sigue canales grandes pero siente que el contenido no habla de su nivel</li>
+            <li>Quiere escalar a volumen pero no sabe qué palanca mover primero</li>
+          </ul>
+        </div>
+        <div>
+          <div class="pain-label">Sus miedos reales</div>
+          <ul class="pain-list">
+            <li>Terminar el mes sin cerrar y no saber por qué</li>
+            <li>Que la competencia lo supere mientras él sigue haciendo las mismas cosas</li>
+            <li>Invertir en formación y que no funcione — ya le pasó antes</li>
+          </ul>
+        </div>
+        <div style="background:var(--surface2);border-radius:12px;padding:14px 16px;font-size:12px;color:var(--text2);border-left:3px solid var(--blue);line-height:1.7">
+          <strong style="color:var(--blue)">Lo que busca en Fidel:</strong> alguien que ya hizo el volumen y puede mostrarle exactamente cómo. No teoría — casos reales, procesos probados, resultados verificables.
+        </div>
+      </div>
+    </div>
+
+    <div class="client-card" style="transition-delay:.1s">
+      <div class="client-header">
+        <div class="client-tag tag-es">Cuenta ES · Español</div>
+        <div class="client-name">El Contratista sin marketing</div>
+        <div class="client-desc">Dueños que dependen 100% de referidos para conseguir trabajo</div>
+      </div>
+      <div class="client-body">
+        <div class="avatar-section">
+          <div class="avatar-label">Quién es</div>
+          <ul class="avatar-list">
+            <li>Roofer, plumber, HVAC, painter — factura bien pero vive con incertidumbre</li>
+            <li>Todos sus clientes vienen por boca en boca. Si se seca, se seca todo</li>
+            <li>No tiene sistema de marketing — nunca tuvo que tenerlo, hasta ahora</li>
+            <li>Ve a otros contratistas haciendo ads en Facebook/Google pero no sabe por dónde empezar</li>
+            <li>Habla español, piensa en español, pero opera en USA</li>
+          </ul>
+        </div>
+        <div>
+          <div class="pain-label">Sus miedos reales</div>
+          <ul class="pain-list">
+            <li>Que los referidos se agoten y no tenga trabajo el mes que viene</li>
+            <li>Gastar en marketing y tirar el dinero — no entiende cómo funciona</li>
+            <li>Que un competidor que sí tiene marketing le quite sus clientes</li>
+          </ul>
+        </div>
+        <div style="background:var(--surface2);border-radius:12px;padding:14px 16px;font-size:12px;color:var(--text2);border-left:3px solid var(--gold);line-height:1.7">
+          <strong style="color:var(--gold)">Lo que busca en Fidel:</strong> alguien que lo entiende — que habla su idioma, conoce su industria y puede mostrarle cómo construir un pipeline de clientes que no dependa de que alguien lo recomiende.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DAY TO DAY -->
+<section class="section" id="dia">
+  <div class="slabel">El día a día</div>
+  <h2 class="stitle">Cómo arranca y corre el día</h2>
+  <p class="ssub">Estructura flexible. No es un horario rígido — es un flujo. El único inamovible es la mañana: si la mañana está bien, el día está bien.</p>
+  <div class="day-wrap">
+
+    <div class="day-block">
+      <div class="day-left"><div class="day-time">Mañana<br>temprano</div><div class="day-line"></div></div>
+      <div class="day-content">
+        <div class="day-tag">Ritual de arranque</div>
+        <div class="day-title">Pulso del negocio + intención del día</div>
+        <div class="day-desc">Antes de hablar con clientes, prospectos o el equipo — Fidel ya sabe exactamente cómo está el negocio. El CRM y el ClickUp son el termómetro. Sin esto, el día arranca a ciegas.</div>
+        <div class="day-box">
+          <ul class="day-list">
+            <li class="ritual">Abrir el CRM: ¿qué leads nuevos llegaron? ¿Quién necesita seguimiento hoy? ¿Hay llamadas agendadas?</li>
+            <li class="ritual">Abrir el ClickUp: ¿qué contenido sale hoy? ¿Hay algo pendiente de aprobación? ¿Hay algún bloqueo en el equipo?</li>
+            <li>Con eso en la cabeza, Fidel sabe en qué prioridad está el día: ventas, fulfillment o contenido</li>
+            <li>5 minutos de intención: ¿cuál es el movimiento más importante del día? Solo uno. El resto acompaña</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-left"><div class="day-time">Antes de<br>llamadas</div><div class="day-line"></div></div>
+      <div class="day-content">
+        <div class="day-tag">Roleplay de ventas</div>
+        <div class="day-title">Practicar objeciones antes de entrar</div>
+        <div class="day-desc">Nadie llega al partido sin calentar. El roleplay diario no es opcional — es lo que mantiene el músculo de ventas afilado. 10 a 15 minutos que multiplican la tasa de cierre.</div>
+        <div class="roleplay-box">
+          <div class="roleplay-label">Objeciones a practicar</div>
+          <ul class="roleplay-list">
+            <li>"Es muy caro para mí ahora mismo" — responder sin bajar el precio</li>
+            <li>"Necesito pensarlo con mi pareja / socio" — mantener la conversación viva</li>
+            <li>"Ya lo intenté antes y no funcionó" — reencuadrar la experiencia anterior</li>
+            <li>"No tengo tiempo ahora" — separar urgencia percibida de urgencia real</li>
+            <li>"¿Por qué contigo y no con X?" — posicionamiento claro y sin atacar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-left"><div class="day-time">Durante<br>el día</div><div class="day-line"></div></div>
+      <div class="day-content">
+        <div class="day-tag">Ventas · Fulfillment · Contenido</div>
+        <div class="day-title">Los tres frentes en movimiento</div>
+        <div class="day-desc">No todo pasa todos los días — pero los tres tienen que tener acción en la semana. Fidel define cada mañana cuál es el foco del día, y los otros dos no desaparecen — se mantienen en modo de monitoreo.</div>
+        <div class="day-box">
+          <ul class="day-list">
+            <li><strong>Ventas:</strong> Llamadas con prospectos calificados. Fidel solo cierra — el pipeline llega pre-calificado</li>
+            <li><strong>Fulfillment:</strong> Check con clientes activos. ¿Avanzan? ¿Hay alguno que necesita atención extra?</li>
+            <li class="fire"><strong>Contenido espontáneo:</strong> Si surgió una idea — se ejecuta ahora. Green screen, hablar encima, publicar. No esperarlo perfecto</li>
+            <li>Si no hay idea espontánea: grabar el contenido planificado del ClickUp (máx. 1-2 horas de grabación)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-left"><div class="day-time">Tarde /<br>Noche</div><div class="day-line"></div></div>
+      <div class="day-content">
+        <div class="day-tag">Estudio + Cierre del día</div>
+        <div class="day-title">Crecer como creador y como vendedor</div>
+        <div class="day-desc">El que para de estudiar, para de crecer. 30 minutos diarios de consumo intencional — leer lo que lee el cliente ideal, estudiar copy de los mejores, observar qué está funcionando en el nicho.</div>
+        <div class="day-box">
+          <ul class="day-list">
+            <li>Leer lo que lee el cliente ideal: foros, grupos, comentarios, preguntas frecuentes</li>
+            <li>Estudiar un hook, un headline o un email de un experto en copy y desarmarlo</li>
+            <li>Revisar los comentarios del contenido propio: ¿qué preguntas hace la audiencia? Esas son las ideas del mañana</li>
+            <li class="ritual">Anotar 1-2 ideas de contenido para el día siguiente — cuando surgen, se capturan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CUSTOMER VALUE JOURNEY -->
+<section class="section" id="cvj">
+  <div class="slabel">Estrategia de contenido</div>
+  <h2 class="stitle">Customer Value Journey</h2>
+  <p class="ssub">Hay personas en distintos niveles de consciencia. El contenido tiene que hablarle a cada nivel — no solo a los que ya están listos para comprar. Así se construye una comunidad que convierte.</p>
+  <div class="cvj-header-row">
+    <div></div>
+    <div class="cvj-col-label" style="color:var(--blue)">Cuenta EN — Wholesaling</div>
+    <div class="cvj-col-label" style="color:var(--gold)">Cuenta ES — Contratistas</div>
+  </div>
+  <div class="cvj-wrap">
+
+    <div class="cvj-row" style="transition-delay:.04s">
+      <div class="cvj-level">
+        <div class="cvj-level-num">Nivel 0</div>
+        <div class="cvj-level-name">Inconsciente</div>
+        <div class="cvj-level-desc">No sabe que tiene un problema. Aún no busca solución.</div>
+      </div>
+      <div class="cvj-content">
+        <div class="cvj-account" style="color:var(--blue)">EN</div>
+        <ul class="cvj-ideas">
+          <li>Reels de resultados sin contexto — números que paran el scroll</li>
+          <li>Clips de estilo de vida mostrando libertad financiera desde real estate</li>
+          <li>Estadísticas del mercado que sorprenden</li>
+        </ul>
+      </div>
+      <div class="cvj-content">
+        <div class="cvj-account" style="color:var(--gold)">ES</div>
+        <ul class="cvj-ideas">
+          <li>Videos mostrando contratistas consiguiendo clientes online</li>
+          <li>"¿Sabías que el 80% de los contratistas dependen de referidos?"</li>
+          <li>Antes/después de un cliente con y sin marketing</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cvj-row" style="transition-delay:.08s">
+      <div class="cvj-level">
+        <div class="cvj-level-num">Nivel 1</div>
+        <div class="cvj-level-name">Consciente del problema</div>
+        <div class="cvj-level-desc">Sabe que algo no funciona. Busca entender qué.</div>
+      </div>
+      <div class="cvj-content">
+        <div class="cvj-account" style="color:var(--blue)">EN</div>
+        <ul class="cvj-ideas">
+          <li>"Por qué tu pipeline de deals es inconsistente" — breakdown educativo</li>
+          <li>Errores comunes del wholesaler que ya opera</li>
+          <li>El real motivo por el que la mayoría no escala</li>
+        </ul>
+      </div>
+      <div class="cvj-content">
+        <div class="cvj-account" style="color:var(--gold)">ES</div>
+        <ul class="cvj-ideas">
+          <li>"El problema con depender de referidos" — historia personal o de cliente</li>
+          <li>Qué le pasa a un negocio de contratista cuando los referidos se secan</li>
+          <li>Por qué los contratistas más grandes en USA tienen marketing propio</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cvj-row" style="transition-delay:.12s">
+      <div class="cvj-level">
+        <div class="cvj-level-num">Nivel 2</div>
+        <div class="cvj-level-name">Consciente de la solución</div>
+        <div class="cvj-level-desc">Sabe que hay soluciones. Evalúa opciones.</div>
+      </div>
+      <div class="cvj-content">
+        <div class="cvj-account" style="color:var(--blue)">EN</div>
+        <ul class="cvj-ideas">
+          <li>Cómo los mejores wholesalers construyen pipeline predecible — proceso específico</li>
+          <li>Comparativa: outbound vs inbound en wholesaling</li>
+          <li>El sistema detrás de hacer X deals por mes</li>
+        </ul>
+      </div>
+      <div class="cvj-content">
+        <div class="cvj-account" style="color:var(--gold)">ES</div>
+        <ul class="cvj-ideas">
+          <li>Cómo un contratista puede generar leads con Meta Ads — paso a paso</li>
+          <li>Por qué los ads no funcionan si no tenés el sistema correcto detrás</li>
+          <li>El proceso exacto para conseguir el primer cliente vía digital</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cvj-row" style="transition-delay:.16s">
+      <div class="cvj-level">
+        <div class="cvj-level-num">Nivel 3</div>
+        <div class="cvj-level-name">Listo para actuar</div>
+        <div class="cvj-level-desc">Ya eligió a Fidel. Necesita el empujón final.</div>
+      </div>
+      <div class="cvj-content">
+        <div class="cvj-account" style="color:var(--blue)">EN</div>
+        <ul class="cvj-ideas">
+          <li>Testimonios y resultados de alumnos — específicos y verificables</li>
+          <li>Qué incluye trabajar con Fidel y qué se puede lograr en 90 días</li>
+          <li>Preguntas frecuentes respondidas en video</li>
+        </ul>
+      </div>
+      <div class="cvj-content">
+        <div class="cvj-account" style="color:var(--gold)">ES</div>
+        <ul class="cvj-ideas">
+          <li>Casos de contratistas reales con resultados reales de ads</li>
+          <li>"Así arrancamos con un cliente nuevo" — detrás de escena del proceso</li>
+          <li>CTA directo al DM o al flujo de ManyChat</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FILOSOFÍA DE CONTENIDO -->
+<section class="section" id="contenido">
+  <div class="slabel">Mentalidad de creador</div>
+  <h2 class="stitle">Cómo crear contenido que conecta</h2>
+  <p class="ssub">El contenido de Fidel funciona cuando es real. La audiencia detecta lo que es forzado. El objetivo no es parecer un creador — es ser uno.</p>
+  <div class="phil-grid">
+
+    <div class="phil-card featured" style="transition-delay:.04s">
+      <div class="ph-icon">⚡</div>
+      <div class="ph-title">Si surgió una idea — se ejecuta ahora</div>
+      <div class="ph-desc">No se espera al día de grabación. No se perfecciona antes de publicar. Si hay una idea, hay que capturarla mientras está caliente. Green screen, hablar encima, subir.</div>
+      <div class="ph-rule">La idea que se postergó para "hacerla bien" murió. El contenido espontáneo suele ser el que más conecta.</div>
+    </div>
+
+    <div class="phil-card" style="transition-delay:.08s">
+      <div class="ph-icon">😤</div>
+      <div class="ph-title">Soltarse y divertirse</div>
+      <div class="ph-desc">Fidel conecta más cuando no está pensando en que está grabando. El objetivo es que la audiencia sienta que están hablando con una persona real, no con un personaje.</div>
+      <div class="ph-rule">Si no lo disfrutás grabarlo, probablemente nadie lo disfrute viéndolo.</div>
+    </div>
+
+    <div class="phil-card" style="transition-delay:.12s">
+      <div class="ph-icon">📚</div>
+      <div class="ph-title">Estudiar copy como si dependiera el negocio de eso</div>
+      <div class="ph-desc">Los mejores creadores son los mejores copywriters. Estudiar a los grandes — desarmando sus hooks, sus headlines, su estructura — es lo que eleva el nivel del contenido.</div>
+      <div class="ph-rule">Un hook que para el scroll vale más que tres videos mediocres. Invertir tiempo en aprender esto es invertir en alcance.</div>
+    </div>
+
+    <div class="phil-card" style="transition-delay:.16s">
+      <div class="ph-icon">👁️</div>
+      <div class="ph-title">Vivir dentro de la cabeza del cliente ideal</div>
+      <div class="ph-desc">Leer los mismos foros, grupos, comentarios y preguntas que lee el cliente. Hablar su idioma no es una técnica — es consecuencia de entenderlo mejor que nadie.</div>
+      <div class="ph-rule">El mejor contenido no responde preguntas que nadie hace — responde exactamente lo que la audiencia ya se está preguntando.</div>
+    </div>
+
+    <div class="phil-card" style="transition-delay:.2s">
+      <div class="ph-icon">💬</div>
+      <div class="ph-title">La opinión en los comentarios es oro</div>
+      <div class="ph-desc">Subir un video y preguntar qué piensa la gente no es pedir validación — es investigación de mercado gratuita. Los comentarios dicen qué temas resuenan más.</div>
+      <div class="ph-rule">Antes de crear el próximo video, leer los comentarios del último. La próxima idea ya está ahí.</div>
+    </div>
+
+    <div class="phil-card" style="transition-delay:.24s">
+      <div class="ph-icon">🌱</div>
+      <div class="ph-title">Crecimiento natural, sin atajos</div>
+      <div class="ph-desc">Sin publicidad pagada para el canal. Sin comprar seguidores. Sin colaboraciones forzadas. La comunidad que crece orgánicamente es la que convierte. Alejo lo está haciendo — es la prueba de que funciona.</div>
+      <div class="ph-rule">Un seguidor que llegó por contenido genuino vale 10 veces más que uno que llegó por un ad.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RANKING -->
+<section class="section" id="posting">
+  <div class="slabel">Objetivos de posting</div>
+  <h2 class="stitle">Niveles de operación</h2>
+  <p class="ssub">El mínimo es Plata. No hay excusa para estar debajo. El objetivo es subir un nivel a la vez — con calidad y consistencia, no con volumen vacío. Aplica para cada cuenta por separado.</p>
+  <div class="rank-grid">
+
+    <div class="rank-card rank-plata" style="transition-delay:.04s">
+      <div class="rank-name">Plata</div>
+      <div class="rank-tier">Mínimo inamovible</div>
+      <ul class="rank-stats">
+        <li>Reels / día <span>1</span></li>
+        <li>Gráficas / día <span>—</span></li>
+        <li>Stories / día <span>3</span></li>
+      </ul>
+      <div class="rank-pill pill-min">Mínimo</div>
+    </div>
+
+    <div class="rank-card rank-oro" style="transition-delay:.08s">
+      <div class="rank-name">Oro</div>
+      <div class="rank-tier">Ritmo activo</div>
+      <ul class="rank-stats">
+        <li>Reels / día <span>1</span></li>
+        <li>Gráficas / día <span>1</span></li>
+        <li>Stories / día <span>4</span></li>
+      </ul>
+    </div>
+
+    <div class="rank-card rank-platino" style="transition-delay:.12s">
+      <div class="rank-name">Platino</div>
+      <div class="rank-tier">Consistencia sólida</div>
+      <ul class="rank-stats">
+        <li>Reels / día <span>1</span></li>
+        <li>Gráficas / día <span>2</span></li>
+        <li>Stories / día <span>5</span></li>
+      </ul>
+    </div>
+
+    <div class="rank-card rank-diamante" style="transition-delay:.16s">
+      <div class="rank-name">Diamante</div>
+      <div class="rank-tier">Alta producción</div>
+      <ul class="rank-stats">
+        <li>Reels / día <span>2</span></li>
+        <li>Gráficas / día <span>2</span></li>
+        <li>Stories / día <span>6</span></li>
+      </ul>
+    </div>
+
+    <div class="rank-card rank-champion" style="transition-delay:.2s">
+      <div class="rank-name">Champion</div>
+      <div class="rank-tier">Velocidad de crucero</div>
+      <ul class="rank-stats">
+        <li>Reels / día <span>2</span></li>
+        <li>Gráficas / día <span>2</span></li>
+        <li>Stories / día <span>7</span></li>
+      </ul>
+    </div>
+
+    <div class="rank-card rank-gc" style="transition-delay:.24s">
+      <div class="rank-name">Grand Champion</div>
+      <div class="rank-tier">Escala real</div>
+      <ul class="rank-stats">
+        <li>Reels / día <span>2</span></li>
+        <li>Gráficas / día <span>3</span></li>
+        <li>Stories / día <span>8</span></li>
+      </ul>
+    </div>
+
+    <div class="rank-card rank-ge" style="transition-delay:.28s">
+      <div class="rank-name">Global Elite</div>
+      <div class="rank-tier">Máquina de contenido</div>
+      <ul class="rank-stats">
+        <li>Reels / día <span>3</span></li>
+        <li>Gráficas / día <span>3</span></li>
+        <li>Stories / día <span>8</span></li>
+      </ul>
+    </div>
+
+    <div class="rank-card rank-legend" style="transition-delay:.32s">
+      <div class="rank-name">Legend</div>
+      <div class="rank-tier">Operación plena</div>
+      <ul class="rank-stats">
+        <li>Reels / día <span>3</span></li>
+        <li>Gráficas / día <span>3</span></li>
+        <li>Stories / día <span>9</span></li>
+      </ul>
+      <div class="rank-pill pill-max">Techo</div>
+    </div>
+
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;font-size:13px;color:var(--text2);line-height:1.75">
+    El nivel se reporta en la reunión semanal de marketing para cada cuenta por separado. Subir de nivel no significa publicar más por publicar — significa tener el sistema listo para soportar más volumen con la misma calidad.
+  </div>
+</section>
+
+<footer>
+  <p><strong>Fidel × Alejo</strong> — Estrategia 2026</p>
+  <p style="margin-top:6px">Documento interno · Junio 2026</p>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => { if(e.isIntersecting) setTimeout(()=>e.target.classList.add('vis'), i*70) });
+},{threshold:.06});
+document.querySelectorAll('.pillar-card,.client-card,.day-block,.cvj-row,.phil-card,.rank-card').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
