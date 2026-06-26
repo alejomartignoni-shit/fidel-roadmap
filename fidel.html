@@ -140,10 +140,22 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .ph-desc{font-size:13px;color:var(--text2);line-height:1.65}
 .ph-rule{margin-top:12px;background:var(--surface2);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--text3);line-height:1.6;border-left:3px solid var(--gold)}
 
+/* STUDY RESOURCES */
+.study-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.study-col{display:flex;flex-direction:column;gap:10px}
+.study-col-header{margin-bottom:2px}
+.study-platform{background:var(--surface3);border-radius:12px;padding:12px 14px}
+.study-platform-name{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.study-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+.study-list li{font-size:11.5px;color:var(--text2);display:flex;gap:7px;align-items:flex-start;line-height:1.55}
+.study-list li::before{content:'→';color:var(--gold);flex-shrink:0;font-weight:700;margin-top:1px}
+.study-link{color:var(--blue);font-weight:600}
+
 /* RANKING */
 .rank-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
 .rank-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:20px;opacity:0;transform:translateY(18px);transition:all .5s ease}
 .rank-card.vis{opacity:1;transform:translateY(0)}
+.rank-icon{width:52px;height:52px;margin-bottom:14px;display:block}
 .rank-name{font-size:15px;font-weight:900;letter-spacing:-.01em;margin-bottom:4px}
 .rank-tier{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:14px}
 .rank-stats{list-style:none;display:flex;flex-direction:column;gap:7px}
@@ -355,11 +367,10 @@ footer strong{color:var(--text2)}
         <div class="roleplay-box">
           <div class="roleplay-label">Objeciones a practicar</div>
           <ul class="roleplay-list">
-            <li>"Es muy caro para mí ahora mismo" — responder sin bajar el precio</li>
-            <li>"Necesito pensarlo con mi pareja / socio" — mantener la conversación viva</li>
-            <li>"Ya lo intenté antes y no funcionó" — reencuadrar la experiencia anterior</li>
-            <li>"No tengo tiempo ahora" — separar urgencia percibida de urgencia real</li>
-            <li>"¿Por qué contigo y no con X?" — posicionamiento claro y sin atacar</li>
+            <li>"Recién te conozco / no te conozco" — construir confianza rápida: prueba social, resultados verificables, framework de autoridad sin que suene a pitch</li>
+            <li>"Ya tuve malas experiencias" — no invalidar la experiencia anterior. Explorar qué falló. Diferenciar el proceso de Fidel sin hablar mal del otro</li>
+            <li>"Tengo una reunión ahora" — es una salida, no una objeción real. Fijar un momento concreto ahora mismo: "No hay problema — ¿a qué hora estás libre mañana?"</li>
+            <li>"Creo que voy a probar por mi cuenta primero" — respetar la decisión, calcular el costo del aprendizaje autodidacta vs. el costo de hacerlo bien desde el principio</li>
           </ul>
         </div>
       </div>
@@ -386,14 +397,69 @@ footer strong{color:var(--text2)}
       <div class="day-left"><div class="day-time">Tarde /<br>Noche</div><div class="day-line"></div></div>
       <div class="day-content">
         <div class="day-tag">Estudio + Cierre del día</div>
-        <div class="day-title">Crecer como creador y como vendedor</div>
-        <div class="day-desc">El que para de estudiar, para de crecer. 30 minutos diarios de consumo intencional — leer lo que lee el cliente ideal, estudiar copy de los mejores, observar qué está funcionando en el nicho.</div>
-        <div class="day-box">
+        <div class="day-title">Vivir dentro de la cabeza del cliente</div>
+        <div class="day-desc">El que para de estudiar, para de crecer. 30 minutos diarios de consumo intencional — Reddit, X, YouTube comments. No para entretenerse, sino para saber exactamente qué le quita el sueño al cliente ideal hoy.</div>
+        <div class="study-grid">
+          <div class="study-col">
+            <div class="study-col-header"><span class="client-tag tag-en" style="font-size:9px">EN · Wholesaling</span></div>
+            <div class="study-platform">
+              <div class="study-platform-name">Reddit</div>
+              <ul class="study-list">
+                <li><span class="study-link">r/realestateinvesting</span> — buscar "wholesale", "I can't find deals", "inconsistent income"</li>
+                <li><span class="study-link">r/wholesalerealestate</span> — leer qué está fallando y qué frustra a la gente</li>
+                <li><span class="study-link">r/FirstTimeHomeBuyer</span> — qué confunde a los compradores (ángulo desde el otro lado)</li>
+              </ul>
+            </div>
+            <div class="study-platform">
+              <div class="study-platform-name">X · Búsquedas</div>
+              <ul class="study-list">
+                <li>"wholesale real estate scam" — qué objeciones existen en el mercado masivo</li>
+                <li>"closed my first deal" — cómo hablan cuando tienen un logro (lenguaje real)</li>
+                <li>"dead end leads" / "no deals this month" — contenido desde el dolor exacto</li>
+              </ul>
+            </div>
+            <div class="study-platform">
+              <div class="study-platform-name">YouTube · Comentarios</div>
+              <ul class="study-list">
+                <li>"how to wholesale real estate 2024" — qué preguntan en los comments</li>
+                <li>"wholesale deal gone wrong" — miedos reales de la audiencia</li>
+                <li>Canales Pace Morby, Max Maxwell — ver qué le pregunta y dice la gente</li>
+              </ul>
+            </div>
+          </div>
+          <div class="study-col">
+            <div class="study-col-header"><span class="client-tag tag-es" style="font-size:9px">ES · Contratistas</span></div>
+            <div class="study-platform">
+              <div class="study-platform-name">Reddit</div>
+              <ul class="study-list">
+                <li><span class="study-link">r/HomeImprovement</span> — qué dicen los homeowners de los contratistas</li>
+                <li><span class="study-link">r/Contractor</span> / <span class="study-link">r/Construction</span> — buscar "slow season", "losing clients"</li>
+                <li><span class="study-link">r/smallbusiness</span> — "how to get more clients", "referrals dried up"</li>
+              </ul>
+            </div>
+            <div class="study-platform">
+              <div class="study-platform-name">X · Búsquedas</div>
+              <ul class="study-list">
+                <li>"roofing slow season" / "slow month contractor" — el momento de compra</li>
+                <li>"como conseguir clientes contratista" — ver quién habla de esto en español</li>
+                <li>"referrals dried up" / "sin clientes este mes" — el punto de dolor exacto</li>
+              </ul>
+            </div>
+            <div class="study-platform">
+              <div class="study-platform-name">YouTube · Comentarios</div>
+              <ul class="study-list">
+                <li>"como conseguir clientes contratista" — qué preguntan en español</li>
+                <li>"contractor facebook ads 2024" — qué preguntan antes de contratar</li>
+                <li>"roofing lead generation" — comments en inglés del mismo dolor</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="day-box" style="margin-top:14px">
           <ul class="day-list">
-            <li>Leer lo que lee el cliente ideal: foros, grupos, comentarios, preguntas frecuentes</li>
-            <li>Estudiar un hook, un headline o un email de un experto en copy y desarmarlo</li>
-            <li>Revisar los comentarios del contenido propio: ¿qué preguntas hace la audiencia? Esas son las ideas del mañana</li>
-            <li class="ritual">Anotar 1-2 ideas de contenido para el día siguiente — cuando surgen, se capturan</li>
+            <li>Estudiar un hook, headline o email de un experto en copy y desarmarlo</li>
+            <li>Revisar comentarios del contenido propio: ¿qué preguntan? Esas son las ideas del mañana</li>
+            <li class="ritual">Anotar 1-2 ideas capturadas durante el día — cuando surgen, se guardan</li>
           </ul>
         </div>
       </div>
@@ -573,6 +639,15 @@ footer strong{color:var(--text2)}
   <div class="rank-grid">
 
     <div class="rank-card rank-plata" style="transition-delay:.04s">
+      <svg class="rank-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28 3L53 28L28 53L3 28Z" fill="rgba(136,146,164,0.08)" stroke="#8892A4" stroke-width="1.5"/>
+        <path d="M28 14L42 28L28 42L14 28Z" fill="rgba(192,200,216,0.12)" stroke="#C0C8D8" stroke-width="1.5"/>
+        <circle cx="28" cy="3" r="2.2" fill="#C0C8D8"/>
+        <circle cx="53" cy="28" r="2.2" fill="#C0C8D8"/>
+        <circle cx="28" cy="53" r="2.2" fill="#C0C8D8"/>
+        <circle cx="3" cy="28" r="2.2" fill="#C0C8D8"/>
+        <circle cx="28" cy="28" r="5" fill="#8892A4"/>
+      </svg>
       <div class="rank-name">Plata</div>
       <div class="rank-tier">Mínimo inamovible</div>
       <ul class="rank-stats">
@@ -584,6 +659,11 @@ footer strong{color:var(--text2)}
     </div>
 
     <div class="rank-card rank-oro" style="transition-delay:.08s">
+      <svg class="rank-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="28,6 33,21 49,21 37,31 41,46 28,37 15,46 19,31 7,21 23,21" fill="rgba(245,188,61,0.12)" stroke="#F5BC3D" stroke-width="1.5"/>
+        <circle cx="28" cy="28" r="9" fill="rgba(245,188,61,0.2)" stroke="#F5BC3D" stroke-width="1.5"/>
+        <circle cx="28" cy="28" r="4" fill="#F5BC3D"/>
+      </svg>
       <div class="rank-name">Oro</div>
       <div class="rank-tier">Ritmo activo</div>
       <ul class="rank-stats">
@@ -594,6 +674,11 @@ footer strong{color:var(--text2)}
     </div>
 
     <div class="rank-card rank-platino" style="transition-delay:.12s">
+      <svg class="rank-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="28,6 34,19 47,17 39,28 47,39 34,38 28,50 22,38 9,39 17,28 9,17 22,19" fill="rgba(73,196,207,0.1)" stroke="#49C4CF" stroke-width="1.5"/>
+        <path d="M28 19L37 28L28 37L19 28Z" fill="rgba(73,196,207,0.22)" stroke="#49C4CF" stroke-width="1.5"/>
+        <circle cx="28" cy="28" r="5" fill="#49C4CF"/>
+      </svg>
       <div class="rank-name">Platino</div>
       <div class="rank-tier">Consistencia sólida</div>
       <ul class="rank-stats">
@@ -604,6 +689,15 @@ footer strong{color:var(--text2)}
     </div>
 
     <div class="rank-card rank-diamante" style="transition-delay:.16s">
+      <svg class="rank-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="51,28 44,44 28,51 12,44 5,28 12,12 28,5 44,12" fill="rgba(91,143,255,0.08)" stroke="#5B8FFF" stroke-width="1.5"/>
+        <line x1="28" y1="5" x2="28" y2="51" stroke="#5B8FFF" stroke-width="0.5" opacity="0.35"/>
+        <line x1="5" y1="28" x2="51" y2="28" stroke="#5B8FFF" stroke-width="0.5" opacity="0.35"/>
+        <line x1="12" y1="12" x2="44" y2="44" stroke="#5B8FFF" stroke-width="0.5" opacity="0.25"/>
+        <line x1="44" y1="12" x2="12" y2="44" stroke="#5B8FFF" stroke-width="0.5" opacity="0.25"/>
+        <polygon points="42,28 38,38 28,42 18,38 14,28 18,18 28,14 38,18" fill="rgba(91,143,255,0.18)" stroke="#5B8FFF" stroke-width="1.5"/>
+        <circle cx="28" cy="28" r="6" fill="rgba(91,143,255,0.45)" stroke="#5B8FFF" stroke-width="1.5"/>
+      </svg>
       <div class="rank-name">Diamante</div>
       <div class="rank-tier">Alta producción</div>
       <ul class="rank-stats">
@@ -614,6 +708,11 @@ footer strong{color:var(--text2)}
     </div>
 
     <div class="rank-card rank-champion" style="transition-delay:.2s">
+      <svg class="rank-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="28,4 32,18 45,11 38,24 52,28 38,32 45,45 32,38 28,52 24,38 11,45 18,32 4,28 18,24 11,11 24,18" fill="rgba(224,90,82,0.1)" stroke="#E05A52" stroke-width="1.5"/>
+        <circle cx="28" cy="28" r="12" fill="rgba(224,90,82,0.15)" stroke="#E05A52" stroke-width="1.5"/>
+        <circle cx="28" cy="28" r="5" fill="#E05A52"/>
+      </svg>
       <div class="rank-name">Champion</div>
       <div class="rank-tier">Velocidad de crucero</div>
       <ul class="rank-stats">
@@ -624,6 +723,13 @@ footer strong{color:var(--text2)}
     </div>
 
     <div class="rank-card rank-gc" style="transition-delay:.24s">
+      <svg class="rank-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="28" cy="28" r="24" fill="none" stroke="#CF5DEC" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5"/>
+        <polygon points="28,4 32,18 45,11 38,24 52,28 38,32 45,45 32,38 28,52 24,38 11,45 18,32 4,28 18,24 11,11 24,18" fill="rgba(207,93,236,0.08)" stroke="#CF5DEC" stroke-width="1.5"/>
+        <circle cx="28" cy="28" r="11" fill="rgba(207,93,236,0.18)" stroke="#CF5DEC" stroke-width="1.5"/>
+        <path d="M20 30L17 22L24 27L28 20L32 27L39 22L36 30Z" fill="rgba(207,93,236,0.55)" stroke="#CF5DEC" stroke-width="1" stroke-linejoin="round"/>
+        <circle cx="28" cy="34" r="2.5" fill="#CF5DEC"/>
+      </svg>
       <div class="rank-name">Grand Champion</div>
       <div class="rank-tier">Escala real</div>
       <ul class="rank-stats">
@@ -634,6 +740,11 @@ footer strong{color:var(--text2)}
     </div>
 
     <div class="rank-card rank-ge" style="transition-delay:.28s">
+      <svg class="rank-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M28 4L50 16V32C50 43 40 50 28 53C16 50 6 43 6 32V16Z" fill="rgba(33,229,173,0.07)" stroke="#21E5AD" stroke-width="1.5"/>
+        <path d="M28 12L44 21V32C44 40 37 45 28 48C19 45 12 40 12 32V21Z" fill="rgba(33,229,173,0.1)" stroke="#21E5AD" stroke-width="1.5"/>
+        <polygon points="28,20 30,25 36,25 31,29 33,35 28,31 23,35 25,29 20,25 26,25" fill="#21E5AD" opacity="0.85"/>
+      </svg>
       <div class="rank-name">Global Elite</div>
       <div class="rank-tier">Máquina de contenido</div>
       <ul class="rank-stats">
@@ -644,11 +755,25 @@ footer strong{color:var(--text2)}
     </div>
 
     <div class="rank-card rank-legend" style="transition-delay:.32s">
+      <svg class="rank-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="lgGrad" x1="4" y1="4" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#CF5DEC"/>
+            <stop offset="50%" stop-color="#5B8FFF"/>
+            <stop offset="100%" stop-color="#21E5AD"/>
+          </linearGradient>
+        </defs>
+        <circle cx="28" cy="28" r="25" fill="none" stroke="url(#lgGrad)" stroke-width="0.8" opacity="0.4"/>
+        <circle cx="28" cy="28" r="19" fill="none" stroke="url(#lgGrad)" stroke-width="0.6" opacity="0.25"/>
+        <polygon points="28,4 32,18 45,11 38,24 52,28 38,32 45,45 32,38 28,52 24,38 11,45 18,32 4,28 18,24 11,11 24,18" fill="rgba(255,255,255,0.04)" stroke="url(#lgGrad)" stroke-width="2"/>
+        <circle cx="28" cy="28" r="10" fill="rgba(255,255,255,0.07)" stroke="url(#lgGrad)" stroke-width="1.5"/>
+        <circle cx="28" cy="28" r="5" fill="rgba(255,255,255,0.75)"/>
+      </svg>
       <div class="rank-name">Legend</div>
       <div class="rank-tier">Operación plena</div>
       <ul class="rank-stats">
         <li>Reels / día <span>3</span></li>
-        <li>Gráficas / día <span>3</span></li>
+        <li>Gráficas / día <span>6</span></li>
         <li>Stories / día <span>9</span></li>
       </ul>
       <div class="rank-pill pill-max">Techo</div>
