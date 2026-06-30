@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeadLift — Content Report June 30, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #080808; color: #e5e5e5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+
+  /* HEADER */
+  .header { border-bottom: 1px solid #1a1a1a; padding-bottom: 24px; margin-bottom: 32px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+  .brand { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 8px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #fff; }
+  .header h1 span { color: #f59e0b; }
+  .date-tag { font-size: 12px; color: #555; background: #111; border: 1px solid #1e1e1e; padding: 6px 14px; border-radius: 20px; }
+
+  /* STAT CARDS */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 32px; }
+  .stat { background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 12px; padding: 18px; }
+  .stat-value { font-size: 32px; font-weight: 800; color: #fff; line-height: 1; }
+  .stat-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
+  .stat.alert { border-color: #ef444433; }
+  .stat.alert .stat-value { color: #ef4444; }
+  .stat.warn { border-color: #f59e0b33; }
+  .stat.warn .stat-value { color: #f59e0b; }
+  .stat.good { border-color: #10b98133; }
+  .stat.good .stat-value { color: #10b981; }
+  .stat.purple { border-color: #8b5cf633; }
+  .stat.purple .stat-value { color: #8b5cf6; }
+
+  /* ALERT BANNER */
+  .alert-banner { background: #ef444410; border: 1px solid #ef444433; border-radius: 10px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; color: #ef4444; font-size: 13px; font-weight: 500; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 36px; }
+  .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #555; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #111; display: flex; align-items: center; gap: 8px; }
+  .section-title .count { background: #1a1a1a; color: #888; font-size: 10px; padding: 2px 8px; border-radius: 10px; }
+
+  /* FIDEL ATTENTION */
+  .fidel-section { background: #0f0f0f; border: 1px solid #f59e0b22; border-radius: 14px; padding: 20px; margin-bottom: 32px; }
+  .fidel-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .fidel-dot { width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .fidel-title { font-size: 13px; font-weight: 600; color: #f59e0b; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #444; padding: 8px 12px; border-bottom: 1px solid #111; }
+  td { padding: 10px 12px; border-bottom: 1px solid #0d0d0d; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #0f0f0f; }
+  .task-link { color: #ccc; text-decoration: none; font-size: 13px; }
+  .task-link:hover { color: #f59e0b; }
+
+  /* BADGES */
+  .badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px; letter-spacing: 0.5px; white-space: nowrap; }
+  .funnel-badge { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px; letter-spacing: 1px; margin-left: 6px; }
+  .funnel-badge.tofu { background: #6366f122; color: #818cf8; border: 1px solid #6366f133; }
+  .funnel-badge.mofu { background: #f59e0b22; color: #fbbf24; border: 1px solid #f59e0b33; }
+  .funnel-badge.bofu { background: #10b98122; color: #34d399; border: 1px solid #10b98133; }
+  .mech-tag { font-size: 9px; color: #8b5cf6; background: #8b5cf610; border: 1px solid #8b5cf630; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+
+  /* LIST GRID */
+  .list-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 32px; }
+  .list-card { background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 12px; padding: 16px; }
+  .list-card-name { font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .list-card-total { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .status-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid #0d0d0d; }
+  .status-row:last-child { border: none; }
+  .status-name { font-size: 11px; color: #555; }
+  .status-num { font-size: 11px; font-weight: 600; color: #888; }
+
+  /* FUNNEL BAR */
+  .funnel-bar { display: flex; gap: 8px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .funnel-item { flex: 1; min-width: 80px; background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 10px; padding: 14px; text-align: center; }
+  .funnel-num { font-size: 28px; font-weight: 800; }
+  .funnel-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+  .f-tofu { color: #818cf8; }
+  .f-mofu { color: #fbbf24; }
+  .f-bofu { color: #34d399; }
+  .f-none { color: #444; }
+
+  /* IG PROCESSOR */
+  .ig-card { background: #0f0f0f; border: 1px solid #8b5cf622; border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+  .ig-dot { width: 6px; height: 6px; background: #8b5cf6; border-radius: 50%; flex-shrink: 0; }
+  .ig-name { font-size: 12px; color: #ccc; flex: 1; }
+  .ig-mech { font-size: 10px; color: #8b5cf6; background: #8b5cf610; border: 1px solid #8b5cf630; padding: 2px 7px; border-radius: 4px; }
+
+  /* PRODUCTION TIER */
+  .tier-bar { background: #0f0f0f; border: 1px solid #1a1a1a; border-radius: 12px; padding: 20px; margin-bottom: 32px; }
+  .tier-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #555; margin-bottom: 16px; }
+  .tier-track { display: flex; gap: 4px; }
+  .tier-step { flex: 1; height: 6px; border-radius: 3px; background: #1a1a1a; }
+  .tier-step.active { background: #f59e0b; }
+  .tier-step.passed { background: #10b981; }
+  .tier-labels { display: flex; justify-content: space-between; margin-top: 8px; }
+  .tier-label { font-size: 9px; color: #444; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tier-status { margin-top: 12px; font-size: 12px; color: #888; }
+  .tier-status strong { color: #f59e0b; }
+
+  /* FOOTER */
+  .footer { border-top: 1px solid #111; padding-top: 20px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .footer-brand { font-size: 11px; color: #333; }
+  .footer-date { font-size: 11px; color: #333; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="brand">LeadLift Marketing — Internal Report</div>
+        <h1>Content <span>Pipeline</span></h1>
+      </div>
+      <div class="date-tag">June 30, 2026</div>
+    </div>
+  </div>
+
+  <!-- ALERT BANNER -->
+  <div class="alert-banner">⚠ Stories gap — 0 published today. Silver tier requires 3 stories/day. Needs immediate attention.</div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="stat-value">81</div><div class="stat-label">Total Tasks</div></div>
+    <div class="stat warn"><div class="stat-value">22</div><div class="stat-label">Waiting Answer</div></div>
+    <div class="stat alert"><div class="stat-value">27</div><div class="stat-label">Need Info</div></div>
+    <div class="stat"><div class="stat-value">24</div><div class="stat-label">In Review</div></div>
+    <div class="stat"><div class="stat-value">6</div><div class="stat-label">In Progress</div></div>
+    <div class="stat alert"><div class="stat-value">0</div><div class="stat-label">Stories Today</div></div>
+  </div>
+
+  <!-- PRODUCTION TIER -->
+  <div class="tier-bar">
+    <div class="tier-title">Production Tier — Today</div>
+    <div class="tier-track">
+      <div class="tier-step passed"></div>
+      <div class="tier-step active"></div>
+      <div class="tier-step"></div>
+      <div class="tier-step"></div>
+      <div class="tier-step"></div>
+      <div class="tier-step"></div>
+      <div class="tier-step"></div>
+      <div class="tier-step"></div>
+    </div>
+    <div class="tier-labels">
+      <span class="tier-label">Bronze</span>
+      <span class="tier-label">Silver</span>
+      <span class="tier-label">Gold</span>
+      <span class="tier-label">Platinum</span>
+      <span class="tier-label">Diamond</span>
+      <span class="tier-label">Champion</span>
+      <span class="tier-label">GC</span>
+      <span class="tier-label">Legend</span>
+    </div>
+    <div class="tier-status">Operating at <strong>Bronze → Silver</strong> — Reels recorded ✓ &nbsp;·&nbsp; Stories missing ✗</div>
+  </div>
+
+  <!-- FIDEL ATTENTION -->
+  <div class="fidel-section">
+    <div class="fidel-header">
+      <div class="fidel-dot"></div>
+      <div class="fidel-title">Needs Fidel's Attention (46 tasks)</div>
+    </div>
+    <table>
+      <thead><tr><th>Task</th><th>Status</th><th>List</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2315ed" target="_blank" class="task-link">[Reel] Going over my biggest Mistakes when i started in Real Estate</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e231303" target="_blank" class="task-link">[Reel] Yapping format: The 3 things that will make you succesfull in RE</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e230wuu" target="_blank" class="task-link">[Reel] Clone Effect: Inbound Marketing vs Outbound</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e230wkw" target="_blank" class="task-link">[Reel] the 4 worst things about being in Real Estate: </a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22ntg3" target="_blank" class="task-link">Le pagué al Alex Hormozi</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e5c" target="_blank" class="task-link">ES | Contractors | TOFU | La Razón Real Por la Que Sigues Dependiendo de Re</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e54" target="_blank" class="task-link">ES | Contractors | TOFU | Este Contratista Tenía 0 Clientes en Enero. Sus N</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e4z" target="_blank" class="task-link">EN | Agents | TOFU | Facebook Ads: Show Your Face</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e3w" target="_blank" class="task-link">EN | Wholesalers · Agents | MOFU | If Your Agency Sends You a CPL Report as</a><span class="funnel-badge mofu">MOFU</span></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1wg19u" target="_blank" class="task-link">[Reel] Identity shift in car — the best roofer in your market is not winnin</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1wg14y" target="_blank" class="task-link">[Reel] Fidel calls out in car why every roofing ad sounds identical — and w</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1vgwvz" target="_blank" class="task-link">Ranking Real Estate Strategies From Worst to Best </a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1rzkb9" target="_blank" class="task-link">[Reel] Kyle Interview clip</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1rzjqp" target="_blank" class="task-link">[Reel] Clip 30s de testimonial Luis Ent.</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Short-form</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1tcp8f" target="_blank" class="task-link">A roofing company with no online presence added $60K in quarterly revenue u</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Carousels</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1t0cp8" target="_blank" class="task-link">C2 Everyone told you to diversify, they lied</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Carousels</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1rzr6y" target="_blank" class="task-link">Go from couple thousands to 8 figures</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Carousels</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1rx87c" target="_blank" class="task-link">C1 The identity shift from 'guy with a truck' to market owner is the single</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Carousels</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221ecd" target="_blank" class="task-link">EN · ES | All Audiences | TOFU | Story Sequence: Hot Take → Poll → Desarrol</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Stories</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1xrt81" target="_blank" class="task-link">[Story] Engagement: Every roofing ad in your market says the same 4 wo</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Stories</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1ntw0z" target="_blank" class="task-link">[Meme] Lenders, roofers, and agents stuck in outdated methods</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Memes</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1jv3y7" target="_blank" class="task-link">[Meme 2] Expanding Brain - Levels of a wholesaler</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Memes</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1jv3y2" target="_blank" class="task-link">[Meme 1] Drake - 9 to 5 job vs closing a wholesale deal on lunch break</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Memes</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1jv3mj" target="_blank" class="task-link">[Meme 3] When you close your first deal</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Memes</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1jv3md" target="_blank" class="task-link">[Meme 2] The cash buyer who passed on the deal... then called back 2 hours </a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Memes</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22zx9z" target="_blank" class="task-link">"Stop chasing leads and start</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22nzyw" target="_blank" class="task-link">[Reel]4 things nobody tells you about making money in real estate</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e223zdc" target="_blank" class="task-link">reaction video hormozi https://www.instagram.com/reel/DaDMypahwdH/?igsh=MXJ</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222cvx" target="_blank" class="task-link">https://www.instagram.com/reel/DIMUseMsFcb/?igsh=MXh3ZzlvYmpjcTU2ZA==</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222cbb" target="_blank" class="task-link">https://www.instagram.com/reel/C5YVBcZifOC/?igsh=YmsybnNoMGdpbjZz</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222c4u" target="_blank" class="task-link">https://www.instagram.com/reel/DX8OV6ENefJ/?igsh=ZTcydGd1ajhwY2F4</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222bmq" target="_blank" class="task-link">https://www.instagram.com/reel/DSDgfHlkghI/?igsh=M2V6Z2ozNXg1NWU3</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222ba2" target="_blank" class="task-link">https://www.instagram.com/reel/DYyMPYeM63I/?igsh=ZTFndzIyYnpnNGh1</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222b5f" target="_blank" class="task-link">https://www.instagram.com/reel/DV8r0wQkb6o/?igsh=YmIzdjB5Nm53eTl2</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222aw6" target="_blank" class="task-link">https://www.instagram.com/reel/DX4fmHpucV-/?igsh=MzgxZngzczQya29h</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2229bk" target="_blank" class="task-link">https://www.instagram.com/reel/DXVG1UvDehL/?igsh=MWp4dDBubXVsdjk5dA==</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22298t" target="_blank" class="task-link">https://www.instagram.com/reel/DXaEmHbiGGy/?igsh=eGo2bTM0NGh0ZXlq</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2227vn" target="_blank" class="task-link">https://www.instagram.com/reel/DXfGNGoE84j/?igsh=MWY2emZkdHQyeWl0NQ==</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2227pr" target="_blank" class="task-link">https://www.instagram.com/reel/DYUKuMCpH-W/?igsh=NWNqczBoODM3NDI2</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2226vj" target="_blank" class="task-link">https://www.instagram.com/reel/C8mH_5JS-eo/?igsh=cWdmNHpmNHI0ZmZi</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2226gb" target="_blank" class="task-link">https://www.instagram.com/reel/C7MLwZgOGXt/?igsh=MTR2NnV5b3loazgxbQ==</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2225np" target="_blank" class="task-link">https://www.instagram.com/p/DZ8dlDXlWVP/?img_index=3&igsh=ZGV0czlpanBocm42</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2222gh" target="_blank" class="task-link">10 News This Week</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2221v2" target="_blank" class="task-link">Odio mi alarma</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2221ry" target="_blank" class="task-link">12 expenses</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr><tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2221bf" target="_blank" class="task-link">Stop buying cheap leads</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span style="font-size:11px;color:#555">Brainstorming</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FUNNEL DISTRIBUTION -->
+  <div class="section">
+    <div class="section-title">Funnel Distribution</div>
+    <div class="funnel-bar">
+      <div class="funnel-item"><div class="funnel-num f-tofu">15</div><div class="funnel-label f-tofu">TOFU</div></div>
+      <div class="funnel-item"><div class="funnel-num f-mofu">7</div><div class="funnel-label f-mofu">MOFU</div></div>
+      <div class="funnel-item"><div class="funnel-num f-bofu">0</div><div class="funnel-label f-bofu">BOFU</div></div>
+      <div class="funnel-item"><div class="funnel-num f-none">59</div><div class="funnel-label f-none">Untagged</div></div>
+    </div>
+  </div>
+
+  <!-- LIST OVERVIEW -->
+  <div class="section">
+    <div class="section-title">By Format <span class="count">5 lists</span></div>
+    <div class="list-grid">
+      <div class="list-card">
+        <div class="list-card-name">Short-form</div>
+        <div class="list-card-total">20</div>
+        <div class="status-row"><span class="status-name">waiting for answer</span><span class="status-num">11</span></div><div class="status-row"><span class="status-name">need more info</span><span class="status-num">3</span></div><div class="status-row"><span class="status-name">in review</span><span class="status-num">3</span></div><div class="status-row"><span class="status-name">in progress</span><span class="status-num">2</span></div><div class="status-row"><span class="status-name">completed</span><span class="status-num">1</span></div>
+      </div><div class="list-card">
+        <div class="list-card-name">Carousels</div>
+        <div class="list-card-total">16</div>
+        <div class="status-row"><span class="status-name">need more info</span><span class="status-num">10</span></div><div class="status-row"><span class="status-name">waiting for answer</span><span class="status-num">3</span></div><div class="status-row"><span class="status-name">in progress</span><span class="status-num">2</span></div><div class="status-row"><span class="status-name">in review</span><span class="status-num">1</span></div>
+      </div><div class="list-card">
+        <div class="list-card-name">Stories</div>
+        <div class="list-card-total">7</div>
+        <div class="status-row"><span class="status-name">need more info</span><span class="status-num">4</span></div><div class="status-row"><span class="status-name">waiting for answer</span><span class="status-num">2</span></div><div class="status-row"><span class="status-name">in progress</span><span class="status-num">1</span></div>
+      </div><div class="list-card">
+        <div class="list-card-name">Memes</div>
+        <div class="list-card-total">11</div>
+        <div class="status-row"><span class="status-name">need more info</span><span class="status-num">5</span></div><div class="status-row"><span class="status-name">in review</span><span class="status-num">4</span></div><div class="status-row"><span class="status-name">waiting for answer</span><span class="status-num">1</span></div><div class="status-row"><span class="status-name">in progress</span><span class="status-num">1</span></div>
+      </div><div class="list-card">
+        <div class="list-card-name">Brainstorming</div>
+        <div class="list-card-total">27</div>
+        <div class="status-row"><span class="status-name">in review</span><span class="status-num">16</span></div><div class="status-row"><span class="status-name">need info</span><span class="status-num">5</span></div><div class="status-row"><span class="status-name">waiting answer</span><span class="status-num">5</span></div><div class="status-row"><span class="status-name">completed</span><span class="status-num">1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IG PROCESSOR -->
+  <div class="section">
+    <div class="section-title">ig-processor — Brainstorming Queue <span class="count">16 analyzed</span></div>
+    <div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">"Stop chasing leads and start</div>
+      <div class="ig-mech">Contrast Labels</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">reaction video hormozi https://www.instagram.com/reel/DaDMypahwdH/?igsh=MXJvaW11</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/DIMUseMsFcb/?igsh=MXh3ZzlvYmpjcTU2ZA==</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/C5YVBcZifOC/?igsh=YmsybnNoMGdpbjZz</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/DX8OV6ENefJ/?igsh=ZTcydGd1ajhwY2F4</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/DSDgfHlkghI/?igsh=M2V6Z2ozNXg1NWU3</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/DYyMPYeM63I/?igsh=ZTFndzIyYnpnNGh1</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/DV8r0wQkb6o/?igsh=YmIzdjB5Nm53eTl2</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/DX4fmHpucV-/?igsh=MzgxZngzczQya29h</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/DXVG1UvDehL/?igsh=MWp4dDBubXVsdjk5dA==</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/DXaEmHbiGGy/?igsh=eGo2bTM0NGh0ZXlq</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/DXfGNGoE84j/?igsh=MWY2emZkdHQyeWl0NQ==</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/DYUKuMCpH-W/?igsh=NWNqczBoODM3NDI2</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/C8mH_5JS-eo/?igsh=cWdmNHpmNHI0ZmZi</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/reel/C7MLwZgOGXt/?igsh=MTR2NnV5b3loazgxbQ==</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div><div class="ig-card">
+      <div class="ig-dot"></div>
+      <div class="ig-name">https://www.instagram.com/p/DZ8dlDXlWVP/?img_index=3&igsh=ZGV0czlpanBocm42</div>
+      <div class="ig-mech" style="color:#333;border-color:#1a1a1a">—</div>
+    </div>
+    
+  </div>
+
+  <!-- PER LIST TASK TABLES -->
+  
+  <div class="section">
+    <div class="section-title">Short-form <span class="count">20</span></div>
+    <table>
+      <thead><tr><th style="width:65%">Task</th><th>Status</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e231cev" target="_blank" class="task-link">[Reel] Broll Viral Video: No confía en un mentor que...</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2315ed" target="_blank" class="task-link">[Reel] Going over my biggest Mistakes when i started in Real Estate</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">NORMAL</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e231303" target="_blank" class="task-link">[Reel] Yapping format: The 3 things that will make you succesfull in RE</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">NORMAL</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e230wuu" target="_blank" class="task-link">[Reel] Clone Effect: Inbound Marketing vs Outbound</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e230wkw" target="_blank" class="task-link">[Reel] the 4 worst things about being in Real Estate: </a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">NORMAL</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22ntg3" target="_blank" class="task-link">Le pagué al Alex Hormozi</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e5m" target="_blank" class="task-link">ES | Contractors | TOFU | El Error Que Cometen el 80% de los Contratistas al Pon</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e5c" target="_blank" class="task-link">ES | Contractors | TOFU | La Razón Real Por la Que Sigues Dependiendo de Referid</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e54" target="_blank" class="task-link">ES | Contractors | TOFU | Este Contratista Tenía 0 Clientes en Enero. Sus Número</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e4z" target="_blank" class="task-link">EN | Agents | TOFU | Facebook Ads: Show Your Face</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e4p" target="_blank" class="task-link">EN · ES | All Audiences | MOFU | We Launched a Campaign Monday. Here's What Happ</a><span class="funnel-badge mofu">MOFU</span></td>
+          <td><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">Completed</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e3w" target="_blank" class="task-link">EN | Wholesalers · Agents | MOFU | If Your Agency Sends You a CPL Report as a Wi</a><span class="funnel-badge mofu">MOFU</span></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1xmepu" target="_blank" class="task-link">[Reel] Business owners confuse posting content with having a marketing system — </a></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">In Progress</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1wg19u" target="_blank" class="task-link">[Reel] Identity shift in car — the best roofer in your market is not winning, th</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1wg14y" target="_blank" class="task-link">[Reel] Fidel calls out in car why every roofing ad sounds identical — and what t</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1wg12k" target="_blank" class="task-link">[Reel] Fidel tells the pivot story in car — why he left a 7-figure real estate b</a></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">In Progress</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1vgyd4" target="_blank" class="task-link">https://www.instagram.com/p/DZEqQoTKBYB/</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1vgwvz" target="_blank" class="task-link">Ranking Real Estate Strategies From Worst to Best </a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1rzkb9" target="_blank" class="task-link">[Reel] Kyle Interview clip</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1rzjqp" target="_blank" class="task-link">[Reel] Clip 30s de testimonial Luis Ent.</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr></tbody>
+    </table>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">Carousels <span class="count">16</span></div>
+    <table>
+      <thead><tr><th style="width:65%">Task</th><th>Status</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e231a5h" target="_blank" class="task-link">[Carrousel]4 things nobody tells you about making money in real estate</a></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">In Progress</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221efd" target="_blank" class="task-link">EN | Wholesalers · Agents | MOFU | 5 Questions to Ask Before Hiring a Real Estat</a><span class="funnel-badge mofu">MOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221eer" target="_blank" class="task-link">ES | Contractors | MOFU | De 0 a Clientes Consistentes: El Mapa Para Contratista</a><span class="funnel-badge mofu">MOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221ee5" target="_blank" class="task-link">ES | Contractors | TOFU | Por Qué Tus Anuncios de Facebook No Convierten (Aunque</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221edg" target="_blank" class="task-link">EN | Wholesalers · Agents | MOFU | The 7 Red Flags Your Real Estate Facebook Ad </a><span class="funnel-badge mofu">MOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221ec0" target="_blank" class="task-link">EN | Wholesalers · Agents | MOFU | The 3 Types of Real Estate Leads From Faceboo</a><span class="funnel-badge mofu">MOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221ebu" target="_blank" class="task-link">ES | Contractors | TOFU | Temporada Baja vs Alta: Lo Que Hacen Diferente los Con</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221ebj" target="_blank" class="task-link">ES | Contractors | TOFU | Por Qué Fallan los Anuncios de Facebook Para Contratis</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221eb9" target="_blank" class="task-link">EN | Wholesalers · Agents | MOFU | 5 Metrics That Actually Matter in Real Estate</a><span class="funnel-badge mofu">MOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1vh59w" target="_blank" class="task-link">EN-ES| [Carrousel]  Inspirational</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">NORMAL</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1vgw84" target="_blank" class="task-link">EN-ES | [Carrousel] AI generated Inspirational</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">LOW</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1tcp8f" target="_blank" class="task-link">A roofing company with no online presence added $60K in quarterly revenue using </a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1t0cp8" target="_blank" class="task-link">C2 Everyone told you to diversify, they lied</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">NORMAL</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1rzr6y" target="_blank" class="task-link">Go from couple thousands to 8 figures</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1rzpt5" target="_blank" class="task-link">We started working together, now what?</a></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">In Progress</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1rx87c" target="_blank" class="task-link">C1 The identity shift from 'guy with a truck' to market owner is the single leve</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr></tbody>
+    </table>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">Stories <span class="count">7</span></div>
+    <table>
+      <thead><tr><th style="width:65%">Task</th><th>Status</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221ed4" target="_blank" class="task-link">ES | Contractors | TOFU | Story Sequence: ¿Cuántos Clientes Nuevos Este Mes? Pol</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221ecr" target="_blank" class="task-link">EN · ES | All Audiences | TOFU | Story Sequence: Día en la Vida de Fidel [Humani</a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221ecn" target="_blank" class="task-link">EN | Wholesalers · Agents | TOFU | Story Sequence: Lo Que Vi Esta Semana en las </a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221ecd" target="_blank" class="task-link">EN · ES | All Audiences | TOFU | Story Sequence: Hot Take → Poll → Desarrollo → </a><span class="funnel-badge tofu">TOFU</span></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1xrt81" target="_blank" class="task-link">[Story] Engagement: Every roofing ad in your market says the same 4 wo</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1rztqv" target="_blank" class="task-link">We started working together, now what?</a></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">In Progress</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1nxpa2" target="_blank" class="task-link">[Story] Curiosity teaser: You've wasted hours waiting for deals to fall apar</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr></tbody>
+    </table>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">Memes <span class="count">11</span></div>
+    <table>
+      <thead><tr><th style="width:65%">Task</th><th>Status</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221eaw" target="_blank" class="task-link">EN · ES | All Audiences | TOFU | Me Explaining Why a High CTR Means Nothing</a><span class="funnel-badge tofu">TOFU</span><span class="mech-tag">Meme</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221eab" target="_blank" class="task-link">EN | Wholesalers | TOFU | Wholesalers Who Bought the Course vs Wholesalers Runni</a><span class="funnel-badge tofu">TOFU</span><span class="mech-tag">Meme</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e9q" target="_blank" class="task-link">ES | Contractors | TOFU | Contratistas Que Dependen 100% de Referidos en Enero</a><span class="funnel-badge tofu">TOFU</span><span class="mech-tag">Meme</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e221e99" target="_blank" class="task-link">EN | Wholesalers · Agents | TOFU | When a Client Says 'We Tried Facebook Ads and</a><span class="funnel-badge tofu">TOFU</span><span class="mech-tag">Meme</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1x5uuh" target="_blank" class="task-link">Reframe https://www.instagram.com/p/DYxfr6oSp6P/</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1ntw0z" target="_blank" class="task-link">[Meme] Lenders, roofers, and agents stuck in outdated methods</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#6b728022;color:#6b7280;border:1px solid #6b728055">NORMAL</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1jv3yd" target="_blank" class="task-link">[Meme 3] Distracted Boyfriend - Cold-calling vs Inbound Leads with Fidel</a><span class="mech-tag">Meme</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">In Progress</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1jv3y7" target="_blank" class="task-link">[Meme 2] Expanding Brain - Levels of a wholesaler</a><span class="mech-tag">Meme</span></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1jv3y2" target="_blank" class="task-link">[Meme 1] Drake - 9 to 5 job vs closing a wholesale deal on lunch break</a><span class="mech-tag">Meme</span></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1jv3mj" target="_blank" class="task-link">[Meme 3] When you close your first deal</a><span class="mech-tag">Meme</span></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e1jv3md" target="_blank" class="task-link">[Meme 2] The cash buyer who passed on the deal... then called back 2 hours later</a><span class="mech-tag">Meme</span></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr></tbody>
+    </table>
+  </div>
+  
+  <div class="section">
+    <div class="section-title">Brainstorming <span class="count">27</span></div>
+    <table>
+      <thead><tr><th style="width:65%">Task</th><th>Status</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e231dez" target="_blank" class="task-link">[REEL] Reaction Video Format</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">LOW</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22zx9z" target="_blank" class="task-link">"Stop chasing leads and start</a><span class="mech-tag">Contrast Labels</span></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22wr1e" target="_blank" class="task-link">(Enrich) Si tu mentor está gordo</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22wj2d" target="_blank" class="task-link">[Meme] Life after...</a><span class="mech-tag">Meme</span></td>
+          <td><span class="badge" style="background:#10b98122;color:#10b981;border:1px solid #10b98155">Completed</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22q1w9" target="_blank" class="task-link">[ES] (Enrich) La diferencia entre las empresas gringas vs tu</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22q1c3" target="_blank" class="task-link">(Enrich) Going over my biggest Mistakes when i started in Real Estate</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22q0wf" target="_blank" class="task-link">(Enrich) The 3 things you have that will dictate if you will be sucessful in RE</a></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">Need Info</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22nzyw" target="_blank" class="task-link">[Reel]4 things nobody tells you about making money in real estate</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e223zdc" target="_blank" class="task-link">reaction video hormozi https://www.instagram.com/reel/DaDMypahwdH/?igsh=MXJvaW11</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222cvx" target="_blank" class="task-link">https://www.instagram.com/reel/DIMUseMsFcb/?igsh=MXh3ZzlvYmpjcTU2ZA==</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222cbb" target="_blank" class="task-link">https://www.instagram.com/reel/C5YVBcZifOC/?igsh=YmsybnNoMGdpbjZz</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222c4u" target="_blank" class="task-link">https://www.instagram.com/reel/DX8OV6ENefJ/?igsh=ZTcydGd1ajhwY2F4</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222bmq" target="_blank" class="task-link">https://www.instagram.com/reel/DSDgfHlkghI/?igsh=M2V6Z2ozNXg1NWU3</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222ba2" target="_blank" class="task-link">https://www.instagram.com/reel/DYyMPYeM63I/?igsh=ZTFndzIyYnpnNGh1</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222b5f" target="_blank" class="task-link">https://www.instagram.com/reel/DV8r0wQkb6o/?igsh=YmIzdjB5Nm53eTl2</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e222aw6" target="_blank" class="task-link">https://www.instagram.com/reel/DX4fmHpucV-/?igsh=MzgxZngzczQya29h</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2229bk" target="_blank" class="task-link">https://www.instagram.com/reel/DXVG1UvDehL/?igsh=MWp4dDBubXVsdjk5dA==</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e22298t" target="_blank" class="task-link">https://www.instagram.com/reel/DXaEmHbiGGy/?igsh=eGo2bTM0NGh0ZXlq</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2227vn" target="_blank" class="task-link">https://www.instagram.com/reel/DXfGNGoE84j/?igsh=MWY2emZkdHQyeWl0NQ==</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2227pr" target="_blank" class="task-link">https://www.instagram.com/reel/DYUKuMCpH-W/?igsh=NWNqczBoODM3NDI2</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2226vj" target="_blank" class="task-link">https://www.instagram.com/reel/C8mH_5JS-eo/?igsh=cWdmNHpmNHI0ZmZi</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2226gb" target="_blank" class="task-link">https://www.instagram.com/reel/C7MLwZgOGXt/?igsh=MTR2NnV5b3loazgxbQ==</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2225np" target="_blank" class="task-link">https://www.instagram.com/p/DZ8dlDXlWVP/?img_index=3&igsh=ZGV0czlpanBocm42</a></td>
+          <td><span class="badge" style="background:#3b82f622;color:#3b82f6;border:1px solid #3b82f655">In Review</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2222gh" target="_blank" class="task-link">10 News This Week</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2221v2" target="_blank" class="task-link">Odio mi alarma</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2221ry" target="_blank" class="task-link">12 expenses</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#ef444422;color:#ef4444;border:1px solid #ef444455">URGENT</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://app.clickup.com/t/90171270650/86e2221bf" target="_blank" class="task-link">Stop buying cheap leads</a></td>
+          <td><span class="badge" style="background:#8b5cf622;color:#8b5cf6;border:1px solid #8b5cf655">Waiting Answer</span></td>
+          <td><span class="badge" style="background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b55">HIGH</span></td>
+        </tr></tbody>
+    </table>
+  </div>
+  
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-brand">LeadLift Marketing · Internal Use Only</span>
+    <span class="footer-date">Generated 2026-06-30 11:45 BsAs</span>
+  </div>
+
+</div>
+</body>
+</html>
