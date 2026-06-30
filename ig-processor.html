@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ig-processor — System Report</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07070d;--surface:#0f0f1a;--surface2:#161625;--surface3:#1d1d30;
+  --gold:#f59e0b;--gold-light:#fcd34d;--gold-dim:rgba(245,158,11,0.10);--gold-border:rgba(245,158,11,0.25);
+  --green:#10b981;--green-dim:rgba(16,185,129,0.09);--green-border:rgba(16,185,129,0.2);
+  --blue:#60a5fa;--blue-dim:rgba(96,165,250,0.09);--blue-border:rgba(96,165,250,0.25);
+  --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.09);--purple-border:rgba(167,139,250,0.2);
+  --red:#f87171;--red-dim:rgba(248,113,113,0.09);--red-border:rgba(248,113,113,0.2);
+  --text:#f0f0f4;--text2:#8b8ba8;--text3:#44445a;
+  --border:rgba(255,255,255,0.055);
+}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+.orb{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;animation:orb 22s ease-in-out infinite alternate}
+.orb1{width:700px;height:700px;background:rgba(167,139,250,0.05);top:-150px;right:-150px}
+.orb2{width:500px;height:500px;background:rgba(16,185,129,0.04);bottom:-100px;left:-100px;animation-delay:-11s}
+@keyframes orb{from{transform:translate(0,0)}to{transform:translate(50px,40px)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* LAYOUT */
+.wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+section+section{border-top:1px solid var(--border)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px;position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--purple);padding:6px 16px;border-radius:100px;background:var(--purple-dim);border:1px solid var(--purple-border);margin-bottom:28px;animation:fadeup .6s ease both}
+.hero h1{font-size:clamp(38px,8vw,80px);font-weight:900;line-height:.95;letter-spacing:-.03em;margin-bottom:20px;animation:fadeup .6s .1s ease both}
+.hero h1 span{background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:17px;color:var(--text2);max-width:560px;animation:fadeup .6s .2s ease both;line-height:1.7}
+.hero-meta{display:flex;gap:24px;margin-top:40px;animation:fadeup .6s .3s ease both;flex-wrap:wrap;justify-content:center}
+.meta-pill{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--text2);padding:8px 16px;border-radius:100px;background:var(--surface2);border:1px solid var(--border)}
+.meta-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green)}
+
+/* SECTION HEADERS */
+.section-label{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--purple);margin-bottom:12px}
+.section-title{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:16px}
+.section-sub{font-size:15px;color:var(--text2);max-width:600px;line-height:1.7;margin-bottom:48px}
+
+/* PIPELINE */
+.pipeline{display:flex;flex-direction:column;gap:0}
+.pipe-step{display:flex;gap:20px;align-items:flex-start;position:relative}
+.pipe-step:not(:last-child)::after{content:'';position:absolute;left:19px;top:44px;width:2px;height:calc(100% - 4px);background:linear-gradient(180deg,var(--purple-border),transparent)}
+.pipe-num{width:40px;height:40px;border-radius:50%;background:var(--purple-dim);border:1px solid var(--purple-border);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--purple);flex-shrink:0;margin-top:2px}
+.pipe-body{flex:1;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:12px}
+.pipe-body h3{font-size:14px;font-weight:600;margin-bottom:4px}
+.pipe-body p{font-size:13px;color:var(--text2);line-height:1.6}
+.pipe-tag{display:inline-flex;font-size:11px;font-weight:600;padding:2px 8px;border-radius:6px;margin-top:8px}
+.tag-claude{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple-border)}
+.tag-clickup{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue-border)}
+.tag-done{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
+.tag-auto{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+
+/* BEFORE/AFTER */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ba-col{border-radius:16px;padding:24px;overflow:hidden}
+.ba-col.before{background:var(--red-dim);border:1px solid var(--red-border)}
+.ba-col.after{background:var(--green-dim);border:1px solid var(--green-border)}
+.ba-header{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.ba-icon{font-size:18px}
+.ba-title{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.ba-col.before .ba-title{color:var(--red)}
+.ba-col.after .ba-title{color:var(--green)}
+.ba-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px}
+.ba-item:last-child{margin-bottom:0}
+.ba-bullet{font-size:12px;margin-top:2px;flex-shrink:0}
+.ba-text{font-size:13px;color:var(--text2);line-height:1.5}
+.ba-text strong{color:var(--text);font-weight:500}
+@media(max-width:600px){.ba-grid{grid-template-columns:1fr}}
+
+/* FUNNEL */
+.funnel{display:flex;flex-direction:column;gap:4px}
+.funnel-stage{border-radius:14px;padding:24px 28px;border:1px solid;position:relative;overflow:hidden}
+.funnel-stage::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.f-tofu{background:var(--blue-dim);border-color:var(--blue-border)}
+.f-tofu::before{background:var(--blue)}
+.f-mofu{background:var(--purple-dim);border-color:var(--purple-border)}
+.f-mofu::before{background:var(--purple)}
+.f-bofu{background:var(--gold-dim);border-color:var(--gold-border)}
+.f-bofu::before{background:var(--gold)}
+.f-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.f-tofu .f-label{color:var(--blue)}
+.f-mofu .f-label{color:var(--purple)}
+.f-bofu .f-label{color:var(--gold)}
+.f-who{font-size:13px;font-weight:600;margin-bottom:6px}
+.f-hook{font-size:13px;color:var(--text2);margin-bottom:10px;line-height:1.5}
+.f-rule{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;padding:4px 10px;border-radius:100px}
+.f-tofu .f-rule{background:var(--blue-dim);color:var(--blue)}
+.f-mofu .f-rule{background:var(--purple-dim);color:var(--purple)}
+.f-bofu .f-rule{background:var(--gold-dim);color:var(--gold)}
+.transformation{margin-bottom:32px;padding:18px 24px;background:var(--surface2);border:1px solid var(--border);border-radius:14px;display:flex;align-items:center;gap:12px;font-size:14px}
+.t-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-right:8px}
+.t-from{color:var(--red)}
+.t-arrow{color:var(--text3);font-size:18px}
+.t-to{color:var(--green)}
+
+/* SUBTASK */
+.subtask-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.subtask-header{padding:18px 24px;background:var(--surface2);border-bottom:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text2);letter-spacing:.06em}
+.subtask-body{padding:0}
+.subtask-row{display:flex;gap:0;border-bottom:1px solid var(--border);align-items:stretch}
+.subtask-row:last-child{border-bottom:0}
+.subtask-label{width:160px;flex-shrink:0;padding:16px 20px;background:var(--surface2);border-right:1px solid var(--border);font-size:12px;font-weight:700;color:var(--text2);display:flex;align-items:center}
+.subtask-content{flex:1;padding:16px 20px;font-size:13px;color:var(--text2);line-height:1.6}
+.subtask-content strong{color:var(--text);font-weight:500}
+.copy-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.copy-card{border-radius:12px;padding:16px;border:1px solid}
+.copy-tofu{background:var(--blue-dim);border-color:var(--blue-border)}
+.copy-mofu{background:var(--purple-dim);border-color:var(--purple-border)}
+.copy-bofu{background:var(--gold-dim);border-color:var(--gold-border)}
+.copy-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.copy-tofu .copy-label{color:var(--blue)}
+.copy-mofu .copy-label{color:var(--purple)}
+.copy-bofu .copy-label{color:var(--gold)}
+.copy-desc{font-size:12px;color:var(--text2);line-height:1.5}
+@media(max-width:600px){.copy-row{grid-template-columns:1fr}.subtask-label{width:120px}}
+
+/* STACK */
+.stack-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stack-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px}
+.stack-icon{font-size:24px;margin-bottom:12px}
+.stack-title{font-size:13px;font-weight:700;margin-bottom:6px}
+.stack-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.stack-badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:6px;margin-top:8px}
+.b-free{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
+.b-fallback{background:var(--surface2);color:var(--text2);border:1px solid var(--border)}
+@media(max-width:600px){.stack-grid{grid-template-columns:1fr}}
+
+/* METRICS */
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.metric{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center}
+.metric-num{font-size:clamp(28px,5vw,46px);font-weight:900;letter-spacing:-.03em;line-height:1}
+.metric-label{font-size:12px;color:var(--text2);margin-top:8px;line-height:1.4}
+.metric-sub{font-size:11px;color:var(--text3);margin-top:4px}
+@media(max-width:600px){.metrics-grid{grid-template-columns:1fr 1fr}}
+
+/* FOOTER */
+footer{text-align:center;padding:60px 24px;color:var(--text3);font-size:12px;position:relative;z-index:1}
+footer a{color:var(--text2);text-decoration:none}
+footer a:hover{color:var(--text)}
+
+/* DIVIDER */
+.arrow-divider{text-align:center;color:var(--text3);font-size:20px;line-height:1;margin:4px 0}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">System Report · 2026-06-30</div>
+  <h1>ig-processor<br><span>Improvements</span></h1>
+  <p class="hero-sub">How we went from hitting API limits after 5 carousels to a fully automated, zero-cost pipeline that generates unique slide briefs per carousel.</p>
+  <div class="hero-meta">
+    <div class="meta-pill"><span class="dot"></span> Production-ready</div>
+    <div class="meta-pill">10 slides · 10 subtasks · $0</div>
+    <div class="meta-pill">Claude CLI · Ollama · ClickUp</div>
+  </div>
+</div>
+
+<!-- PIPELINE -->
+<section>
+  <div class="wrap">
+    <div class="section-label">How it works</div>
+    <h2 class="section-title">Full Pipeline</h2>
+    <p class="section-sub">From a ClickUp task with an Instagram URL to 10 production-ready slide briefs — fully automated.</p>
+    <div class="pipeline">
+
+      <div class="pipe-step">
+        <div class="pipe-num">1</div>
+        <div class="pipe-body">
+          <h3>Alejo creates a ClickUp task</h3>
+          <p>Pastes the Instagram URL in the task name or description. Sets status to <strong>request</strong>.</p>
+          <span class="pipe-tag tag-clickup">ClickUp</span>
+        </div>
+      </div>
+
+      <div class="pipe-step">
+        <div class="pipe-num">2</div>
+        <div class="pipe-body">
+          <h3>ig-processor picks it up within 2 min</h3>
+          <p>Polls 7 ClickUp lists every 2 minutes. Locks task to <strong>in progress</strong> to prevent double-processing.</p>
+          <span class="pipe-tag tag-auto">PM2 · id 12</span>
+        </div>
+      </div>
+
+      <div class="pipe-step">
+        <div class="pipe-num">3</div>
+        <div class="pipe-body">
+          <h3>Download carousel images via Playwright</h3>
+          <p>Best-effort scrape. If Instagram blocks it, falls back to caption text pasted in the task.</p>
+          <span class="pipe-tag tag-auto">Playwright</span>
+        </div>
+      </div>
+
+      <div class="pipe-step">
+        <div class="pipe-num">4</div>
+        <div class="pipe-body">
+          <h3>Claude CLI analyzes each slide</h3>
+          <p>Reads each image with the Read tool. Captures verbatim text, element positions, layout structure, emotional hook, and visual mechanic. 3s delay between calls to avoid throttling.</p>
+          <span class="pipe-tag tag-claude">Claude CLI · --allowedTools Read</span>
+        </div>
+      </div>
+
+      <div class="pipe-step">
+        <div class="pipe-num">5</div>
+        <div class="pipe-body">
+          <h3>Raw vision posted as ClickUp comment</h3>
+          <p>The exact analysis of what the AI saw in each slide — permanent reference. Never mixed into the description.</p>
+          <span class="pipe-tag tag-clickup">ClickUp comment</span>
+        </div>
+      </div>
+
+      <div class="pipe-step">
+        <div class="pipe-num">6</div>
+        <div class="pipe-body">
+          <h3>Generate 10-section brand reframe</h3>
+          <p>Claude CLI takes all slide visions and generates: OBJETIVO / NARRATIVA / HOOKS / SECUENCIA / COPY / CTA / TONALIDAD / PRODUCCION / CAPTION / HASHTAGS.</p>
+          <span class="pipe-tag tag-claude">Claude CLI · 300s timeout</span>
+        </div>
+      </div>
+
+      <div class="pipe-step">
+        <div class="pipe-num">7</div>
+        <div class="pipe-body">
+          <h3>Write reframe to task description</h3>
+          <p>Only the brand-adapted content goes here. Renamed to first 5 words of COPY SUGERIDO.</p>
+          <span class="pipe-tag tag-clickup">ClickUp description</span>
+        </div>
+      </div>
+
+      <div class="pipe-step">
+        <div class="pipe-num">8</div>
+        <div class="pipe-body">
+          <h3>Create one subtask per slide</h3>
+          <p>Each slide gets a unique production brief generated from its own vision output. TOFU / MOFU / BOFU copy, fully written. 3s delay between each.</p>
+          <span class="pipe-tag tag-claude">Claude CLI</span>
+          <span class="pipe-tag tag-clickup" style="margin-left:6px">ClickUp subtask</span>
+        </div>
+      </div>
+
+      <div class="pipe-step">
+        <div class="pipe-num">9</div>
+        <div class="pipe-body">
+          <h3>Status → In Review</h3>
+          <p>Task is handed off to the team. Paulo reviews, Facu edits, Alejo approves.</p>
+          <span class="pipe-tag tag-done">Done</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Improvements</div>
+    <h2 class="section-title">Before vs After</h2>
+    <p class="section-sub">Every major problem we hit — and how we fixed it.</p>
+    <div class="ba-grid">
+      <div class="ba-col before">
+        <div class="ba-header">
+          <span class="ba-icon">❌</span>
+          <span class="ba-title">Before</span>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✕</span>
+          <div class="ba-text"><strong>Groq Vision API</strong> — 500k token/day limit. Dead after 5 carousels.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✕</span>
+          <div class="ba-text"><strong>4-layer AI stack</strong> — Groq Vision → Groq Chat → Ollama. API credits burning.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✕</span>
+          <div class="ba-text"><strong>All 10 subtasks identical</strong> — mechanic template overrode individual slide vision.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✕</span>
+          <div class="ba-text"><strong>Copy cut off mid-sentence</strong> — max_tokens was 600, not enough for full output.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✕</span>
+          <div class="ba-text"><strong>Fidel-centered framing</strong> — content was about Fidel, not the viewer.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✕</span>
+          <div class="ba-text"><strong>Roofers only</strong> — ICP was too narrow for reach.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✕</span>
+          <div class="ba-text"><strong>Raw vision mixed into description</strong> — no separation between analysis and reframe.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✕</span>
+          <div class="ba-text"><strong>65-char vision responses</strong> — 10 rapid Claude CLI calls, no delay, got throttled.</div>
+        </div>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-header">
+          <span class="ba-icon">✅</span>
+          <span class="ba-title">After</span>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✓</span>
+          <div class="ba-text"><strong>Claude CLI + Read tool</strong> — reads image files natively. Subscription, unlimited, $0.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✓</span>
+          <div class="ba-text"><strong>2-layer stack</strong> — Claude CLI → Ollama fallback only. No API credits ever.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✓</span>
+          <div class="ba-text"><strong>Each subtask unique</strong> — brief driven by that slide's individual vision output.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✓</span>
+          <div class="ba-text"><strong>3 complete copy versions per slide</strong> — TOFU / MOFU / BOFU, fully written (max_tokens 2000).</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✓</span>
+          <div class="ba-text"><strong>ICP-centered framing</strong> — viewer sees themselves in the scene. Fidel is the system.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✓</span>
+          <div class="ba-text"><strong>Roofer / plumber / electrician / HVAC</strong> — varied by context. TOFU works for anyone.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✓</span>
+          <div class="ba-text"><strong>Clean separation</strong> — raw vision → comment. Reframe only → description.</div>
+        </div>
+        <div class="ba-item">
+          <span class="ba-bullet">✓</span>
+          <div class="ba-text"><strong>3s delay between calls</strong> — throttle protection. ~2500 char vision per slide.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT FUNNEL -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Content Strategy</div>
+    <h2 class="section-title">Content Funnel</h2>
+    <p class="section-sub">Every piece of content — every slide brief — maps to one of these three stages.</p>
+
+    <div class="transformation">
+      <span class="t-label">Transformation</span>
+      <span class="t-from">Not running ads</span>
+      <span class="t-arrow">→</span>
+      <span class="t-to">Running ads</span>
+    </div>
+
+    <div class="funnel">
+      <div class="funnel-stage f-tofu">
+        <div class="f-label">TOFU · Top of Funnel</div>
+        <div class="f-who">Anyone in business, sales, or self-employment</div>
+        <div class="f-hook">Universal human truth — the grind of chasing vs the peace of having a system that works. No niche mention, no industry reference. A plumber, a freelancer, a sales rep — everyone should stop scrolling.</div>
+        <span class="f-rule">Rule: zero niche. pure insight.</span>
+      </div>
+      <div class="arrow-divider">↓</div>
+      <div class="funnel-stage f-mofu">
+        <div class="f-label">MOFU · Middle of Funnel</div>
+        <div class="f-who">People not running ads but feeling the gap</div>
+        <div class="f-hook">Makes them feel the cost of NOT having a system working for them. "What if" framing. The pain of working hard with no engine behind it. Soft bridge — curiosity, not pitch.</div>
+        <span class="f-rule">Rule: name the gap, not the product.</span>
+      </div>
+      <div class="arrow-divider">↓</div>
+      <div class="funnel-stage f-bofu">
+        <div class="f-label">BOFU · Bottom of Funnel</div>
+        <div class="f-who">Contractors (roofers / plumbers / electricians / HVAC), agents, wholesalers</div>
+        <div class="f-hook">Specific and direct. Names the exact transformation — what changes the day they start running ads. Shows exactly what they're leaving on the table right now.</div>
+        <span class="f-rule">Rule: name the niche. name the outcome.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBTASK STRUCTURE -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Per-Slide Briefs</div>
+    <h2 class="section-title">Subtask Structure</h2>
+    <p class="section-sub">Every carousel slide generates one ClickUp subtask with this exact format.</p>
+
+    <div class="subtask-card">
+      <div class="subtask-header">SLIDE N — ClickUp Subtask</div>
+      <div class="subtask-body">
+        <div class="subtask-row">
+          <div class="subtask-label">THE MECHANIC</div>
+          <div class="subtask-content">What this slide does psychologically — contrast, status signal, identity mirror, list reveal, curiosity gap…</div>
+        </div>
+        <div class="subtask-row">
+          <div class="subtask-label">THE MEANING</div>
+          <div class="subtask-content">Each element decoded: <strong>[element] → communicates [benefit / pain / insight]</strong>. Not what it looks like — what it makes the viewer feel.</div>
+        </div>
+        <div class="subtask-row">
+          <div class="subtask-label">THE REFRAME</div>
+          <div class="subtask-content">Concrete filmable scene with the ICP as character. Layout matches the original exactly. Viewer sees themselves — not Fidel.</div>
+        </div>
+        <div class="subtask-row">
+          <div class="subtask-label">WHY IT WORKS</div>
+          <div class="subtask-content">One sentence: the exact moment of recognition the ICP feels when they see this slide.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copy-row" style="margin-top:16px">
+      <div class="copy-card copy-tofu">
+        <div class="copy-label">TOFU Copy</div>
+        <div class="copy-desc">Universal. No niche. Any person scrolling should feel it in their gut.</div>
+      </div>
+      <div class="copy-card copy-mofu">
+        <div class="copy-label">MOFU Copy</div>
+        <div class="copy-desc">Gap + cost of not having a system. Makes them feel what they're missing.</div>
+      </div>
+      <div class="copy-card copy-bofu">
+        <div class="copy-label">BOFU Copy</div>
+        <div class="copy-desc">ICP-specific. Contractor or agent. Direct. Names the exact outcome.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Technical Stack</div>
+    <h2 class="section-title">How It's Built</h2>
+    <p class="section-sub">Two AI layers. Zero API credits. Runs 24/7 on PM2.</p>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="stack-icon">🤖</div>
+        <div class="stack-title">Claude CLI — Vision</div>
+        <div class="stack-desc"><code>claude -p "..." --allowedTools Read --add-dir &lt;dir&gt;</code><br><br>Reads image files natively using the Read tool. 3s delay between calls. 300s timeout for full analysis.</div>
+        <span class="stack-badge b-free">Free · Subscription</span>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">💬</div>
+        <div class="stack-title">Claude CLI — Text</div>
+        <div class="stack-desc"><code>claude -p "system + user prompt"</code><br><br>Generates 10-section brand analysis and per-slide TOFU/MOFU/BOFU briefs. No API key needed.</div>
+        <span class="stack-badge b-free">Free · Subscription</span>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">🦙</div>
+        <div class="stack-title">Ollama — Fallback</div>
+        <div class="stack-desc">Local model (<code>qwen3:8b</code>) as fallback when Claude CLI fails. Runs on localhost. No internet, no cost.</div>
+        <span class="stack-badge b-fallback">Local Fallback</span>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon">⚙️</div>
+        <div class="stack-title">PM2 — Process Manager</div>
+        <div class="stack-desc">PM2 id 12. Polls 7 ClickUp lists every 2 minutes. Auto-restarts on crash. Survives Windows reboots via Task Scheduler.</div>
+        <span class="stack-badge b-fallback">24/7 · Always On</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Proof</div>
+    <h2 class="section-title">10-Slide Test · 2026-06-30</h2>
+    <p class="section-sub">End-to-end run on a real carousel. All systems green.</p>
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-num" style="color:var(--purple)">10</div>
+        <div class="metric-label">Slides analyzed</div>
+        <div class="metric-sub">~2,000–3,000 chars each</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num" style="color:var(--blue)">11k</div>
+        <div class="metric-label">Chars in task description</div>
+        <div class="metric-sub">Full 10-section reframe</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num" style="color:var(--green)">10</div>
+        <div class="metric-label">Subtasks created</div>
+        <div class="metric-sub">2,800–4,200 chars each</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num" style="color:var(--gold)">3</div>
+        <div class="metric-label">Copy versions per slide</div>
+        <div class="metric-sub">TOFU · MOFU · BOFU</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num" style="color:var(--green)">$0</div>
+        <div class="metric-label">API cost</div>
+        <div class="metric-sub">Claude subscription only</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num" style="color:var(--text)">2 min</div>
+        <div class="metric-label">Time to pick up task</div>
+        <div class="metric-sub">After status set to request</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built by <a href="#">Alejo Martignoni</a> for <strong>Fidel Guajardo</strong> — LeadLift Marketing</p>
+  <p style="margin-top:8px">ig-processor · System Report · June 2026</p>
+</footer>
+
+</body>
+</html>
